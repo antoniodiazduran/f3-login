@@ -46,7 +46,6 @@ class Controller {
 		$access->deny('/user*');
 		// user login routes
 		$access->allow('/user*',['100','10','1']);
-
 		$access->authorize($this->f3->exists('SESSION.user_type') ? $this->f3->get('SESSION.user_type') : 0 );
 		
     }
@@ -57,11 +56,7 @@ class Controller {
 
 	function __construct() {
 		$f3=Base::instance();
-		$db=new DB\SQL(
-			$f3->get('db_dns') . $f3->get('db_name'),
-			$f3->get('db_user'),
-			$f3->get('db_pass')
-		);
+		$db=new DB\SQL($f3->get('db_dns'));
 		$this->f3=$f3;
 		$this->db=$db;
 	}	

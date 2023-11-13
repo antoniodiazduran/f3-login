@@ -98,6 +98,13 @@ class User extends DB\SQL\Mapper {
 		$this->copyFrom($data);
 		$this->update();
 	}
+	public function editupd($id)
+	{
+		$data['updated_at']=$this->getCurrentdate();
+		$this->load(array('id=?',$id));
+		$this->copyFrom($data);
+		$this->update();
+	}
 
 	public function activate($id)
 	{

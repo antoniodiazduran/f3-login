@@ -38,7 +38,7 @@ class UserController extends Controller {
 		
 		$this->f3->set('POST.activated',1); 
 		
-		$user->edit($this->f3->get('POST.user_id'));
+		$user->editupd($this->f3->get('POST.user_id'));
 
 		$this->f3->copy('POST','SESSION');
 		$this->f3->set('SESSION.login_message',$this->f3->get('i18n_reg_update_success') );
@@ -175,7 +175,7 @@ class UserController extends Controller {
 			$user = new User($this->db);
 			$user->getByEmail($this->f3->get('POST.email'));
 			$this->f3->set('POST.hash', $hash);
-			$user->edit($user->id);
+			$user->editupd($user->id);
 			$this->sendactmail($this->f3->get('POST.email'), $hash);
 			$this->f3->set('page_head',$this->f3->get('i18n_registration'));
 			$this->f3->set('message', $this->f3->get('i18n_conf_mail_sent'));
@@ -210,7 +210,7 @@ class UserController extends Controller {
 			$pwcheck = $this->check_password( $this->f3->get('POST.password'), $this->f3->get('POST.confirm'));
 			if (strlen($pwcheck) > 0)
 			{ 
-				$this->f3->set('message', $pwcheck);
+				$this->f3->set('message', $pwcheck."pwcheck");
 				$this->f3->set('view','user/create.htm');
 			}
 			else{
@@ -227,23 +227,23 @@ class UserController extends Controller {
 					$this->sendactmail($this->f3->get('POST.email'), $hash);
 
 					$this->f3->set('page_head',$this->f3->get('i18n_registration'));
-					$this->f3->set('message', $this->f3->get('i18n_conf_mail_sent'));
+					$this->f3->set('message', $this->f3->get('i18n_conf_mail_sent').'mailsent');
 					$this->f3->set('view','page/message.htm');
 				}
 				else if($user_added==10) //user taken
 				{
-					$this->f3->set('message', $this->f3->get('i18n_username_taken'));
+					$this->f3->set('message', $this->f3->get('i18n_username_taken').'usertaken');
 					$this->f3->set('view','user/create.htm');
 				}
 				else if($user_added==11) //email taken
 				{
 					if($user->activated==0)
 					{
-						$this->f3->set('message', $this->f3->get('i18n_not_activated'));	
+						$this->f3->set('message', $this->f3->get('i18n_not_activated').'activated');	
 					}
 					else
 					{
-						$this->f3->set('message', $this->f3->get('i18n_email_taken'));						
+						$this->f3->set('message', $this->f3->get('i18n_email_taken').'emailtaken');						
 					}
 					$this->f3->set('view','user/create.htm');
 				}
@@ -251,6 +251,7 @@ class UserController extends Controller {
 		} 
 		else
 		{
+			$this->f3->set('POST.email',"user@example.com");
 			$this->f3->set('view','user/create.htm');
 		}
 	}
@@ -319,7 +320,7 @@ class UserController extends Controller {
 
 		if($this->f3->exists('POST.update'))
 		{
-			$user->edit($this->f3->get('POST.id'));
+			$user->editupd($this->f3->get('POST.id'));
 			$this->f3->reroute('/success/User Updated');
 		} 
 		else

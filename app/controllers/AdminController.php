@@ -31,7 +31,7 @@ class AdminController extends Controller {
 	{
 		$id = $this->f3->get('PARAMS.id'); 
 		if($this->f3->exists('POST.edit'))
-        {
+                {
 			$users = new User($this->db);
 			$pw = $this->f3->get('POST.password');
 			if(strlen($pw)===0)
@@ -65,7 +65,8 @@ class AdminController extends Controller {
 				$this->f3->error(404);
 			}
 		}
-
+		$users = new User($this->db);
+		$users->getById($id);
 		$this->f3->set('view','admin/userdetails.htm');
 	}
 }
