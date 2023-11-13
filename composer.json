@@ -1,6 +1,5 @@
 {
     "require": {
-        "bcosca/fatfree-core": "^3.8",
-        "phpmailer/phpmailer": "^6.8"
+        "bcosca/fatfree-core": "^3.8"
     }
 }
