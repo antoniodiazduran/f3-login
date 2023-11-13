@@ -1,3 +1,5 @@
 /vendor/
 /lib/
 /data/
+/tmp/*
+/logs/*
