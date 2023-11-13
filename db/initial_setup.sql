@@ -1,4 +1,3 @@
-
 CREATE TABLE  users  (
    id  INTEGER PRIMARY KEY AUTOINCREMENT,
    username  TEXT DEFAULT NULL,
@@ -11,6 +10,5 @@ CREATE TABLE  users  (
    updated_at  TEXT DEFAULT NULL
 )
 
-
-INSERT INTO  users  ( id ,  username ,  email ,  password ,  hash ,  activated ,  user_type ,  created_at ,  updated_at ) VALUES
-(1, 'admin', 'admin@mail.invalid', '$2y$10$65g7M7Zpx5v7Mk65T59Vf.zREqI3m2gkpa/vaOHdpSGhf0E92On6q', '', 1, 100, NULL, '2019-03-27 13:57:32');
+INSERT INTO users (id, username, email, password, activated, user_type,created_at,updated_at) 
+VALUES (2,'adiaz','antonio@diaz.works','$2y$10$One/z.61I/ZaCejNpreP/e4K372D3QvzsLc0RPADUYmYJogD8g.su',1,1,NULL,NULL)
