@@ -43,16 +43,21 @@ return array(
 
 	'i18n_username_taken'=>'This username is not available, Please choose a different username.',
 	'i18n_email_taken'=>'This email is already taken. Login or choose another email to create an account.',
-	
+
 	'i18n_conf_mail_sent'=>'<p>Thank you for registering on our website. </p><p>We have sent you a mail with further instructions to activate your account.</p><p>If you haven\'t received a mail from us, please check your spam folder.</p>', 
 	'i18n_registration_confirmation_failed'=>'Something went wrong activating your account.',
 	'i18n_agree_conditions'=>' I have read the conditions and agree with them',
 	'i18n_submit'=>'Submit',
-	
+
 	'i18n_reset_pw'=>'Fill out your email and click submit in order to reset your password. Follow the instructions we send to you by mail.',
 	'i18n_reset_pw_submit'=>'Reset Password',
 	'i18n_password_changed'=>'Password changed succesfully',
 	'i18n_password_changed_error'=>'There was a problem changing your password',
 	'i18n_resend_activation_mail'=>'Resend activation mail',
-	'i18n_users'=>'Users'
+	'i18n_users'=>'Users',
+	'i18n_shortages'=>'Shortages',
+	'i18n_engineering'=>'Engineering',
+	'i18n_buyers'=>'Buyers',
+	'i18n_leaders'=>'Leaders',
+	'i18n_delivery'=>'Delivery',
 );

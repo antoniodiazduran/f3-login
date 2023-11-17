@@ -1,0 +1,15 @@
+<div class="row" style="font-weight:bolder; padding-left:20px; padding-right:10px">
+	<div class="col-25x">
+	</div>
+
+	<div class="col-75x">
+		<p style="text-align: right;">
+		Search <input type="text" id="search" onkeyup="searchTable();" style="width: 20%;"> &nbsp;
+		<a href="/mat/delivery/new" target="_blank"><i class="bi-file-earmark-plus" style="font-size: 1.3em" title="Add Unit"></i></a>&nbsp;&nbsp;
+		<a href="/mat/delivery"><i class="bi-arrows-angle-expand" style="font-size: 1.1em" title="Expand"></i></a>&nbsp;&nbsp;
+		<i class="bi-calendar2-week" onClick="goCheckboxDate();" style="font-size: 1.3em; color:blue;" title="Multiple Ship Months"></i>&nbsp;&nbsp;
+		&nbsp;&nbsp;
+		{{ @rowcount }}
+		</p>
+	</div>
+</div>

@@ -3,14 +3,14 @@
 class AdminController extends Controller {
 	protected $f3;
 	protected $db;
-		
+
 	public function users()
-	{	
-        $users = new User($this->db);
+	{
+        $users = new User($this->usr);
 		$this->f3->set('users',$users->all());
 		$this->f3->set('view','admin/users.htm');
 	}
-	
+
 	private function check_password($pw, $confirm)
 	{
 		if(strlen($pw) < 8)
@@ -24,15 +24,15 @@ class AdminController extends Controller {
 		else 
 		{
 			return "";
-		}		
+		}
 	}
-	
+
 	public function show_user() 
 	{
 		$id = $this->f3->get('PARAMS.id'); 
 		if($this->f3->exists('POST.edit'))
                 {
-			$users = new User($this->db);
+			$users = new User($this->usr);
 			$pw = $this->f3->get('POST.password');
 			if(strlen($pw)===0)
 			{ //do not change password, reset to hash in database
@@ -49,7 +49,7 @@ class AdminController extends Controller {
 				{
 					$crypt = \Bcrypt::instance();
 					$password = $crypt->hash($this->f3->get('POST.password'));
-					
+
 					$this->f3->set('message', "Password changed");
 					$this->f3->set('POST.password', $password);
 				}
@@ -58,14 +58,14 @@ class AdminController extends Controller {
 		}
 		else
 		{
-			$users = new User($this->db);
+			$users = new User($this->usr);
 			$users->getById($id);
 
 			if($users->dry()) { //throw a 404, order does not exist
 				$this->f3->error(404);
 			}
 		}
-		$users = new User($this->db);
+		$users = new User($this->usr);
 		$users->getById($id);
 		$this->f3->set('view','admin/userdetails.htm');
 	}

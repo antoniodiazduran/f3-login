@@ -1,0 +1,89 @@
+<check if="{{ @nav == 'yes' }}">
+<include href="{{ @nav_menu }}">
+</check>
+<div style="padding:1px; background-color:green; opacity:0.8;">
+	<h3>&nbsp; &nbsp; Buyer Update</h3>
+</div>
+<div class="container">
+  <form action="/{{ @breadcrumbs}}/{{ @mode }}" method="POST" name="wipform" onsubmit="return validateForm();">
+    <div class="row">
+	<div id="alertnotes" style="border-radius:25px; border: 2px solid white; padding:15px;">
+	</div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-75">
+	<repeat group="{{ @record }}" value="{{ @vals }}">
+	  <label class="titles">{{ @vals.PartNumber}}<br>{{@vals.Description}}</label><p>
+	</repeat>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-75">
+        <label class="titles" for="unitnumber">Buyer</label><p>
+        <input type="text" id="buyer" name="buyer" placeholder="Buyer initials" value="{{ @vals.Buyer }}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-75">
+        <label class="titles" for="duedate">Due Date</label><p>
+        <input type="date" id="duedate" name="duedate" placeholder="mm/dd/yyyy" value="{{ @vals.DueDate }}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-75">
+	<label class="titles">Changes...</label><br>
+	<repeat group="{{ @duedate }}" value="{{ @log }}">
+		<li><label>{{ @log.PartNumber }} {{ @log.Description }} was Change to {{ @log.DueDate }} on {{ @log.timeStamp }}</label><br>
+	</repeat>
+      </div>
+    </div>
+    <p>
+    <div class="row">
+	<div class="col-75">
+		<input type="hidden" id="epoch"  name="epoch" value="{{ @epoch }}">
+ 		<input type="reset" value="Clear">
+      		<input type="submit" value="Submit" onclick="this.value='Submitting...'">
+	</div>
+    </div>
+  </form>
+</div>
+
+<script>
+function validateForm() {
+ const alerts = document.getElementById("alertnotes");
+ alerts.innerHTML='';
+ let lin = document.forms["wipform"]["line"].value;
+ let des = document.forms["wipform"]["description"].value;
+ let par = document.forms["wipform"]["partnumber"].value;
+ let buy = document.forms["wipform"]["buyer"].value;
+ let due = document.forms["wipform"]["duedate"].value;
+ let ale = "";
+ if ( lin.length=== 0) { ale = ale + "Select the line <br>"; }
+ if ( des.length=== 0) { ale = ale + "Type a description<br>"; }
+ if ( par.length=== 0) { ale = ale + "Type Part number AX/SAP<br>"; }
+ if ( buy.length=== 0) { ale = ale + "Type buyer initials<br>"; }
+ if ( due.length=== 0) { ale = ale + "Select Due date<br>"; }
+ if ( ale.length > 0) { 
+ 	document.body.scrollTop = document.documentElement.scrollTop = 0; 
+	alerts.style.backgroundColor = "red";
+	alerts.style.color = "white";
+	alerts.style.textAlign = "center";
+	alerts.insertAdjacentHTML('beforeend',ale);
+	document.body.scrollTop = document.documentElement.scrollTop = 0;
+	return false;
+ } else {
+	return true;
+ }
+  
+
+}
+</script>

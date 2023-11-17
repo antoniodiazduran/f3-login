@@ -3,7 +3,8 @@
 class Controller {
 
 	protected $f3;
-	protected $db;
+	protected $enc;
+	protected $usr;
 
     function beforeroute() {
 		if($this->f3->get('SESSION.logged_in'))
@@ -18,7 +19,7 @@ class Controller {
 			}
 		}
 		$csrf_page = $this->f3->get('PARAMS.0'); //URL route !with preceding slash!
-
+		//var_dump($this->f3->get('SESSION'));
 		if( NULL === $this->f3->get('POST.session_csrf') )
 		{
 			$this->f3->CSRF = $this->f3->session->csrf();
@@ -36,18 +37,23 @@ class Controller {
 				$this->f3->error(403); 
 			}
 		}
-		
+
 		$access=Access::instance();
 		$access->policy('allow'); // allow access to all routes by default
 		$access->deny('/admin*');
-		
+		$access->deny('/enc*');
+
 		// admin routes
 		$access->allow('/admin*','100'); //100 = admin ; 10 = superuser ; 1 = user
 		$access->deny('/user*');
+		// superuser routes
+		$access->allow('/enc*','10');
 		// user login routes
 		$access->allow('/user*',['100','10','1']);
+
+		// Granting access to routes
 		$access->authorize($this->f3->exists('SESSION.user_type') ? $this->f3->get('SESSION.user_type') : 0 );
-		
+
     }
 
 	function afterroute() {
@@ -56,8 +62,11 @@ class Controller {
 
 	function __construct() {
 		$f3=Base::instance();
-		$db=new DB\SQL($f3->get('db_dns'));
+		$usr=new DB\SQL($f3->get('usr_dns'));
+		$enc=new DB\SQL($f3->get('enc_dns'));
 		$this->f3=$f3;
-		$this->db=$db;
-	}	
+		$this->usr=$usr;
+		$this->enc=$enc;
+	}
+
 }

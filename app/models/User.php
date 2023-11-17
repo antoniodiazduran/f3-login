@@ -9,19 +9,19 @@ class User extends DB\SQL\Mapper {
 		"email",
 		"activated",
 		"hash",
-		"type"
+		"user_type"
 	);
-	
+
 	private function sanitizeInput(array $data, array $fieldNames) 
 	{ //sanitize input - with thanks to richgoldmd
 	   return array_intersect_key($data, array_flip($fieldNames));
 	}
-	
+
 	private function getCurrentdate()
 	{
 		return date("Y-m-d H:i:s");
 	}
-	
+
 	public function __construct(DB\SQL $db) 
 	{
 		parent::__construct($db,'users');
@@ -37,7 +37,7 @@ class User extends DB\SQL\Mapper {
 	{
 		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
 		//check if username already exists in db
-		$this->load(array('username=?',$data['username']));		
+		$this->load(array('username=?',$data['username']));
 		if(!$this->dry())
 		{
 			return 10;
@@ -59,37 +59,37 @@ class User extends DB\SQL\Mapper {
 	{
 		$this->load(array('username=?', $name));
 	}
-	
+
 	public function getByEmail($email)
 	{
 		$this->load(array('email=?', $email));
 		$this->copyTo('POST');
 	}
-	
+
 	public function getById($id) 
 	{
 		$this->load(array('id=?',$id));
 		$this->copyTo('POST');
 	}
-	
+
 	public function login($id) 
 	{
 		$this->load(array('id=?',$id));
 		$this->copyTo('SESSION');
 	}
-	
+
 	public function getByHash($hash) 
 	{
 		$this->load(array('hash=? AND activated=0',$hash));
 		$this->copyTo('POST');
 	}
-	
+
 	public function checkActivatedHash($hash) 
 	{
 		$this->load(array('hash=? AND activated=1',$hash));
 		$this->copyTo('POST');
 	}
-	
+
 	public function edit($id, $unsanitizeddata)
 	{
 		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);

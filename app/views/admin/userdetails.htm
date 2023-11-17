@@ -12,7 +12,7 @@
 	</div>
 </true>
 </check>		 
-<h1>User: {{ @POST.username }} (<em><check if="{{ @POST.user_type }}==1"><true>Standard user</true><false><check if="{{ @POST.user_type }}==10"><true>Superuser</true><false>Administrator</false></check></false>
+<h1>User: {{ @POST.username }} (<em><check if="{{ @POST.user_type }}==1"><true>Viewer</true><false><check if="{{ @POST.user_type }}==10"><true>Superuser</true><false>Administrator</false></check></false>
 		  </check></em>)</h1>
 	<form action="" method="post" class="form-horizontal">
 	<div class="row py-5">
@@ -21,6 +21,12 @@
 		  <h4>Activated: <select name="activated">
 			<option value=1<check if="{{ intval(@POST.activated)===1 }}"> selected</check>>Yes</option>
 			<option value=0<check if="{{ intval(@POST.activated)===0 }}"> selected</check>>No</option>
+		  </select></h4>
+		<p>
+		  <h4>User Type: <select name="user_type">
+			<option value=100 <check if="{{ intval(@POST.user_type)===100 }}"> selected</check>>Admin</option>
+			<option value=10  <check if="{{ intval(@POST.user_type)===10 }}"> selected</check>>Superuser</option>
+			<option value=1   <check if="{{ intval(@POST.user_type)===1 }}"> selected</check>>Viewer</option>
 		  </select></h4>
 		</div>
 

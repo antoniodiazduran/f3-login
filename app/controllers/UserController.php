@@ -4,7 +4,7 @@ class UserController extends Controller {
 
 	public function confirm_registration()
 	{
-		$user = new User($this->db);
+		$user = new User($this->usr);
 		$user->getByHash($this->f3->get('GET.h'));
 		if(strcmp($this->f3->get('POST.hash'),$this->f3->get('GET.h'))===0)
 		{
@@ -29,25 +29,25 @@ class UserController extends Controller {
 			}
 		}
 	}
-	
+
 	public function update_registration()
 	{
 		// first activation posted
-		$user = new User($this->db);
+		$user = new User($this->usr);
 		$sessionlogin = false;
-		
+
 		$this->f3->set('POST.activated',1); 
-		
+
 		$user->editupd($this->f3->get('POST.user_id'));
 
 		$this->f3->copy('POST','SESSION');
 		$this->f3->set('SESSION.login_message',$this->f3->get('i18n_reg_update_success') );
-		$this->f3->reroute('/login');		
+		$this->f3->reroute('/login');
 	}
-	
+
 	public function pw_reset()
 	{
-		$user = new User($this->db);
+		$user = new User($this->usr);
 		$user->checkActivatedHash($this->f3->get('GET.h'));
 		$this->f3->set('SESSION.user_id',$user->id);
 
@@ -79,17 +79,17 @@ class UserController extends Controller {
 			$this->f3->set('view','page/message.htm');
 		}
 	}
-	
+
 	private function setpw( $newpw, $user_id )
 	{
-		$user = new User($this->db);
+		$user = new User($this->usr);
 		$user->getById($user_id);
-		
+
 		$password = password_hash($newpw, PASSWORD_BCRYPT);
-		
+
 		//check if user id = session id for security
 		if($user_id == $this->f3->get('SESSION.user_id'))
-		{				
+		{
 			$this->f3->set('POST.password', $password);
 			$user->edit($user_id, $this->f3->get('POST'));
 			return true;
@@ -98,7 +98,7 @@ class UserController extends Controller {
 			return false;
 		}
 	}
-	
+
 	public function edit_registration()
 	{
 		if($this->f3->VERB==="POST")
@@ -120,8 +120,7 @@ class UserController extends Controller {
 						$this->f3->set('message',$passwordcheck);
 					}
 				}
-				
-				$user = new User($this->db);
+				$user = new User($this->usr);
 				$user->getById($user_id);
 				$user->edit($user_id, $this->f3->get('POST'));
 				$this->f3->set('SESSION.logged_in', 1);
@@ -132,15 +131,14 @@ class UserController extends Controller {
 			}
 		}
 		$this->f3->copy('SESSION','POST');
-		
 		$this->f3->set('view','user/editregistration.htm');	
 	}
-	
+
 	public function success()
 	{
 		$this->f3->set('view','user/success.htm');
 	}
-	
+
 	public function sendactmail($email, $hash)
 	{
 		$confirmation_link = $this->f3->get('SCHEME')."://".$this->f3->get('HOST')."/confirm_registration?h=".$hash;
@@ -151,7 +149,6 @@ class UserController extends Controller {
 			$this->f3->get('i18n_confirmation_mail_subject') . " " . $this->f3->get('HOST'),
 			$this->f3->get('i18n_confirmation_mail_message')."<a href=\"".$confirmation_link."\">".$confirmation_link . "</a>"
 		);
-		
 	}
 
 	private function pw_reset_mail($email, $hash)
@@ -164,19 +161,19 @@ class UserController extends Controller {
 			$this->f3->get('i18n_confirmation_mail_subject') . " " . $this->f3->get('HOST'),
 			$this->f3->get('i18n_reset_pw_mail_message')."<a href=\"".$confirmation_link."\">".$confirmation_link . "</a>"
 		);
-		
+
 	}
-	
+
 	public function sendactivationmail()
 	{
 		if($this->f3->exists('POST.sendmail'))
 		{
 			$hash=$this->createHash();
-			$user = new User($this->db);
+			$user = new User($this->usr);
 			$user->getByEmail($this->f3->get('POST.email'));
 			$this->f3->set('POST.hash', $hash);
 			$user->editupd($user->id);
-			$this->sendactmail($this->f3->get('POST.email'), $hash);
+			//$this->sendactmail($this->f3->get('POST.email'), $hash);
 			$this->f3->set('page_head',$this->f3->get('i18n_registration'));
 			$this->f3->set('message', $this->f3->get('i18n_conf_mail_sent'));
 			$this->f3->set('view','page/message.htm');
@@ -186,7 +183,7 @@ class UserController extends Controller {
 			$this->f3->set('view','user/send_activation_mail.htm');
 		}
 	}
-	
+
 	private function check_password($pw, $confirm)
 	{
 		if(strlen($pw) < 8)
@@ -200,7 +197,7 @@ class UserController extends Controller {
 		else 
 		{
 			return "";
-		}		
+		}
 	}
 
 	public function create()
@@ -216,15 +213,15 @@ class UserController extends Controller {
 			else{
 				$password = password_hash($this->f3->get('POST.password'), PASSWORD_BCRYPT);
 				$this->f3->set('POST.password', $password);
-				
+
 				$hash = $this->createHash();
 				$this->f3->set('POST.hash', $hash);
-				$user = new User($this->db);
+				$user = new User($this->usr);
 				$user_added=$user->add($this->f3->get('POST'));
-				
+
 				if($user_added==1)
 				{
-					$this->sendactmail($this->f3->get('POST.email'), $hash);
+					//$this->sendactmail($this->f3->get('POST.email'), $hash);
 
 					$this->f3->set('page_head',$this->f3->get('i18n_registration'));
 					$this->f3->set('message', $this->f3->get('i18n_conf_mail_sent').'mailsent');
@@ -239,11 +236,11 @@ class UserController extends Controller {
 				{
 					if($user->activated==0)
 					{
-						$this->f3->set('message', $this->f3->get('i18n_not_activated').'activated');	
+						$this->f3->set('message', $this->f3->get('i18n_not_activated').'activated');
 					}
 					else
 					{
-						$this->f3->set('message', $this->f3->get('i18n_email_taken').'emailtaken');						
+						$this->f3->set('message', $this->f3->get('i18n_email_taken').'emailtaken');
 					}
 					$this->f3->set('view','user/create.htm');
 				}
@@ -272,7 +269,7 @@ class UserController extends Controller {
 			}
 			$user_id="not logged in";
 
-			$user = new User($this->db);
+			$user = new User($this->usr);
 			$user->getByName( $this->f3->get('POST.username') );
 
 			if($user->dry() || ! password_verify($this->f3->get('POST.password'), $user->password))
@@ -316,7 +313,7 @@ class UserController extends Controller {
 
 	public function update()
 	{
-		$user = new User($this->db);
+		$user = new User($this->usr);
 
 		if($this->f3->exists('POST.update'))
 		{
@@ -337,7 +334,7 @@ class UserController extends Controller {
 		if($this->f3->exists('POST.reset_pw'))
 		{
 			$hash=$this->createHash();
-			$user = new User($this->db);
+			$user = new User($this->usr);
 			$user->getByEmail($this->f3->get('POST.email'));
 			if(! $user->dry()){
 				$this->f3->set('POST.hash', $hash);
@@ -363,7 +360,7 @@ class UserController extends Controller {
 	{
 		if($this->f3->exists('PARAMS.id'))
 		{
-			$user = new User($this->db);
+			$user = new User($this->usr);
 			$user->delete($this->f3->get('PARAMS.id'));
 		}
 		$this->f3->reroute('/success/User Deleted');
