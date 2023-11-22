@@ -1,0 +1,47 @@
+<div style="padding:10px; background-color:green; opacity:0.8; color:white;">
+	<h3>&nbsp; &nbsp; [Notes]</h3>
+</div>
+<div class="container">
+  <form action="/{{ @breadcrumbs}}/{{ @mode }}" method="POST" name="wipform">
+    <div class="row">
+	<div id="alertnotes" style="border-radius:25px; border: 2px solid white; padding:15px;">
+	</div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-75">
+        <repeat group="{{ @record }}" value="{{ @vals }}">
+          <label class="titles">{{ @vals.PartNumber}}<br>{{@vals.Description}} - {{@vals.UnitID}} / {{@vals.Line}}</label><p>
+        </repeat>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+      </div>
+      <div class="col-75">
+	<label class="titles" for="notes">
+	<b>Log...</b>
+        <br>
+	<check if="{{ count(@notes) > 0 }}">
+	<repeat group="{{ @notes }}" value="{{ @cols }}">
+	   <li><font style="color:gray; font-size:0.8em;">{{ @cols.datetime }}</font>: {{ @cols.notes }}
+	<br>
+	</repeat>
+	</check>
+	<br>
+        Notes
+	</label><p>
+        <textarea id="notes" name="notes" placeholder="Add any other piece of information..." style="width:400px;height:200px">{{ isset(@record.Notes)?@record.Notes:'' }}</textarea>
+      </div>
+    </div>
+    <div class="row">
+	<div class="col-75">
+		<input type="hidden" id="epoch"  name="epoch" value="{{ @epoch }}">
+		<input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
+ 		<input type="reset" value="Clear">
+      		<input type="submit" value="Submit" onclick="this.value='Submitting...'">
+	</div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,65 @@
+/*Table formating*/
+table code {
+	background:transparent;
+	padding:0
+}
+
+tr {	border-bottom:2px solid #fff;
+}
+
+tr:last-child { 	border-bottom:none;
+}
+
+th,td {
+	font-size:1em;
+	line-height:1.25em;
+	margin:2;
+	padding:0.5em;
+	white-space:nowrap;
+}
+
+th {
+	font-weight:bold;
+	text-align:left;
+	text-transform:uppercase;
+	color:#fff;
+	/*background:#555;
+	width:50%;*/
+}
+
+th a {	color:#fff;
+}
+
+/* Checkbox size*/
+input[type="checkbox"]{
+  -ms-transform: scale(2); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(2);
+  vertical-align: middle;
+  display:inline;
+  font-family: Verdana, Geneva;
+  font-size: 0.7em;
+  font-weight:normal;
+}
+
+/* Blink for  list line or show stoppers*/
+.blink {
+  animation: blinker 3s linear infinite;
+}
+
+@keyframes blinker{
+    0%{
+     opacity: 0;
+   }
+   50%{
+     opacity: 0.5;
+   }
+   100%{
+     opacity: 1;
+   }
+}
+
+/*Text blinker for past due*/
+
+.textblinker { animation: tblinker 2s ease-in-out infinite alternate; }
+@keyframes tblinker { to { opacity: 0; }} 

@@ -23,14 +23,18 @@ class Controller {
 		if( NULL === $this->f3->get('POST.session_csrf') )
 		{
 			$this->f3->CSRF = $this->f3->session->csrf();
-			$this->f3->copy('CSRF','SESSION.'.$csrf_page.'.csrf');
+			//$this->f3->copy('CSRF','SESSION.'.$csrf_page.'.csrf');  // used for same Controller without mixing GET & POST
+			$this->f3->copy('CSRF','SESSION.session_csrf');
 		}
+
 		if ($this->f3->VERB==='POST')
 		{
-			if(  $this->f3->get('POST.session_csrf') ==  $this->f3->get('SESSION.'.$csrf_page.'.csrf') ) 
+			//if(  $this->f3->get('POST.session_csrf') ==  $this->f3->get('SESSION.'.$csrf_page.'.csrf') ) 
+			if(  $this->f3->get('POST.session_csrf') ==  $this->f3->get('SESSION.session_csrf') ) 
 			{	// Things check out! No CSRF attack was detected.
 				$this->f3->set('CSRF', $this->f3->session->csrf()); // Reset csrf token for next post request
-				$this->f3->copy('CSRF','SESSION.'.$csrf_page.'.csrf');  // copy the token to the variable
+				//$this->f3->copy('CSRF','SESSION.'.$csrf_page.'.csrf');  // copy the token to the variable POST only
+				$this->f3->copy('CSRF','SESSION.session_csrf');  // Used for GET and POST mixed
 			}
 			else
 			{	// DANGER: CSRF attack!
@@ -47,7 +51,7 @@ class Controller {
 		$access->allow('/admin*','100'); //100 = admin ; 10 = superuser ; 1 = user
 		$access->deny('/user*');
 		// superuser routes
-		$access->allow('/enc*','10');
+		$access->allow('/enc*',['100','10']);
 		// user login routes
 		$access->allow('/user*',['100','10','1']);
 

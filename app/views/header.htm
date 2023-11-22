@@ -6,22 +6,23 @@
 	<base href="{{@SCHEME.'://'.@HOST.@BASE.'/'}}">
 	<title>diaz.works</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">//-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="/ui/css/theme.css" type="text/css" />
   </head>
 
   <body>
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg bg-dark ">
+	<nav class="navbar sticky-top navbar-expand-sm bg-dark">
 	  <div class="container">
 		<!--<a class="navbar-brand" href="#" style="color:silver;">diaz.works</a>//-->
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
+		<a class="navbar-brand" href="#">ENC</a>
 		  <ul class="navbar-nav ml-auto">
 			  <li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:silver;">
 				  screens
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -33,7 +34,7 @@
 			  <check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
 			  <true> 
 				<li class="nav-item dropdown">				
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:gray;">
 				  {{ @SESSION.username }}</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			  <check if="{{ @SESSION.user_type>1 }}">

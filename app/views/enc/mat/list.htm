@@ -5,7 +5,7 @@
 </check>
 
 <div class="table-responsive">
-<table id="shorts" style="width:95%; margin-left:10px;">
+<table id="shorts" class="table-hover" style="width:95%; margin-left:10px;">
 <include href="{{ @headers }}"/>
 <repeat group="{{ @details.0 }}" key="{{ @ikey }}" value="{{ @cols}}" >
 	<set trcolor="white"/>
@@ -139,9 +139,9 @@
  function goCheckboxDate() {
 	val = window.document.getElementById('chkbox').value;
     if(val.length>0) {
-	urltodate = "/mat/buyer/"+val;
+	urltodate = "/enc/mat/buyers/"+val;
 	console.log(urltodate)
-	window.open("https://info.diaz.works"+urltodate,"_blank");
+	window.open("http://18.236.100.39"+urltodate,"_blank");
     } else {
 	alert('Select something... Please!');
     }
@@ -149,9 +149,9 @@
  function goCheckboxSupplier() {
         val = window.document.getElementById('chkbox').value;
     if(val.length>0) {
-        urltodate = "/mat/supplier/"+val;
+        urltodate = "/enc/mat/suppliers/"+val;
         console.log(urltodate)
-        window.open("https://info.diaz.works"+urltodate,"_blank");
+        window.open("http://18.236.100.39"+urltodate,"_blank");
     } else {
         alert('Select something... Please!');
     }
@@ -159,9 +159,9 @@
  function goCheckboxNotes() {
 	val = window.document.getElementById('chkbox').value;
     if(val.length>0) {
-	urltodate = "/mat/notes/"+val;
+	urltodate = "/enc/mat/notes/"+val;
 	console.log(urltodate)
-	window.open("https://info.diaz.works"+urltodate,"_blank");
+	window.open("http://18.236.100.39"+urltodate,"_blank");
     } else {
 	alert('Select something... Please!');
     }
@@ -169,9 +169,9 @@
  function goCheckboxShipdate() {
         val = window.document.getElementById('chkbox').value;
     if(val.length>0) {
-        urltodate = "/mat/ship/"+val;
+        urltodate = "/enc/mat/ship/"+val;
         console.log(urltodate)
-        window.open("https://info.diaz.works"+urltodate,"_blank");
+        window.open("http://18.236.100.39"+urltodate,"_blank");
     } else {
         alert('Select something... Please!');
     }
@@ -179,9 +179,9 @@
  function goCheckboxReason() {
         val = window.document.getElementById('chkbox').value;
     if(val.length>0) {
-        urltodate = "/mat/reason/"+val;
+        urltodate = "/enc/mat/reasons/"+val;
         console.log(urltodate)
-        window.open("https://info.diaz.works"+urltodate,"_blank");
+        window.open("http://18.236.100.39"+urltodate,"_blank");
     } else {
         alert('Select something... Please!');
     }
@@ -189,9 +189,9 @@
  function goCheckboxReceive() {
         val = window.document.getElementById('chkbox').value;
     if(val.length>0) {
-        urltodate = "/mat/rec/"+val;
+        urltodate = "/enc/mat/receive/"+val;
         console.log(urltodate)
-        window.open("https://info.diaz.works"+urltodate,"_blank");
+        window.open("http://18.236.100.39"+urltodate,"_blank");
     } else {
         alert('Select something... Please!');
     }
