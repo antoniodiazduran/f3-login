@@ -28,6 +28,12 @@
 			<option value=10  <check if="{{ intval(@POST.user_type)===10 }}"> selected</check>>Superuser</option>
 			<option value=1   <check if="{{ intval(@POST.user_type)===1 }}"> selected</check>>Viewer</option>
 		  </select></h4>
+		<p>
+		  <h4>Company: <select name="company">{{ intval(@POST.company) }}
+			<repeat group="{{ @company }}" value="{{ @names }}">
+				<option value="{{ @names.fullname }}" <check if="{{ @POST.company===@names.fullname }}"> selected</check>>{{@names.fullname}}</option>
+			</repeat>
+		  </select></h4>
 		</div>
 
 		<div class="col-6">

@@ -67,6 +67,8 @@ class AdminController extends Controller {
 		}
 		$users = new User($this->usr);
 		$users->getById($id);
+		$company = new Company($this->usr);
+		$this->f3->set('company',$company->all());
 		$this->f3->set('view','admin/userdetails.htm');
 	}
 }

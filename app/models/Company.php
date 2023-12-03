@@ -1,16 +1,14 @@
 <?php
 
-class User extends DB\SQL\Mapper {
+class Company extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		"username",
-		"password",
-		"email",
-		"activated",
-		"hash",
-		"user_type",
-		"company"
+		"fullname",
+		"shortname",
+		"logo",
+		"slogan",
+		"hash"
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
@@ -25,7 +23,7 @@ class User extends DB\SQL\Mapper {
 
 	public function __construct(DB\SQL $db) 
 	{
-		parent::__construct($db,'users');
+		parent::__construct($db,'company');
 	}
 
 	public function all() 
