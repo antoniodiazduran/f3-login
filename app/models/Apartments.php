@@ -1,14 +1,13 @@
 <?php
 
-class Company extends DB\SQL\Mapper {
+class Apartments extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		"fullname",
-		"shortname",
-		"slogan",
-		"logo",
-		"hash"
+		"name",
+		"address",
+		"state",
+		"zipcode"
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
@@ -23,11 +22,11 @@ class Company extends DB\SQL\Mapper {
 
 	public function __construct(DB\SQL $db) 
 	{
-		parent::__construct($db,'company');
+		parent::__construct($db,'apartments');
 	}
 
 	public function all() 
-	{ //get all users, admin only!
+	{ //get all records
 		$this->load();
 		return $this->query;
 	}
@@ -35,8 +34,8 @@ class Company extends DB\SQL\Mapper {
 	public function add( $unsanitizeddata )
 	{
 		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
-		//check if fullname already exists in db
-		$this->load(array('fullname=?',$data['fullname']));
+		//check if name already exists in db
+		$this->load(array('name=?',$data['name']));
 		if(!$this->dry())
 		{
 			return 10;
@@ -50,7 +49,7 @@ class Company extends DB\SQL\Mapper {
 
 	public function getByName($name)
 	{
-		$this->load(array('fullname=?', $name));
+		$this->load(array('name=?', $name));
 	}
 
 	public function getById($id) 

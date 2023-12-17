@@ -3,7 +3,7 @@
 class Controller {
 
 	protected $f3;
-	protected $enc;
+	protected $bpllc;
 	protected $usr;
 
     function beforeroute() {
@@ -49,6 +49,7 @@ class Controller {
 
 		// admin routes
 		$access->allow('/admin*','100'); //100 = admin ; 10 = superuser ; 1 = user
+		$access->allow('/admin/company/*');
 		$access->deny('/user*');
 		// superuser routes
 		$access->allow('/enc*',['100','10']);
@@ -67,10 +68,10 @@ class Controller {
 	function __construct() {
 		$f3=Base::instance();
 		$usr=new DB\SQL($f3->get('usr_dns'));
-		$enc=new DB\SQL($f3->get('enc_dns'));
+		$bpllc=new DB\SQL($f3->get('bpllc_dns'));
 		$this->f3=$f3;
 		$this->usr=$usr;
-		$this->enc=$enc;
+		$this->bpllc=$bpllc;
 	}
 
 }

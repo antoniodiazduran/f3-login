@@ -1,0 +1,48 @@
+<div class="container py-5">
+<check if="{{ isset(@message) }}">
+<true>
+	<div class="row">
+		<div class="col-12">
+			<div class="alert alert-danger" role="alert">
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				<span class="sr-only">Error:</span>
+				{{ @message | raw }}
+			</div>
+		</div>
+	</div>
+</true>
+</check>		 
+<h2>Apartment: {{ @POST.Name }} </h2>
+	<form action="" method="post" class="form-horizontal">
+	<div class="row py-5">
+		<div class="col-8">
+		  <h4>Address: {{ @POST.Address }}</h4>
+		  <h4><input type="text" name="Address" id="Address" value="{{ @POST.Address }}"></h4>
+		<p>
+		  <h4>State: {{ @POST.State }}</h4>
+		  <h4><input type="text" name="State" id="State" value="{{ @POST.State }}"></h4>
+		<p>
+		  <h4>Zipcode: {{ @POST.Zipcode }}</h4>
+		  <h4><input type="text" name="Zipcode" id="Zipcode" value="{{ @POST.Zipcode }}"></h4>
+		<p>
+		</div>
+
+		<div class="col-4">
+			<h2>More Data</h2>
+			<p>Leave blank to keep the application open</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<div class="col-lg-xs text-center py-5">
+				<input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
+				<input type="hidden" name="edit" value="edit" />
+				<input type="hidden" name="Name" value="{{ @POST.Name }}" />
+				<input type="hidden" name="id" value="{{ @POST.id }}" />
+				<button type="submit" class="btn btn-primary"> {{ @i18n_submit }}</button>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>

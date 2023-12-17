@@ -55,9 +55,8 @@ return array(
 	'i18n_password_changed_error'=>'There was a problem changing your password',
 	'i18n_resend_activation_mail'=>'Resend activation mail',
 	'i18n_users'=>'Users',
-	'i18n_shortages'=>'Shortages',
-	'i18n_engineering'=>'Engineering',
-	'i18n_buyers'=>'Buyers',
-	'i18n_leaders'=>'Leaders',
-	'i18n_delivery'=>'Delivery',
+	'i18n_company'=>'Company',
+	'i18n_apartments'=>'Apartments',
+	'i18n_payments'=>'Payments',
+	'i18n_expenses'=>'Expenses',
 );
