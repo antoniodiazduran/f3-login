@@ -28,17 +28,27 @@ class CompanyController extends Controller {
 	}
 
 	public function modify_company() {
-		if($this->f3->exists('POST.create')) {
+		if($this->f3->exists('POST.new')) {
 			$company = new Company($this->usr);
 			$company_added=$company->add($this->f3->get('POST'));
+			//$this->f3->set('message','Added');
 		} else {
-			$this->f3->set('POST.mode',"new");
+			$this->f3->set('POST.new',"new");
 			$this->f3->set('POST.id',"_");
 			$this->f3->set('POST.fullname',"");
 			$this->f3->set('POST.shortname',"");
 			$this->f3->set('POST.slogan',"");
 		}
+
 		$this->f3->set('view','company/companydetails.htm');
+	}
+
+	public function delete_company() {
+		$id = $this->f3->get('PARAMS.id');
+		$company = new Company($this->usr);
+		$company->delete($id);
+		$this->f3->set('company',$company->all());
+		$this->f3->set('view','company/company.htm');
 	}
 
 	public function show_company() 
@@ -69,7 +79,7 @@ class CompanyController extends Controller {
 				}
 			}
 			$company->edit($id, $this->f3->get('POST'));
-	
+			//$this->f3->set('message','Updateted');
 		}
 		else
 		{
