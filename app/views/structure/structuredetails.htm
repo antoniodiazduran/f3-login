@@ -1,17 +1,30 @@
 <div class="container py-5">
-    <check if="{{ isset(@message) }}">
+    <check if="{{ isset(@error_msg) }}">
     <true>
         <div class="row">
             <div class="col-12">
                 <div class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span class="sr-only">Error:</span>
-                    {{ @message | raw }}
+                    {{ @error_msg | raw }}
                 </div>
             </div>
         </div>
     </true>
-    </check>		 
+    </check>
+    <check if="{{ isset(@pass_msg) }}">
+        <true>
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Success:</span>
+                        {{ @pass_msg | raw }}
+                    </div>
+                </div>
+            </div>
+        </true>
+        </check>		 
     <h2>
         <a href="/admin/structure"><i class="bi-arrow-left"></i></a> {{ @POST._section }} 
         <check if="{{ !isset(@POST.new) }}">
@@ -22,24 +35,37 @@
         <form action="" method="post" class="form-horizontal">
         <div class="row py-5">
             <div class="col-8">		
-            <repeat group="{{ @structure }}" value="{{ @stru }}">
-                <h4> {{ @stru._name }}</h4>
-                <check if="{{ @stru._type == 'select' }}">
-                        <h4>
-                            <select id="{{@stru._id}}" name="{{@stru._name}}" {{@stru._required}}>
-                                <option></option>
-                            </select>
-                        </h4>
-                </check>
-                <check if="{{ @stru._type == 'input' or @stru._type == 'hidden'}}">
-                        <h4><input type="{{ @stru._type}}" name="{{@stru._name}}" id="{{ @stru._id}}" value="{{ @stru._value }}" {{@stru._required}}></h4>
-                </check>
-                <check if="{{ @stru._type == 'area' }}">
-                    <h4><textarea name="{{@stru._name}}" id="{{ @stru._id}}" cols="80" rows="5" {{@stru._required}}>{{ @stru._value }}</textarea></h4>
-                </check>
-                <p>
-            </repeat>
-            
+                    <h4><input type="text" name="_section" id="_section" value="{{@POST._section}}" placeholder="Section name"/></h4> <p>
+                    <h4><input type="text" name="_label" id="_label" value="{{@POST._label}}" placeholder="Display label"/></h4> <p> 
+                    <h4>
+                        Type: <select name="_type" id="_type">
+                            <option value="text" <check if="{{ @POST._type=='text' }}"> selected</check>>text
+                            <option value="radio" <check if="{{ @POST._type=='radio' }}"> selected</check>>radio
+                            <option value="checkbox" <check if="{{ @POST._type=='checkbox' }}"> selected</check>>checkbox
+                            <option value="reset" <check if="{{ @POST._type=='reset' }}"> selected</check>>reset
+                            <option value="password" <check if="{{ @POST._type=='password' }}"> selected</check>>password
+                            <option value="select" <check if="{{ @POST._type=='select' }}"> selected</check>>select
+                            <option value="button" <check if="{{ @POST._type=='button' }}"> selected</check>>button
+                            <option value="email" <check if="{{ @POST._type=='email' }}"> selected</check>>email
+                            <option value="date" <check if="{{ @POST._type=='date' }}"> selected</check>>date
+                            <option value="tel" <check if="{{ @POST._type=='tel' }}"> selected</check>>tel
+                        </select>
+                    </h4>
+                    <h4><input type="text" name="_name" id="_name" value="{{@POST._name}}"  placeholder="Field name"/></h4> <p></p>
+                    <h4><input type="text" name="_idx" id="_idx" value="{{@POST._idx}}" placeholder="Field id"/></h4> <p> 
+                    <h4><input type="text" name="_length" id="_length" value="{{@POST._length}}" placeholder="Field length" size="20"/></h4> <p> 
+                    <h4>
+                        Required: <select name="_required" id="_required">
+                            <option value="" <check if="{{ @POST._required=='' }}"> selected</check>>
+                            <option value="required" <check if="{{ @POST._required=='required' }}"> selected</check>>required
+                        </select>
+                    </h4>
+                    <h4><input type="text" name="_value" id="_value" value="{{@POST._value}}" placeholder="Initial Value"/></h4> <p>
+                    <h4><input type="text" name="_class" id="_class" value="{{@POST._class}}" placeholder="Class name"/></h4> <p>  
+                    <h4><input type="text" name="_style" id="_style" value="{{@POST._style}}" placeholder="Style script"/></h4> <p>  
+                    <h4><input type="text" name="_function" id="_function" value="{{@POST._function}}" placeholder="Function name"/></h4> <p>  
+                    <h4><input type="text" name="_order" id="_order" value="{{@POST._order}}" placeholder="Field Order" size="20"/></h4> <p> 
+                    <h4><input type="text" name="_placeholder" id="_placeholder" value="{{@POST._placeholder}}" placeholder="Placeholder"/></h4> <p>   
             </div>
     
             <div class="col-4">

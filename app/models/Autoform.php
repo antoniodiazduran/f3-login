@@ -1,22 +1,22 @@
 <?php
 
-class Structure extends DB\SQL\Mapper {
+class Autoform extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
 		"_section",
 		"_type",
-		"_label",
+        "_label",
 		"_name",
         "_idx",
 		"_length",
         "_required",
         "_value",
         "_class",
-		"_style",
+        "_style",
         "_function",
 		"_order",
-		"_placeholder",
+        "_placeholder",
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
@@ -29,9 +29,9 @@ class Structure extends DB\SQL\Mapper {
 		return date("Y-m-d H:i:s");
 	}
 
-	public function __construct(DB\SQL $db) 
+	public function __construct(DB\SQL $db,$table) 
 	{
-		parent::__construct($db,'structure');
+		parent::__construct($db,$table);
 	}
 
 	public function all() 
@@ -56,10 +56,9 @@ class Structure extends DB\SQL\Mapper {
 		return 1;
 	}
 
-	public function getBySection($name)
+	public function x_getByName($name)
 	{
 		$this->load(array('_section=?', $name));
-		return $this->query;
 	}
 
 	public function getById($id) 

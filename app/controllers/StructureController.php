@@ -31,24 +31,31 @@ class StructureController extends Controller {
 		if($this->f3->exists('POST.new')) {
 			$structure = new Structure($this->stru);
 			$structure_added=$structure->add($this->f3->get('POST'));
-			//$this->f3->set('message','Added');
+			//$this->f3->set('pass_msg','Added');
+			$this->f3->set('structure',$structure->all());
+			$this->f3->set('view','structure/structure.htm');
 		} else {
 			$this->f3->set('POST.new',"new");
 			$this->f3->set('POST.id',"_");
             $this->f3->set('POST._section',"");
 			$this->f3->set('POST._name',"");
 			$this->f3->set('POST._type',"");
+			$this->f3->set('POST._label',"");
 			$this->f3->set('POST._name',"");
-			$this->f3->set('POST._id',"");
+			$this->f3->set('POST._idx',"");
             $this->f3->set('POST._length',"");
             $this->f3->set('POST._required',"");
             $this->f3->set('POST._value',"");
             $this->f3->set('POST._class',"");
+			$this->f3->set('POST._style',"");
             $this->f3->set('POST._function',"");
+			$this->f3->set('POST._order',"");
+			$this->f3->set('POST._placeholder',"");
             $this->f3->set('structure','');
+			$this->f3->set('view','structure/structuredetails.htm');
 		}
 
-		$this->f3->set('view','structure/structuredetails.htm');
+		
 	}
 
 	public function delete_structure() {
@@ -87,6 +94,7 @@ class StructureController extends Controller {
 				}
 			}
 			$structure->edit($id, $this->f3->get('POST'));
+			$this->f3->set('pass_msg','Updated');
 		}
 		else
 		{
