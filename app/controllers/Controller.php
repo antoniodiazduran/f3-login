@@ -5,6 +5,7 @@ class Controller {
 	protected $f3;
 	protected $bpllc;
 	protected $usr;
+	protected $stru;
 
     function beforeroute() {
 		if($this->f3->get('SESSION.logged_in'))
@@ -66,12 +67,17 @@ class Controller {
 	}
 
 	function __construct() {
+		// creating instance
 		$f3=Base::instance();
+		// setting global variables based on DNS
 		$usr=new DB\SQL($f3->get('usr_dns'));
 		$bpllc=new DB\SQL($f3->get('bpllc_dns'));
+		$stru=new DB\SQL($f3->get('stru_dns'));
+		// assigning global variables
 		$this->f3=$f3;
 		$this->usr=$usr;
 		$this->bpllc=$bpllc;
+		$this->stru=$stru;
 	}
 
 }

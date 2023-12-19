@@ -1,0 +1,61 @@
+<div class="container py-5">
+    <check if="{{ isset(@message) }}">
+    <true>
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    {{ @message | raw }}
+                </div>
+            </div>
+        </div>
+    </true>
+    </check>		 
+    <h2>
+        <a href="/tenant/expenses/{{@POST.Apartment}}"><i class="bi-arrow-left"></i></a> {{ @POST.Apartment }}
+        <check if="{{ !isset(@POST.new) }}">
+            <a href="/tenant/expenses/delete/{{ @POST.id }}/{{@POST.Apartment}}"><i class="bi-trash"></i></a>
+        </check>
+        
+    </h2>
+        <form action="" method="post" class="form-horizontal">
+        <div class="row py-5">
+            <div class="col-7">
+              <h4>Apartment: {{ @POST.Apartment }}</h4>
+              <input type="hidden" name="Apartment" id="Apartment" value="{{ @POST.Apartment }}">
+            <p>    
+              <h4>Date: {{ @POST.TransactionDate }}</h4>
+              <h4><input type="date" name="TransactionDate" id="TransactionDate" value="{{ @POST.TransactionDate }}"></h4>
+            <p>
+              <h4>Supplier: {{ @POST.Supplier }}</h4>
+              <h4><input type="text" name="Supplier" id="Supplier" value="{{ @POST.Supplier }}"></h4>
+            <p>
+              <h4>Amount: {{ @POST.Amount }}</h4>
+              <h4><input type="text" name="Amount" id="Amount" value="{{ @POST.Amount }}" style="text-align:right;"></h4>
+            <p>
+            </div>
+            <div class="col-4">
+                <h4>Notes:</h4>
+                <h4><textarea id="Notes" name="Notes" cols="15" rows="10">{{ @POST.Notes }}</textarea></h4>
+                <p>
+    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="col-lg-xs text-center py-5">
+                    <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
+                    <check if="{{ isset(@POST.new) }}">
+                        <true><input type="hidden" name="new" value="new" /></true>
+                        <false><input type="hidden" name="edit" value="edit" /></false>
+                    </check>
+            
+                    <input type="hidden" name="id" value="{{ @POST.id }}" />
+                    <button type="submit" class="btn btn-primary"> {{ @i18n_submit }}</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    

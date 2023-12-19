@@ -1,0 +1,34 @@
+<div class="table-responsive">
+	<h1>{{ @i18n_structure }}  <a href="/admin/structure/new"><i class="bi-plus"></i></a></h1></h1>	
+	<table class="table table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
+			<thead>
+					<tr class="bg-secondary">
+					<th scope="col">section</th>
+					<th scope="col">type</th>
+					<th scope="col">name</th>
+					<th scope="col">id</th>
+                    <th scope="col">length</th>
+                    <th scope="col">required</th>
+                    <th scope="col">value</th>
+                    <th scope="col">class</th>
+                    <th scope="col">function</th>
+				</tr>
+			</thead>
+		<tbody>
+		<repeat group="{{ @structure }}" value="{{ @stru }}">
+			<tr onclick="window.document.location='/admin/structure/{{ @stru.id }}';" style="cursor: pointer;">
+				<td>{{ @stru._section }}</td>
+				<td>{{ @stru._type }}</td>
+				<td>{{ @stru._name }}</td>
+				<td>{{ @stru._id }}</td>
+                <td>{{ @stru._length }}</td>
+                <td>{{ @stru._required }}</td>
+                <td>{{ @stru._value }}</td>
+                <td>{{ @stru._class }}</td>
+                <td>{{ @stru._function }}</td>
+			</tr>	
+		</repeat>
+		</tbody>
+	</table>
+</div>
+

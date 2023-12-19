@@ -1,13 +1,18 @@
 <?php
 
-class Apartments extends DB\SQL\Mapper {
+class Structure extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		"Name",
-		"Address",
-		"State",
-		"Zipcode"
+		"_section",
+		"_type",
+		"_name",
+        "_id",
+		"_length",
+        "_required",
+        "_value",
+        "_class",
+        "_function",
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
@@ -22,7 +27,7 @@ class Apartments extends DB\SQL\Mapper {
 
 	public function __construct(DB\SQL $db) 
 	{
-		parent::__construct($db,'apartments');
+		parent::__construct($db,'structure');
 	}
 
 	public function all() 
@@ -35,11 +40,11 @@ class Apartments extends DB\SQL\Mapper {
 	{
 		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
 		//check if name already exists in db
-		$this->load(array('Name=?',$data['Name']));
+		/*$this->load(array('_section=?',$data['_section']));
 		if(!$this->dry())
 		{
 			return 10;
-		}
+		}*/
 		$data['created_at']=$this->getCurrentdate();
 		$data['updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
@@ -47,9 +52,9 @@ class Apartments extends DB\SQL\Mapper {
 		return 1;
 	}
 
-	public function getRecord($id)
+	public function x_getByName($name)
 	{
-		$this->load(array('id=?', $id));
+		$this->load(array('_section=?', $name));
 	}
 
 	public function getById($id) 

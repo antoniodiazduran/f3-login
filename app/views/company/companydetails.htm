@@ -14,7 +14,10 @@
 </check>		 
 <h2>
 	<a href="/admin/company"><i class="bi-arrow-left"></i></a> {{ @POST.fullname }} 
-	<a href="/admin/company/delete/{{ @POST.id }}"><i class="bi-trash"></i></a>
+	<check if="{{ !isset(@POST.new) }}">
+		<a href="/admin/company/delete/{{ @POST.id }}"><i class="bi-trash"></i></a>
+	</check>
+	
 </h2>
 	<form action="" method="post" class="form-horizontal">
 	<div class="row py-5">
