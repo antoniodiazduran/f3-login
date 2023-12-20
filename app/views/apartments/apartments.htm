@@ -29,20 +29,19 @@
 </table>
 </true>
 <false>
-	<div class="panel-body">
 	<table class="table table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
 		<thead>
 				<tr class="bg-secondary">
-				<th scope="col">name</th>
-				<th scope="col">address,state,zip</th>
+				<th scope="col">name<br>address,state,zip</th>
 				<th scope="col">payment/expenses</th>
 			</tr>
 		</thead>
 	<tbody>
 	<repeat group="{{ @apartments }}" value="{{ @apts }}">
 		<tr>
-			<td onclick="window.document.location='tenant/apartments/{{ @apts.id }}';" style="cursor: pointer;">{{ @apts.Name }}</td>
-			<td>{{ @apts.Address }},{{@apts.State}}.{{@apts.Zipcode}}</td>
+			<td onclick="window.document.location='tenant/apartments/{{ @apts.id }}';" style="cursor: pointer;">
+				<b>{{ @apts.Name }}</b><br>{{ @apts.Address }}<br>{{@apts.State}},{{@apts.Zipcode}}
+			</td>
 			<td align="center">
 				<a href="/tenant/payments/{{@apts.id}}"><i class="bi-cash-coin" style="font-size:1.5em;"></i></a> &nbsp; &nbsp; &nbsp;
 				<a href="/tenant/expenses/{{@apts.id}}"><i class="bi-receipt" style="font-size:1.5em;"></i></a>
@@ -51,7 +50,6 @@
 	</repeat>
 	</tbody>
 	</table>
-	</div>
 </check>
 </false>
 </div>
