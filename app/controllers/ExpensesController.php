@@ -13,7 +13,6 @@ class ExpensesController extends Controller {
     public function all()
 	{
         $expense = new Expenses($this->bpllc);
-		$this->f3->set('isMobile',Controller::isMobile());
         $this->f3->set('apartment','::');
         $this->f3->set('apartmentName','');
 		$this->f3->set('expenses',$expense->all());
