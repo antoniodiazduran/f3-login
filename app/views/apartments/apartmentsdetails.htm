@@ -36,12 +36,12 @@
 		  <h4><input type="text" name="Zipcode" id="Zipcode" value="{{ @POST.Zipcode }}"></h4>
 		<p>
 		</div>
-
-		<div class="col-4">
-			<h2>More Data</h2>
-			<p>Leave blank to keep the application open</p>
-
-		</div>
+		<check if="{{@isMobile==0}}">
+			<div class="col-4">
+				<h2>More Data</h2>
+				<p>Leave blank to keep the application open</p>
+			</div>
+		</check>
 	</div>
 	<div class="row">
 		<div class="col-12">
