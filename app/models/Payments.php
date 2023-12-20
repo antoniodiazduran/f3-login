@@ -28,6 +28,7 @@ class Payments extends DB\SQL\Mapper {
 
 	public function all() 
 	{ //get all records
+		$this->aptName="SELECT Name AS aptName FROM apartments WHERE apartments.id = payments.Apartment";
 		$this->load();
 		return $this->query;
 	}

@@ -28,13 +28,15 @@ class StructureController extends Controller {
 	}
     
 	public function modify_structure() {
+		$structure = new Structure($this->stru);
 		if($this->f3->exists('POST.new')) {
-			$structure = new Structure($this->stru);
+			// adding form to database
 			$structure_added=$structure->add($this->f3->get('POST'));
 			//$this->f3->set('pass_msg','Added');
 			$this->f3->set('structure',$structure->all());
 			$this->f3->set('view','structure/structure.htm');
 		} else {
+			$this->f3->set('section_dd',$structure->getByGroup('_section'));
 			$this->f3->set('POST.new',"new");
 			$this->f3->set('POST.id',"_");
             $this->f3->set('POST._section',"");
@@ -72,27 +74,6 @@ class StructureController extends Controller {
 		if($this->f3->exists('POST.edit'))
                 {
 			$structure = new Structure($this->stru);
-			$pw = '';
-			if(strlen($pw)===0)
-			{ //do not change password, reset to hash in database
-				$this->f3->set('POST.password',$this->f3->get('POST.pw'));
-			}
-			else
-			{
-				$pwcheck = $this->check_password( $pw , $this->f3->get('POST.confirm'));
-				if (strlen($pwcheck) > 0)
-				{
-					$this->f3->set('message', $pwcheck);
-				}
-				else
-				{
-					$crypt = \Bcrypt::instance();
-					$password = $crypt->hash($this->f3->get('POST.password'));
-
-					$this->f3->set('message', "Password changed");
-					$this->f3->set('POST.password', $password);
-				}
-			}
 			$structure->edit($id, $this->f3->get('POST'));
 			$this->f3->set('pass_msg','Updated');
 		}
@@ -105,6 +86,7 @@ class StructureController extends Controller {
 				$this->f3->error(404);
 			}
 		}
+		$this->f3->set('section_dd',$structure->getByGroup('_section'));
 		$this->f3->set('structure',$structure->all());
 		$this->f3->set('view','structure/structuredetails.htm');
 	}

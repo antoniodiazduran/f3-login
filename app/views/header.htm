@@ -25,14 +25,15 @@
 			<true>
 				<check if="{{ @SESSION.user_type>1 }}">
 					<check if="{{ @SESSION.user_type>=10 }}">
-					<li class="nav-item">
-					  <a class="nav-link" href="/tenant/apartments">{{ @i18n_apartments }}</a>
-					</li> 
-					<li class="nav-item">
-					  <a class="nav-link" href="/tenant/payments">{{ @i18n_payments }}</a>				
-					</li>
-					<li class="nav-item"> 
-					  <a class="nav-link" href="/tenant/expenses">{{ @i18n_expenses }}</a>				
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Bowline
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="nav-link" href="/tenant/apartments">{{ @i18n_apartments }}</a>
+							<a class="nav-link" href="/tenant/payments">{{ @i18n_payments }}</a>				
+							<a class="nav-link" href="/tenant/expenses">{{ @i18n_expenses }}</a>
+						</div>
 					</li>
 					</check>
 				</check>

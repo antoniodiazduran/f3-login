@@ -35,7 +35,11 @@
         <form action="" method="post" class="form-horizontal">
         <div class="row py-5">
             <div class="col-8">		
-                    <h4><input type="text" name="_section" id="_section" value="{{@POST._section}}" placeholder="Section name"/></h4> <p>
+                    <h4><select name="_section" id="_section" style="width:150px;">
+                        <repeat group="{{@section_dd}}" value="{{@vals}}">
+                            <option value="{{@vals._section}}">{{@vals._section}}
+                        </repeat>
+                    </select></h4> <p>
                     <h4><input type="text" name="_label" id="_label" value="{{@POST._label}}" placeholder="Display label"/></h4> <p> 
                     <h4>
                         Type: <select name="_type" id="_type">
@@ -68,8 +72,8 @@
                     <h4><input type="text" name="_placeholder" id="_placeholder" value="{{@POST._placeholder}}" placeholder="Placeholder"/></h4> <p>   
             </div>
     
-            <!--<div class="col-4">
-                <h2>More Data</h2>
+        <!--<div class="col-4">
+            <h2>More Data</h2>
                 <p>Leave blank to keep the application open</p>
             </div>
         -->

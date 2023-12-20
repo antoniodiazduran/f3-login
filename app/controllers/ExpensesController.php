@@ -13,6 +13,7 @@ class ExpensesController extends Controller {
     public function all()
 	{
         $expense = new Expenses($this->bpllc);
+		$this->f3->set('isMobile',Controller::isMobile());
         $this->f3->set('apartment','::');
         $this->f3->set('apartmentName','');
 		$this->f3->set('expenses',$expense->all());
@@ -27,7 +28,7 @@ class ExpensesController extends Controller {
 			$expense_added=$expense->add($this->f3->get('POST'));
             $apt = $this->f3->get('POST.Apartment');
             echo "add".$apt;
-            
+
         	$this->f3->set('apartmentName',$this->aptName($apt));
             $this->f3->set('apartment',$apt);
             $this->f3->set('expenses',$expense->getByApartment($apt));

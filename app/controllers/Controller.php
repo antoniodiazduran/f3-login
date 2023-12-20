@@ -41,6 +41,7 @@ class Controller {
 			{	// DANGER: CSRF attack!
 				$this->f3->error(403); 
 			}
+			
 		}
 
 		$access=Access::instance();
@@ -63,8 +64,13 @@ class Controller {
     }
 
 	function afterroute() {
+		$this->f3->set('isMobile',$this->isMobile());
 		echo Template::instance()->render('layout.htm');
 	}
+
+	public function isMobile()  {
+		return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+    }
 
 	function __construct() {
 		// creating instance

@@ -56,6 +56,11 @@ class Structure extends DB\SQL\Mapper {
 		return 1;
 	}
 
+	public function getByGroup($grp){
+		$this->load(null,array('group'=>'_section'));
+		return $this->query;
+
+	}
 	public function getBySection($name)
 	{
 		$this->load(array('_section=?', $name));

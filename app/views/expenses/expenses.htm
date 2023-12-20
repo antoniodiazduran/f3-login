@@ -1,5 +1,5 @@
 <div class="table-responsive">
-	<h1>{{@apartmentName }} {{ @i18n_expenses }} <check if="{{ @apartment != '::'}}"><a href="/tenant/expenses/new/{{@apartment}}"><i class="bi-plus"></i></a></check> </h1>	
+	<h1>{{@isMobile}}- {{@apartmentName }} {{ @i18n_expenses }} <check if="{{ @apartment != '::'}}"><a href="/tenant/expenses/new/{{@apartment}}"><i class="bi-plus"></i></a></check> </h1>	
 	<table class="table table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
 			<thead>
 					<tr class="bg-secondary">
@@ -17,11 +17,11 @@
 		<repeat group="{{ @expenses }}" value="{{ @pays}}">
 			<tr onclick="window.document.location='/tenant/expenses/edit/{{ @pays.id }}';" style="cursor: pointer;">
                 <check if="{{ @apartment == '::'}}">
-                    <td>{{ @pays.Apartment}}</td>
+                    <td>{{ @pays.aptName}}</td>
                 </check>
 				<td>{{ @pays.TransactionDate }}</td>
 				<td>{{ @pays.Supplier }}</td>
-				<td align="right">{{ @pays.Amount }}</td>
+				<td align="right">$ {{ number_format(@pays.Amount,2) }}</td>
 				
                 <td align="center"><a href="/tenant/expenses/delete/{{@pays.id}}/{{@apartment}}"><i class="bi-trash"></i></a></td>
 			</tr>	

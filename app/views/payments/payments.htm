@@ -16,11 +16,11 @@
 		<repeat group="{{ @payments }}" value="{{ @pays}}">
 			<tr onclick="window.document.location='/tenant/payments/edit/{{ @pays.id }}';" style="cursor: pointer;">
                 <check if="{{ @apartment == '::'}}">
-                    <td>{{ @pays.Apartment}}</td>
+                    <td>{{ @pays.aptName}}</td>
                 </check>
 				<td>{{ @pays.TransactionDate }}</td>
-				<td align="right">{{ @pays.Amount }}</td>
-				<td align="right">{{ @pays.LateFee }}</td>
+				<td align="right">$ {{ number_format(@pays.Amount,2) }}</td>
+				<td align="right">$ {{ number_format(@pays.LateFee,2) }}</td>
                 <td align="center"><a href="/tenant/payments/delete/{{@pays.id}}/{{@apartment}}"><i class="bi-trash"></i></a></td>
 			</tr>	
 		</repeat>

@@ -6,10 +6,13 @@ class AutoformController extends Controller {
 
 	public function autoform()
 	{
+		// gathering apps name
+		$app = $this->f3->get('PARAMS.apps');
         $structure = new Structure($this->stru);
-        $grp= $structure->getBySection('owners');
-        //var_dump($grp[0]['_name']);
+        $grp= $structure->getBySection($app);
+        
         $this->f3->set('groupdata',$grp);
+		$this->f3->set('sectionName',$app);
         $this->f3->set('breadcrumbs','/admin/autoform');
         //$autoform = new Autoform($this->stru);
 		//$this->f3->set('autoform',$autoform->all());

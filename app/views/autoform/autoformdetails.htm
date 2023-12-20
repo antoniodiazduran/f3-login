@@ -26,9 +26,10 @@
         </true>
         </check>		 
     <h2>
-        <a href="/admin/autoform"><i class="bi-arrow-left"></i></a> section_name
+        <!--<a href="/admin/autoform"><i class="bi-arrow-left"></i></a> -->
+        {{@sectionName}}
         <check if="{{ !isset(@POST.new) }}">
-            <a href="/admin/autoform/delete/xx"><i class="bi-trash"></i></a>
+            <!--<a href="/admin/autoform/delete/xx"><i class="bi-trash"></i></a>-->
         </check>
         
     </h2>
@@ -38,8 +39,11 @@
         <repeat group="{{@groupdata}}" value="{{@stru}}">
             <h4>
             <label>{{@stru._label}}</label>  
-            <check if="{{@stru._type =='text' or @stru._type=='password' or @stru._type=='tel' or @stru._type=='email' or @stru._type=='button'}}">
+            <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
                 <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@stru._value}}" class="{{@stru._class}}" {{@stru._function}} size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/></h4> <p>
+            </check>
+            <check if="{{@stru._type=='tel'}}">
+                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@stru._value}}" class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
             </check>
             <check if="{{@stru._type=='select'}}">
                 <h4>
@@ -83,4 +87,7 @@
     </div>
 </form>
 </div>
-    
+
+<script>
+
+</script>
