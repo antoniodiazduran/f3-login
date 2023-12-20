@@ -12,24 +12,27 @@
 	</div>
 </true>
 </check>		 
-<h1>User: {{ @POST.username }} (<em><check if="{{ @POST.user_type }}==1"><true>Viewer</true><false><check if="{{ @POST.user_type }}==10"><true>Superuser</true><false>Administrator</false></check></false>
-		  </check></em>)</h1>
+<h3>User: {{ @POST.username }} (<em><check if="{{ @POST.user_type }}==1"><true>Viewer</true><false><check if="{{ @POST.user_type }}==10"><true>Superuser</true><false>Administrator</false></check></false>
+		  </check></em>)
+</h3>
 	<form action="" method="post" class="form-horizontal">
 	<div class="row py-5">
 		<div class="col-6">
 		  <h4>Email: {{ @POST.email }}</h4>
-		  <h4>Activated: <select name="activated">
+		  <h4>Activated:<br> <select name="activated" style="width:150px;">
 			<option value=1<check if="{{ intval(@POST.activated)===1 }}"> selected</check>>Yes</option>
 			<option value=0<check if="{{ intval(@POST.activated)===0 }}"> selected</check>>No</option>
 		  </select></h4>
 		<p>
-		  <h4>User Type: <select name="user_type">
+		  <h4>User Type:<br>
+			<select name="user_type" style="width:150px;">
 			<option value=100 <check if="{{ intval(@POST.user_type)===100 }}"> selected</check>>Admin</option>
 			<option value=10  <check if="{{ intval(@POST.user_type)===10 }}"> selected</check>>Superuser</option>
 			<option value=1   <check if="{{ intval(@POST.user_type)===1 }}"> selected</check>>Viewer</option>
 		  </select></h4>
 		<p>
-		  <h4>Company: <select name="company">{{ intval(@POST.company) }}
+		  <h4>Company:<br>
+			<select name="company" style="width:250px;">
 			<repeat group="{{ @company }}" value="{{ @names }}">
 				<option value="{{ @names.fullname }}" <check if="{{ @POST.company===@names.fullname }}"> selected</check>>{{@names.fullname}}</option>
 			</repeat>
@@ -37,7 +40,7 @@
 		</div>
 
 		<div class="col-6">
-			<h2>Change Password</h2>
+			<h4>Change Password</h4>
 			<p>Leave blank to keep the user's current password. Fill out only if you want to change the user's password:</p>
 			<div class="form-group">
 				<label class="control-label" for="password">{{ @i18n_password }}</label>

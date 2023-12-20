@@ -42,7 +42,7 @@
 			<td onclick="window.document.location='tenant/apartments/{{ @apts.id }}';" style="cursor: pointer;">
 				<b>{{ @apts.Name }}</b><br>{{ @apts.Address }}<br>{{@apts.State}},{{@apts.Zipcode}}
 			</td>
-			<td align="center">
+			<td align="center" valign="middle">
 				<a href="/tenant/payments/{{@apts.id}}"><i class="bi-cash-coin" style="font-size:1.5em;"></i></a> &nbsp; &nbsp; &nbsp;
 				<a href="/tenant/expenses/{{@apts.id}}"><i class="bi-receipt" style="font-size:1.5em;"></i></a>
 			</td>
