@@ -11,10 +11,10 @@ tr:last-child { 	border-bottom:none;
 }
 
 th,td {
-	font-size:1em;
+	font-size:0.8em;
 	line-height:1.25em;
-	margin:2;
-	padding:0.5em;
+	margin:1;
+	padding:1em;
 	white-space:nowrap;
 }
 
@@ -30,6 +30,19 @@ th {
 th a {	color:#fff;
 }
 
+
+/* Radio size*/
+input[type="radio"]{
+  -ms-transform: scale(2); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(2);
+  vertical-align: middle;
+  display:inline;
+  font-family: Verdana, Geneva;
+  font-size: 0.6em;
+  font-weight:normal;
+}
+
 /* Checkbox size*/
 input[type="checkbox"]{
   -ms-transform: scale(2); /* IE 9 */
@@ -38,7 +51,7 @@ input[type="checkbox"]{
   vertical-align: middle;
   display:inline;
   font-family: Verdana, Geneva;
-  font-size: 0.7em;
+  font-size: 0.6em;
   font-weight:normal;
 }
 
