@@ -4,9 +4,10 @@
 			<thead>
 					<tr class="bg-secondary">
 					<th scope="col">section</th>
-					<th scope="col">label</th>
 					<th scope="col">type</th>
+					<th scope="col">label</th>
 					<th scope="col">name</th>
+				<check if="{{@isMobile==1}}">
 					<th scope="col">id</th>
                     <th scope="col">length</th>
                     <th scope="col">required</th>
@@ -14,8 +15,9 @@
                     <th scope="col">class</th>
 					<th scope="col">style</th>
                     <th scope="col">function</th>
-					<th scope="col">order</th>
 					<th scope="col">placeholder</th>
+				</check>
+					<th scope="col">order</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -26,6 +28,7 @@
 				<td>{{ @stru._type }}</td>
 				<td>{{ @stru._label }}</td>
 				<td>{{ @stru._name }}</td>
+			<check if="{{@isMobile==1}}">
 				<td>{{ @stru._idx }}</td>
                 <td>{{ @stru._length }}</td>
                 <td>{{ @stru._required }}</td>
@@ -33,8 +36,9 @@
                 <td>{{ @stru._class }}</td>
 				<td>{{ @stru._style }}</td>
                 <td>{{ @stru._function }}</td>
-				<td>{{ @stru._order }}</td>
 				<td>{{ @stru._placeholder }}</td>
+			</check>
+				<td>{{ @stru._order }}</td>
 				<td><a href="/admin/structure/delete/{{ @stru.id }}"><i class="bi-trash"></i></a></td>
 			</tr>	
 		</repeat>
