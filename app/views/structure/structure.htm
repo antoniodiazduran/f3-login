@@ -7,7 +7,7 @@
 					<th scope="col">type</th>
 					<th scope="col">label</th>
 					<th scope="col">name</th>
-				<check if="{{@isMobile==1}}">
+				<check if="{{@isMobile==0}}">
 					<th scope="col">id</th>
                     <th scope="col">length</th>
                     <th scope="col">required</th>
@@ -28,7 +28,7 @@
 				<td>{{ @stru._type }}</td>
 				<td>{{ @stru._label }}</td>
 				<td>{{ @stru._name }}</td>
-			<check if="{{@isMobile==1}}">
+			<check if="{{@isMobile==0}}">
 				<td>{{ @stru._idx }}</td>
                 <td>{{ @stru._length }}</td>
                 <td>{{ @stru._required }}</td>
