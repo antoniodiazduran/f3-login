@@ -35,11 +35,15 @@
         <form action="" method="post" class="form-horizontal">
         <div class="row py-5">
             <div class="col-8">		
-                    <h4><select name="_section" id="_section" style="width:150px;">
+                
+                    <h4>
+                    <input list="_sections" name="_section" id="_section">
+                    <datalist id="_sections" style="width:150px;">
                         <repeat group="{{@section_dd}}" value="{{@vals}}">
-                            <option value="{{@vals._section}}">{{@vals._section}}
+                            <option value="{{@vals._section}}">
                         </repeat>
-                    </select></h4> <p>
+                    </datalist></h4> 
+                    <p>
                     <h4><input type="text" name="_label" id="_label" value="{{@POST._label}}" placeholder="Display label"/></h4> <p> 
                     <h4>
                         Type: <select name="_type" id="_type">
