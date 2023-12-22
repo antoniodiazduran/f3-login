@@ -37,6 +37,7 @@ class Sections extends DB\SQL\Mapper {
 		{
 			return 10;
 		}*/
+		$data = $unsanitizeddata;
 		$data['created_at']=$this->getCurrentdate();
 		$data['updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
