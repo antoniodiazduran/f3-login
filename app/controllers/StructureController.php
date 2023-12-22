@@ -53,6 +53,7 @@ class StructureController extends Controller {
             $this->f3->set('POST._function',"");
 			$this->f3->set('POST._order',"");
 			$this->f3->set('POST._placeholder',"");
+			$this->f3->set('POST._event',"");
             $this->f3->set('structure','');
 			$this->f3->set('view','structure/structuredetails.htm');
 		}

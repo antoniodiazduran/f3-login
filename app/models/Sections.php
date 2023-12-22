@@ -1,22 +1,10 @@
 <?php
 
-class Autoform extends DB\SQL\Mapper {
+class Sections extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		"_section",
-		"_type",
-        "_label",
-		"_name",
-        "_idx",
-		"_length",
-        "_required",
-        "_value",
-        "_class",
-        "_style",
-        "_function",
-		"_order",
-        "_placeholder",
+		
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
@@ -42,7 +30,7 @@ class Autoform extends DB\SQL\Mapper {
 
 	public function add( $unsanitizeddata )
 	{
-		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
+		//$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
 		//check if name already exists in db
 		/*$this->load(array('_section=?',$data['_section']));
 		if(!$this->dry())
@@ -69,7 +57,8 @@ class Autoform extends DB\SQL\Mapper {
 
 	public function edit($id, $unsanitizeddata)
 	{
-		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
+		//$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
+		$data=$unsanitizeddata;
 		$data['updated_at']=$this->getCurrentdate();
 		$this->load(array('id=?',$id));
 		$this->copyFrom($data);

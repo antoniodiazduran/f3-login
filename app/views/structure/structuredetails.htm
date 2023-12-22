@@ -37,7 +37,7 @@
             <div class="col-8">		
                 
                     <h4>
-                    <input list="_sections" name="_section" id="_section">
+                    <input list="_sections" name="_section" id="_section" required>
                     <datalist id="_sections" style="width:150px;">
                         <repeat group="{{@section_dd}}" value="{{@vals}}">
                             <option value="{{@vals._section}}">
@@ -70,10 +70,28 @@
                     </h4>
                     <h4><input type="text" name="_value" id="_value" value="{{@POST._value}}" placeholder="Initial Value"/></h4> <p>
                     <h4><input type="text" name="_class" id="_class" value="{{@POST._class}}" placeholder="Class name"/></h4> <p>  
-                    <h4><input type="text" name="_style" id="_style" value="{{@POST._style}}" placeholder="Style script"/></h4> <p>  
+                    <h4><input type="text" name="_style" id="_style" value="{{@POST._style}}" placeholder="Style script"/></h4> <p> 
+                    <h4>Event:
+                        <select name="_event" id="_event">
+                            <option value="">
+                            <option value="onchange" <check if="{{ @POST._event=='onchange' }}"> selected</check>>onchange
+                            <option value="onfocus" <check if="{{ @POST._event=='onfocus' }}"> selected</check>>onfocus
+                            <option value="onblur" <check if="{{ @POST._event=='onblur' }}"> selected</check>>onblur
+                            <option value="onreset" <check if="{{ @POST._event=='onreset' }}"> selected</check>>onreset
+                            <option value="onselect" <check if="{{ @POST._event=='onselect' }}"> selected</check>>onselect
+                            <option value="onsubmit" <check if="{{ @POST._event=='onsubmit' }}"> selected</check>>onsubmit
+                            <option value="oninput" <check if="{{ @POST._event=='oninput' }}"> selected</check>>oninput
+                            <option value="onkeydown" <check if="{{ @POST._event=='onkeydown' }}"> selected</check>>onkeydown
+                            <option value="onkeypress" <check if="{{ @POST._event=='onkeypress' }}"> selected</check>>onkeypress
+                            <option value="onkeyup" <check if="{{ @POST._event=='onkeyup' }}"> selected</check>>onkeyup
+                            <option value="onclick" <check if="{{ @POST._event=='onclick' }}"> selected</check>>onclick
+                            <option value="ondblclick" <check if="{{ @POST._event=='ondblclick' }}"> selected</check>>ondblclick
+                            <option value="onmouseover" <check if="{{ @POST._event=='onmouseover' }}"> selected</check>>onmouseover
+                        </select>
+                    </h4> 
                     <h4><input type="text" name="_function" id="_function" value="{{@POST._function}}" placeholder="Function name"/></h4> <p>  
-                    <h4><input type="text" name="_order" id="_order" value="{{@POST._order}}" placeholder="Field Order" size="20"/></h4> <p> 
                     <h4><input type="text" name="_placeholder" id="_placeholder" value="{{@POST._placeholder}}" placeholder="Placeholder"/></h4> <p>   
+                    <h4><input type="text" name="_order" id="_order" value="{{@POST._order}}" placeholder="Field Order" size="20"/></h4> <p> 
             </div>
     
         <!--<div class="col-4">

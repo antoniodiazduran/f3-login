@@ -26,10 +26,10 @@
         </true>
         </check>		 
     <h2>
-        <!--<a href="/admin/autoform"><i class="bi-arrow-left"></i></a> -->
+        <a href="{{@breadcrumbs}}"><i class="bi-arrow-left"></i></a>
         {{@sectionName}}
         <check if="{{ !isset(@POST.new) }}">
-            <!--<a href="/admin/autoform/delete/xx"><i class="bi-trash"></i></a>-->
+            <!--<a href="/admin/sections/delete/xx"><i class="bi-trash"></i></a>-->
         </check>
         
     </h2>
@@ -40,10 +40,10 @@
             <h4>
             <label>{{@stru._label}}</label>  
             <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
-                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@stru._value}}" class="{{@stru._class}}" {{@stru._function}} size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/></h4> <p>
+                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" {{@stru._function}} size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/></h4> <p>
             </check>
             <check if="{{@stru._type=='tel'}}">
-                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@stru._value}}" class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
+                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
             </check>
             <check if="{{@stru._type=='select'}}">
                 <h4>
@@ -77,10 +77,16 @@
             <div class="col-lg-xs text-center py-5">
                 <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
                 <check if="{{ isset(@POST.new) }}">
-                    <true><input type="hidden" name="new" value="new" /></true>
-                    <false><input type="hidden" name="edit" value="edit" /></false>
+                    <true>
+                        <input type="hidden" name="new" value="new" />
+                        <input type="hidden" name="id" value="_" />
+                    </true>
+                    <false>
+                        <input type="hidden" name="edit" value="edit" />
+                        <input type="hidden" name="id" value="{{@POST.id}}" />
+                    </false>
                 </check>        
-                <input type="hidden" name="id" value="_" />
+                <input type="hidden" name="app" value="{{@sectionName}}" />
                 <button type="submit" class="btn btn-primary"> {{ @i18n_submit }}</button>
             </div>
         </div>
@@ -90,4 +96,15 @@
 
 <script>
 
+var postObj = {{json_encode(@POST) }};
+
+Object.keys(postObj).forEach(function (item) {
+    var d = item;
+    var field = document.getElementById(d);
+    if (field != null) {
+        field.value = postObj[item];
+    }
+    
+	console.log(item+':'+postObj[item]); // value
+});
 </script>

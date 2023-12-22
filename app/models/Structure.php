@@ -17,6 +17,7 @@ class Structure extends DB\SQL\Mapper {
         "_function",
 		"_order",
 		"_placeholder",
+		"_event",
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
