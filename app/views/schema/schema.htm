@@ -1,5 +1,5 @@
 <div class="table-responsive">
-	<h3>{{ @i18n_structure }}  <a href="/admin/structure/new"><i class="bi-plus"></i></a></h3>	
+	<h3>{{ @i18n_schema }}  <a href="{{ @breadcrumbs }}/new"><i class="bi-plus"></i></a></h3>	
 	<check if="{{@isMobile==0}}">
 	<true>
 		<table class="table-responsive table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
@@ -15,6 +15,7 @@
                     <th scope="col">value</th>
                     <th scope="col">class</th>
 					<th scope="col">style</th>
+					<th scope="col">event</th>
                     <th scope="col">function</th>
 					<th scope="col">placeholder</th>
 					<th scope="col">order</th>
@@ -22,22 +23,23 @@
 				</tr>
 			</thead>
 		<tbody>
-		<repeat group="{{ @structure }}" value="{{ @stru }}">
+		<repeat group="{{ @schema }}" value="{{ @fields }}">
 			<tr >
-				<td onclick="window.document.location='/admin/structure/{{ @stru.id }}';" style="cursor: pointer;">{{ @stru._section }}</td>
-				<td>{{ @stru._type }}</td>
-				<td>{{ @stru._label }}</td>
-				<td>{{ @stru._name }}</td>
-				<td>{{ @stru._idx }}</td>
-                <td>{{ @stru._length }}</td>
-                <td>{{ @stru._required }}</td>
-                <td>{{ @stru._value }}</td>
-                <td>{{ @stru._class }}</td>
-				<td>{{ @stru._style }}</td>
-                <td>{{ @stru._function }}</td>
-				<td>{{ @stru._placeholder }}</td>
-				<td>{{ @stru._order }}</td>
-				<td><a href="/admin/structure/delete/{{ @stru.id }}"><i class="bi-trash"></i></a></td>
+				<td onclick="window.document.location='{{ @breadcrumbs }}/{{ @fields.id }}';" style="cursor: pointer;">{{ @fields._section }}</td>
+				<td>{{ @fields._type }}</td>
+				<td>{{ @fields._label }}</td>
+				<td>{{ @fields._name }}</td>
+				<td>{{ @fields._idx }}</td>
+                <td>{{ @fields._length }}</td>
+                <td>{{ @fields._required }}</td>
+                <td>{{ @fields._value }}</td>
+                <td>{{ @fields._class }}</td>
+				<td>{{ @fields._style }}</td>
+				<td>{{ @fields._event }}</td>
+                <td>{{ @fields._function }}</td>
+				<td>{{ @fields._placeholder }}</td>
+				<td>{{ @fields._order }}</td>
+				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="bi-trash"></i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>
@@ -54,12 +56,12 @@
 				</tr>
 			</thead>
 		<tbody>
-		<repeat group="{{ @structure }}" value="{{ @stru }}">
+		<repeat group="{{ @schema }}" value="{{ @fields }}">
 			<tr >
-				<td onclick="window.document.location='/admin/structure/{{ @stru.id }}';" style="cursor: pointer;">{{ @stru._section }}</td>
-				<td align="center">{{ @stru._order }}</td>
-				<td>{{ @stru._label }}<br>{{ @stru._idx }}<br>{{@@stru._type}}</td>
-				<td><a href="/admin/structure/delete/{{ @stru.id }}"><i class="bi-trash"></i></a></td>
+				<td onclick="window.document.location='/admin/structure/{{ @fields.id }}';" style="cursor: pointer;">{{ @fields._section }}</td>
+				<td align="center">{{ @fields._order }}</td>
+				<td>{{ @fields._label }}<br>{{ @fields._idx }}<br>{{@@fields._type}}</td>
+				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="bi-trash"></i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>

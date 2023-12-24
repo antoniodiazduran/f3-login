@@ -7,6 +7,7 @@ class SchemaController extends Controller {
 	public function schema()
 	{
         $schema = new Schema($this->schema);
+		$this->f3->set('breadcrumbs','/admin/schema');
 		$this->f3->set('schema',$schema->all());
 		$this->f3->set('view','schema/schema.htm');
 	}
@@ -33,6 +34,7 @@ class SchemaController extends Controller {
 			// adding form to database
 			$schema_added=$schema->add($this->f3->get('POST'));
 			//$this->f3->set('pass_msg','Added');
+			$this->f3->set('breadcrumbs','/admin/schema');
 			$this->f3->set('schema',$schema->all());
 			$this->f3->set('view','schema/schema.htm');
 		} else {
@@ -55,6 +57,7 @@ class SchemaController extends Controller {
 			$this->f3->set('POST._placeholder',"");
 			$this->f3->set('POST._event',"");
             $this->f3->set('schema','');
+			$this->f3->set('breadcrumbs','/admin/schema');
 			$this->f3->set('view','schema/schemadetails.htm');
 		}
 
@@ -65,6 +68,7 @@ class SchemaController extends Controller {
 		$id = $this->f3->get('PARAMS.id');
 		$schema = new Schema($this->schema);
 		$schema->delete($id);
+		$this->f3->set('breadcrumbs','/admin/schema');
 		$this->f3->set('schema',$schema->all());
 		$this->f3->set('view','schema/schema.htm');
 	}
@@ -87,6 +91,7 @@ class SchemaController extends Controller {
 				$this->f3->error(404);
 			}
 		}
+		$this->f3->set('breadcrumbs','/admin/schema');
 		$this->f3->set('section_dd',$schema->getByGroup('_section'));
 		$this->f3->set('schema',$schema->all());
 		$this->f3->set('view','schema/schemadetails.htm');

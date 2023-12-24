@@ -26,9 +26,9 @@
         </true>
         </check>		 
     <h2>
-        <a href="/admin/structure"><i class="bi-arrow-left"></i></a> {{ @POST._section }} 
+        <a href="{{ @breadcrumbs }}"><i class="bi-arrow-left"></i></a> {{ @POST._section }} 
         <check if="{{ !isset(@POST.new) }}">
-            <a href="/admin/structure/delete/{{ @POST.id }}"><i class="bi-trash"></i></a>
+            <a href="{{ @breadcrumbs }}/delete/{{ @POST.id }}"><i class="bi-trash"></i></a>
         </check>
         
     </h2>

@@ -14,6 +14,7 @@ class Schema extends DB\SQL\Mapper {
         "_value",
         "_class",
 		"_style",
+		"_event",
         "_function",
 		"_order",
 		"_placeholder",
