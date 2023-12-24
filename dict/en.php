@@ -59,5 +59,5 @@ return array(
 	'i18n_apartments'=>'Apartments',
 	'i18n_payments'=>'Payments',
 	'i18n_expenses'=>'Expenses',
-	'i18n_structure'=>'Structure',
+	'i18n_schema'=>'Schema',
 );

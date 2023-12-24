@@ -38,8 +38,8 @@ class Sections extends DB\SQL\Mapper {
 			return 10;
 		}*/
 		$data = $unsanitizeddata;
-		$data['created_at']=$this->getCurrentdate();
-		$data['updated_at']=$this->getCurrentdate();
+		$data['_created_at']=$this->getCurrentdate();
+		$data['_updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
 		$this->save();
 		return 1;
@@ -60,14 +60,14 @@ class Sections extends DB\SQL\Mapper {
 	{
 		//$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
 		$data=$unsanitizeddata;
-		$data['updated_at']=$this->getCurrentdate();
+		$data['_updated_at']=$this->getCurrentdate();
 		$this->load(array('id=?',$id));
 		$this->copyFrom($data);
 		$this->update();
 	}
 	public function editupd($id)
 	{
-		$data['updated_at']=$this->getCurrentdate();
+		$data['_updated_at']=$this->getCurrentdate();
 		$this->load(array('id=?',$id));
 		$this->copyFrom($data);
 		$this->update();

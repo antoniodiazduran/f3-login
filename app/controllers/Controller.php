@@ -5,7 +5,7 @@ class Controller {
 	protected $f3;
 	protected $bpllc;
 	protected $usr;
-	protected $stru;
+	protected $schema;
 
     function beforeroute() {
 		if($this->f3->get('SESSION.logged_in'))
@@ -78,12 +78,12 @@ class Controller {
 		// setting global variables based on DNS
 		$usr=new DB\SQL($f3->get('usr_dns'));
 		$bpllc=new DB\SQL($f3->get('bpllc_dns'));
-		$stru=new DB\SQL($f3->get('stru_dns'));
+		$schema=new DB\SQL($f3->get('schema_dns'));
 		// assigning global variables
 		$this->f3=$f3;
 		$this->usr=$usr;
 		$this->bpllc=$bpllc;
-		$this->stru=$stru;
+		$this->schema=$schema;
 	}
 
 }

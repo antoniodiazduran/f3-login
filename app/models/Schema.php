@@ -1,6 +1,6 @@
 <?php
 
-class Structure extends DB\SQL\Mapper {
+class Schema extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
@@ -32,12 +32,12 @@ class Structure extends DB\SQL\Mapper {
 
 	public function __construct(DB\SQL $db) 
 	{
-		parent::__construct($db,'structure');
+		parent::__construct($db,'schema');
 	}
 
 	public function all() 
 	{ //get all records
-		$this->load();
+		$this->load(null,array('order'=>'_section asc, _order asc'));
 		return $this->query;
 	}
 
@@ -50,8 +50,8 @@ class Structure extends DB\SQL\Mapper {
 		{
 			return 10;
 		}*/
-		$data['created_at']=$this->getCurrentdate();
-		$data['updated_at']=$this->getCurrentdate();
+		$data['_created_at']=$this->getCurrentdate();
+		$data['_updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
 		$this->save();
 		return 1;
@@ -64,7 +64,7 @@ class Structure extends DB\SQL\Mapper {
 	}
 	public function getBySection($name)
 	{
-		$this->load(array('_section=?', $name));
+		$this->load(array('_section=?', $name),array('order'=>'_order desc'));
 		return $this->query;
 	}
 
@@ -77,14 +77,14 @@ class Structure extends DB\SQL\Mapper {
 	public function edit($id, $unsanitizeddata)
 	{
 		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
-		$data['updated_at']=$this->getCurrentdate();
+		$data['_updated_at']=$this->getCurrentdate();
 		$this->load(array('id=?',$id));
 		$this->copyFrom($data);
 		$this->update();
 	}
 	public function editupd($id)
 	{
-		$data['updated_at']=$this->getCurrentdate();
+		$data['_updated_at']=$this->getCurrentdate();
 		$this->load(array('id=?',$id));
 		$this->copyFrom($data);
 		$this->update();
