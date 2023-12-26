@@ -5,7 +5,7 @@ class SectionsController extends Controller {
 	public function list_sections(){
 		$sections = new Sections($this->schema,$this->f3->get('PARAMS.schema'));
 		$this->f3->set('sectionName',$this->f3->get('PARAMS.schema'));
-		$this->f3->set('i',1);
+		//$this->f3->set('i',1);
 		$this->f3->set('breadcrumbs','/sections/'.$this->f3->get('PARAMS.schema'));
 		$this->f3->set('groupdata',$sections->all());;
 		$this->f3->set('headers',array_keys($sections->schema()));
@@ -63,9 +63,11 @@ class SectionsController extends Controller {
 			$this->f3->set('pass_msg','Updated');
 		} 
 		
-		$structure = new Schema($this->schema);
-		$grp= $structure->getBySection($schema);
-		
+		//$structure = new Schema($this->schema);
+		//$grp= $structure->getBySection($schema);
+		$schemaObj = new Schema($this->schema);
+		$grp = $schemaObj->getBySection($schema);
+
 		$this->f3->set('groupdata',$grp);
 		$this->f3->set('sections',$sections->getById($id));
 		$this->f3->set('json',json_encode($this->f3->get('POST')));

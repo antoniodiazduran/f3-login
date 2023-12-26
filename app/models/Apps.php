@@ -1,25 +1,17 @@
 <?php
 
-class Schema extends DB\SQL\Mapper {
+class Apps extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		"_section",
-		"_type",
-		"_label",
-		"_name",
-        "_idx",
-		"_length",
-        "_required",
-        "_value",
-        "_class",
-		"_style",
-		"_event",
-        "_function",
-		"_order",
-		"_placeholder",
-		"_event",
+		"Name",
+		"Company",
 	);
+
+    public function __construct(DB\SQL $db) 
+	{
+		parent::__construct($db,'apps');
+	}
 
 	private function sanitizeInput(array $data, array $fieldNames) 
 	{ //sanitize input - with thanks to richgoldmd
@@ -31,14 +23,9 @@ class Schema extends DB\SQL\Mapper {
 		return date("Y-m-d H:i:s");
 	}
 
-	public function __construct(DB\SQL $db) 
-	{
-		parent::__construct($db,'schema');
-	}
-
 	public function all() 
 	{ //get all records
-		$this->load(null,array('order'=>'_section asc, _order asc'));
+		$this->load();
 		return $this->query;
 	}
 
@@ -51,6 +38,8 @@ class Schema extends DB\SQL\Mapper {
 		{
 			return 10;
 		}*/
+        $data['_user_type']=$this->f3->get('SESSION.user_type');
+        //$data['_company']=$this->f3->get('SESSION.company');
 		$data['_created_at']=$this->getCurrentdate();
 		$data['_updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
@@ -59,7 +48,7 @@ class Schema extends DB\SQL\Mapper {
 	}
 
 	public function getByGroup($grp){
-		$this->load(null,array('group'=>'_section'));
+		$this->load(null,array('group'=>$grp));
 		return $this->query;
 
 	}

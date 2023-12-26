@@ -48,6 +48,12 @@ class Company extends DB\SQL\Mapper {
 		return 1;
 	}
 
+	public function getByGroup($grp){
+		$this->load(null,array('group'=>$grp));
+		return $this->query;
+
+	}
+
 	public function getByName($name)
 	{
 		$this->load(array('fullname=?', $name));

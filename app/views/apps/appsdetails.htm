@@ -1,0 +1,78 @@
+<div class="container py-5">
+    <check if="{{ isset(@error_msg) }}">
+    <true>
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    {{ @error_msg | raw }}
+                </div>
+            </div>
+        </div>
+    </true>
+    </check>
+    <check if="{{ isset(@pass_msg) }}">
+        <true>
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Success:</span>
+                        {{ @pass_msg | raw }}
+                    </div>
+                </div>
+            </div>
+        </true>
+        </check>		 
+    <h2>
+        <a href="{{ @breadcrumbs }}"><i class="bi-arrow-left"></i></a>{{@apps}}
+        <check if="{{ !isset(@POST.new) }}">
+            <a href="{{ @breadcrumbs }}/delete/{{ @POST.id }}"><i class="bi-trash"></i></a>
+        </check>
+    </h2>
+    <form action="" method="post" class="form-horizontal">
+        <div class="row py-5">
+            <div class="col-8">		
+                    <h4>
+                    App Name:<br>
+                    <input list="Names" name="Name" id="Name" required>
+                    <datalist id="Names" style="width:150px;">
+                        <repeat group="{{@apps_dd}}" value="{{@vals}}">
+                            <option value="{{@vals.Name}}">
+                        </repeat>
+                    </datalist>
+                    </h4> 
+                    <p>
+                    <h4>
+                    Company: <br><select name="Company" id="Company" style="width:250px;">
+                        <repeat group="{{@company}}" key="{{@keys}}" value="{{@vals}}">
+                            <option value="{{@keys}}" <check if="{{ @POST.Company=='kk' }}"> selected</check>>{{@vals.fullname}}
+                        </repeat>
+                    </select>
+                    </h4>
+            </div>
+    
+        <!--<div class="col-4">
+            <h2>More Data</h2>
+                <p>Leave blank to keep the application open</p>
+            </div>
+        -->
+        </div>
+     
+        <div class="row">
+            <div class="col-12">
+                <div class="col-lg-xs text-center py-5">
+                    <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
+                    <check if="{{ isset(@POST.new) }}">
+                        <true><input type="hidden" name="new" value="new" /></true>
+                        <false><input type="hidden" name="edit" value="edit" /></false>
+                    </check>        
+                    <input type="hidden" name="id" value="{{ @POST.id }}" />
+                    <button type="submit" class="btn btn-primary"> {{ @i18n_submit }}</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    

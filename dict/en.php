@@ -60,4 +60,5 @@ return array(
 	'i18n_payments'=>'Payments',
 	'i18n_expenses'=>'Expenses',
 	'i18n_schema'=>'Schema',
+	'i18n_apps'=>'Apps',
 );
