@@ -14,7 +14,7 @@ class AppsController extends Controller {
     
 	public function modify_apps() {
 		$apps = new Apps($this->schema);
-        $company = new Company($this->usr);
+        $company = new Company($this->schema);
 
         $this->f3->set('breadcrumbs','/admin/apps');
 		if($this->f3->exists('POST.new')) {
@@ -45,7 +45,7 @@ class AppsController extends Controller {
 	public function delete_apps() {
 		$id = $this->f3->get('PARAMS.id');
 		$apps = new Apps($this->schema);
-        $company = new Company($this->usr);
+        $company = new Company($this->schema);
 
 		$apps->delete($id);
 		$this->f3->set('breadcrumbs','/admin/apps');
@@ -56,7 +56,7 @@ class AppsController extends Controller {
 	public function show_apps() 
 	{
         $apps = new Apps($this->schema);
-        $company = new Company($this->usr);
+        $company = new Company($this->schema);
 		$id = $this->f3->get('PARAMS.id'); 
 
 		if($this->f3->exists('POST.edit'))

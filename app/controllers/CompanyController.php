@@ -6,7 +6,7 @@ class CompanyController extends Controller {
 
 	public function company()
 	{
-        $company = new Company($this->usr);
+        $company = new Company($this->schema);
 		$this->f3->set('company',$company->all());
 		$this->f3->set('view','company/company.htm');
 	}
@@ -29,7 +29,7 @@ class CompanyController extends Controller {
 
 	public function modify_company() {
 		if($this->f3->exists('POST.new')) {
-			$company = new Company($this->usr);
+			$company = new Company($this->schema);
 			$company_added=$company->add($this->f3->get('POST'));
 			//$this->f3->set('message','Added');
 		} else {
@@ -45,7 +45,7 @@ class CompanyController extends Controller {
 
 	public function delete_company() {
 		$id = $this->f3->get('PARAMS.id');
-		$company = new Company($this->usr);
+		$company = new Company($this->schema);
 		$company->delete($id);
 		$this->f3->set('company',$company->all());
 		$this->f3->set('view','company/company.htm');
@@ -56,7 +56,7 @@ class CompanyController extends Controller {
 		$id = $this->f3->get('PARAMS.id'); 
 		if($this->f3->exists('POST.edit'))
                 {
-			$company = new Company($this->usr);
+			$company = new Company($this->schema);
 			$pw = '';
 			if(strlen($pw)===0)
 			{ //do not change password, reset to hash in database
@@ -83,14 +83,14 @@ class CompanyController extends Controller {
 		}
 		else
 		{
-			$company = new Company($this->usr);
+			$company = new Company($this->schema);
 			$company->getById($id);
 
 			if($company->dry()) { //throw a 404, order does not exist
 				$this->f3->error(404);
 			}
 		}
-		$company = new Company($this->usr);
+		$company = new Company($this->schema);
 		$company->getById($id);
 		$this->f3->set('company',$company->all());
 		$this->f3->set('view','company/companydetails.htm');
