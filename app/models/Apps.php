@@ -6,6 +6,8 @@ class Apps extends DB\SQL\Mapper {
 	protected $allowed_fields = array(
 		"Name",
 		"Company",
+        "_user_type",
+        "_company",
 	);
 
     public function __construct(DB\SQL $db) 
@@ -25,6 +27,7 @@ class Apps extends DB\SQL\Mapper {
 
 	public function all() 
 	{ //get all records
+        //$this->company_name('select fullname from company ');
 		$this->load();
 		return $this->query;
 	}
@@ -38,9 +41,7 @@ class Apps extends DB\SQL\Mapper {
 		{
 			return 10;
 		}*/
-        $data['_user_type']=$this->f3->get('SESSION.user_type');
-        //$data['_company']=$this->f3->get('SESSION.company');
-		$data['_created_at']=$this->getCurrentdate();
+        $data['_created_at']=$this->getCurrentdate();
 		$data['_updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
 		$this->save();

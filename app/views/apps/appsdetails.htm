@@ -36,7 +36,7 @@
             <div class="col-8">		
                     <h4>
                     App Name:<br>
-                    <input list="Names" name="Name" id="Name" required>
+                    <input list="Names" name="Name" id="Name" value="{{ @POST.Name}}"required>
                     <datalist id="Names" style="width:150px;">
                         <repeat group="{{@apps_dd}}" value="{{@vals}}">
                             <option value="{{@vals.Name}}">
@@ -45,9 +45,10 @@
                     </h4> 
                     <p>
                     <h4>
-                    Company: <br><select name="Company" id="Company" style="width:250px;">
-                        <repeat group="{{@company}}" key="{{@keys}}" value="{{@vals}}">
-                            <option value="{{@keys}}" <check if="{{ @POST.Company=='kk' }}"> selected</check>>{{@vals.fullname}}
+                    Company: <br><select name="_company" id="_company" style="width:250px;">
+                        <option>
+                        <repeat group="{{ @company }}" key="{{ @keys }}" value="{{ @vals }}">
+                            <option value="{{ @vals.id }}" <check if="{{ @POST._company==@vals.id}}"> selected</check>>{{@vals.fullname}}
                         </repeat>
                     </select>
                     </h4>
@@ -65,7 +66,10 @@
                 <div class="col-lg-xs text-center py-5">
                     <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
                     <check if="{{ isset(@POST.new) }}">
-                        <true><input type="hidden" name="new" value="new" /></true>
+                        <true>
+                            <input type="hidden" name="new" value="new" />
+                            <input type="hidden" name="_user_type" value="{{@SESSION.user_type}}" />
+                        </true>
                         <false><input type="hidden" name="edit" value="edit" /></false>
                     </check>        
                     <input type="hidden" name="id" value="{{ @POST.id }}" />

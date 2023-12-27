@@ -59,6 +59,11 @@ class Company extends DB\SQL\Mapper {
 		$this->load(array('fullname=?', $name));
 	}
 
+	public function getCompany($id){
+		$this->load(array('id=?',$id));
+		return $this->query;
+	}
+
 	public function getById($id) 
 	{
 		$this->load(array('id=?',$id));

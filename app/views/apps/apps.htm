@@ -7,21 +7,24 @@
 				<tr class="bg-secondary">
 					<th scope="col">ID</th>
 					<th scope="col">Name</th>
-					<th scope="col">Company</th>
+					<th scope="col">Company ID</th>
+                    <th scope="col">Company</th>
 					<th scope="col">Created at</th>
 					<th scope="col">Updated at</th>
-					<th scope="col"></th>
+                    <th scope="col"></th>
 				</tr>
 			</thead>
 		<tbody>
 		<repeat group="{{ @apps }}" value="{{ @fields }}">
 			<tr >
-				<td onclick="window.document.location='{{ @breadcrumbs }}/{{ @fields.id }}';" style="cursor: pointer;">{{ @fields.id}}</td>
+				<td onclick="window.document.location='{{ @breadcrumbs }}/{{ @fields.id }}';" style="cursor: pointer;"><i class="bi-pencil"></i></td>
 				<td>{{ @fields.Name }}</td>
+                <td>{{ @fields._company }}</td>
 				<td>{{ @fields.Company }}</td>
 				<td>{{ @fields._created_at }}</td>
 				<td>{{ @fields._updated_at }}</td>
-				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="bi-trash"></i></a></td>
+				<!--<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}" style="cursor: pointer;"><i class="bi-trash"></i></a></td>-->
+                <td><a href="/sections/{{@fields.Name}}"><i class="bi-chevron-right"></i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>
@@ -31,19 +34,18 @@
 		<table class="table-responsive table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
 			<thead>
 				<tr class="bg-secondary">
-					<th scope="col">section</th>
-					<th scope="col">order</th>
-					<th scope="col">label/id/type</th>
-					<th scope="col"></th>
+					<th scope="col">App name</th>
+					<th scope="col">Company</th>
+                    <th scope="col"></th>
 				</tr>
 			</thead>
 		<tbody>
 		<repeat group="{{ @schema }}" value="{{ @fields }}">
 			<tr >
-				<td onclick="window.document.location='{{ @breadcrumbs }}/{{ @fields.id }}';" style="cursor: pointer;">{{ @fields._section }}</td>
-				<td align="center">{{ @fields._order }}</td>
-				<td>{{ @fields._label }}<br>{{ @fields._idx }}<br>{{@@fields._type}}</td>
-				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="bi-trash"></i></a></td>
+				<td onclick="window.document.location='{{ @breadcrumbs }}/{{ @fields.id }}';" style="cursor: pointer;"><i class="bi-pencil"></i></td>
+				<td align="center">{{ @fields.Name }}</td>
+				<td>{{ @fields._company }}:{{ @fields.Company }}</td>		
+                <td><a href="{{ @breadcrumbs }}/{{ @fields.id }}"><i class="bi-chevron-right"></i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>
