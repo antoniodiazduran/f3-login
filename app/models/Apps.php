@@ -27,7 +27,7 @@ class Apps extends DB\SQL\Mapper {
 
 	public function all() 
 	{ //get all records
-        //$this->company_name('select fullname from company ');
+        //$this->company_name('select fullname from company where company.id = users.company');
 		$this->load();
 		return $this->query;
 	}
