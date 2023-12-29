@@ -6,7 +6,7 @@
                   <repeat group="{{@headers}}" key="{{@key}}" value="{{@cols}}">
 					<th scope="col" onclick="sortTable({{@key}});">{{@cols}} <i class="bi-filter"></i></th>
 				  </repeat>
-				  <th>delete</th>
+				  <th></th>
 				</tr>
 			</thead>
 		<tbody>
@@ -15,7 +15,7 @@
 				<repeat group="{{@data}}" value="{{@cols}}">
 					<td>{{@cols}}</td>
 				</repeat>
-				<td align="center"><a href="{{@breadcrumbs}}/delete/{{@data.id}}"><i class="bi-trash"></i></a></td>
+				<td align="center"><a href="/admin/schema"><i class="bi-database"></i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>
