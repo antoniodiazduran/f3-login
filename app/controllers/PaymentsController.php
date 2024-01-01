@@ -37,8 +37,8 @@ class PaymentsController extends Controller {
 			$this->f3->set('POST.Apartment',$apt);
 			$this->f3->set('apartmentName',$this->aptName($apt));
 			$this->f3->set('POST.TransactionDate',"");
-			$this->f3->set('POST.Amount',"0");
-			$this->f3->set('POST.LateFee',"0");
+			$this->f3->set('POST.Amount',"");
+			$this->f3->set('POST.LateFee',"");
             $this->f3->set('POST.Notes',"");
             $this->f3->set('apartment',$apt);
             $this->f3->set('view','payments/paymentsdetails.htm');

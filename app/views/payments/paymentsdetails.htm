@@ -27,13 +27,13 @@
               <input type="hidden" name="Apartment" id="Apartment" value="{{ @POST.Apartment }}">
             <p>    
               <h4>Date: {{ @POST.TransactionDate }}</h4>
-              <h4><input type="date" name="TransactionDate" id="TransactionDate" value="{{ @POST.TransactionDate }}"></h4>
+              <h4><input type="date" name="TransactionDate" id="TransactionDate" value="{{ @POST.TransactionDate }}" ></h4>
             <p>
               <h4>Amount: {{ @POST.Amount }}</h4>
-              <h4><input type="text" name="Amount" id="Amount" value="{{ @POST.Amount }}" style="text-align:right;"></h4>
+              <h4><input type="text" name="Amount" id="Amount" value="{{ @POST.Amount }}" style="text-align:right;" placeholder="0.00"></h4>
             <p>
               <h4>LateFee: {{ @POST.LateFee }}</h4>
-              <h4><input type="text" name="LateFee" id="LateFee" value="{{ @POST.LateFee }}" style="text-align:right;"></h4>
+              <h4><input type="text" name="LateFee" id="LateFee" value="{{ @POST.LateFee }}" style="text-align:right;" placeholder="0.00"></h4>
             <p>
             </div>
     
