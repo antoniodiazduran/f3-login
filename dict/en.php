@@ -61,4 +61,5 @@ return array(
 	'i18n_expenses'=>'Expenses',
 	'i18n_schema'=>'Schema',
 	'i18n_apps'=>'Apps',
+	'i18n_script'=>'Script',
 );

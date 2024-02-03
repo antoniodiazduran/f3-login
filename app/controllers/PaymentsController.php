@@ -65,7 +65,10 @@ class PaymentsController extends Controller {
         }
         $this->f3->set('POST.edit',"edit");
         $this->f3->set('apartment',$id);
+		//$this->f3->set('apartmentName',$this->aptName($id));
 		$this->f3->set('payments',$payment->getById($id));
+		//$this->f3->set('apartmentName',$this->aptName($payment->Apartment));
+		$this->f3->set('apartmentName',$this->aptName($payment->Apartment));		
 		$this->f3->set('view','payments/paymentsdetails.htm');
     }
 
@@ -74,8 +77,8 @@ class PaymentsController extends Controller {
 		$id = $this->f3->get('PARAMS.id'); 
 		$payment = new Payments($this->bpllc);
         $this->f3->set('apartment',$id);
-		$this->f3->set('apartmentName',$this->aptName($id));
 		$this->f3->set('payments',$payment->getByApartment($id));
+		$this->f3->set('apartmentName',$this->aptName($id));
 		$this->f3->set('view','payments/payments.htm');
 	}
 }

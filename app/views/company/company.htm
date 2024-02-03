@@ -5,7 +5,7 @@
 			<table class="table table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
 				<thead>
 						<tr class="bg-secondary">
-						<th scope="col">fullname</th>
+						<th scope="col">Name</th>
 						<th scope="col">shortname</th>
 						<th scope="col">slogan</th>
 						<th scope="col">created_at</th>
@@ -15,7 +15,7 @@
 			<tbody>
 			<repeat group="{{ @company }}" value="{{ @comp }}">
 				<tr onclick="window.document.location='admin/company/{{ @comp.id }}';" style="cursor: pointer;">
-					<td>{{ @comp.fullname }}</td>
+					<td>{{ @comp.Name }}</td>
 					<td>{{ @comp.shortname }}</td>
 					<td>{{ @comp.slogan }}</td>
 					<td>{{ @comp.created_at }}</td>
@@ -37,7 +37,7 @@
 			<tbody>
 			<repeat group="{{ @company }}" value="{{ @comp }}">
 				<tr onclick="window.document.location='admin/company/{{ @comp.id }}';" style="cursor: pointer;">
-					<td><b>{{ @comp.fullname }}</b><br>{{ @comp.shortname }}</td>
+					<td><b>{{ @comp.Name }}</b><br>{{ @comp.shortname }}</td>
 					<td>{{ @comp.slogan }}</td>
 					
 				</tr>	

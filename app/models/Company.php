@@ -4,7 +4,7 @@ class Company extends DB\SQL\Mapper {
 
 /* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		"fullname",
+		"Name",
 		"shortname",
 		"slogan",
 		"logo",
@@ -36,7 +36,7 @@ class Company extends DB\SQL\Mapper {
 	{
 		$data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
 		//check if fullname already exists in db
-		$this->load(array('fullname=?',$data['fullname']));
+		$this->load(array('Name=?',$data['Name']));
 		if(!$this->dry())
 		{
 			return 10;
@@ -56,7 +56,7 @@ class Company extends DB\SQL\Mapper {
 
 	public function getByName($name)
 	{
-		$this->load(array('fullname=?', $name));
+		$this->load(array('Name=?', $name));
 	}
 
 	public function getCompany($id){

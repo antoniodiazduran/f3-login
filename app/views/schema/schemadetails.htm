@@ -37,7 +37,7 @@
             <div class="col-8">		
                 
                     <h4>
-                    <input list="_sections" name="_section" id="_section" required>
+                    <input list="_sections" name="_section" id="_section"  value="{{@POST._section}}" required>
                     <datalist id="_sections" style="width:150px;">
                         <repeat group="{{@section_dd}}" value="{{@vals}}">
                             <option value="{{@vals._section}}">
@@ -46,18 +46,27 @@
                     <p>
                     <h4><input type="text" name="_label" id="_label" value="{{@POST._label}}" placeholder="Display label"/></h4> <p> 
                     <h4>
-                        Type: <select name="_type" id="_type">
+                        Type: <select name="_type" id="_type" style="width:150px;">
                             <option value="text" <check if="{{ @POST._type=='text' }}"> selected</check>>text
                             <option value="radio" <check if="{{ @POST._type=='radio' }}"> selected</check>>radio
                             <option value="checkbox" <check if="{{ @POST._type=='checkbox' }}"> selected</check>>checkbox
                             <option value="reset" <check if="{{ @POST._type=='reset' }}"> selected</check>>reset
                             <option value="password" <check if="{{ @POST._type=='password' }}"> selected</check>>password
                             <option value="select" <check if="{{ @POST._type=='select' }}"> selected</check>>select
+                            <option value="textarea" <check if="{{ @POST._type=='textarea' }}"> selected</check>>textarea
                             <option value="button" <check if="{{ @POST._type=='button' }}"> selected</check>>button
                             <option value="email" <check if="{{ @POST._type=='email' }}"> selected</check>>email
                             <option value="date" <check if="{{ @POST._type=='date' }}"> selected</check>>date
                             <option value="tel" <check if="{{ @POST._type=='tel' }}"> selected</check>>tel
                             <option value="join" <check if="{{ @POST._type=='join' }}"> selected</check>>join
+                        </select>
+                    </h4>
+                    <h4>
+                        SQL Type: <select name="_sql_type" id="_sql_type" style="width:150px;">
+                            <option value="TEXT" <check if="{{ @POST._sql_type=='TEXT' }}"> selected</check>>TEXT
+                            <option value="INTEGER" <check if="{{ @POST._sql_type=='INTEGER' }}"> selected</check>>INTEGER
+                            <option value="REAL" <check if="{{ @POST._sql_type=='REAL' }}"> selected</check>>REAL
+                            <option value="BLOB" <check if="{{ @POST._sql_type=='BLOBS' }}"> selected</check>>BLOB
                         </select>
                     </h4>
                     <h4><input type="text" name="_name" id="_name" value="{{@POST._name}}"  placeholder="Field name"/></h4> <p></p>
@@ -92,6 +101,14 @@
                     </h4> 
                     <h4><input type="text" name="_function" id="_function" value="{{@POST._function}}" placeholder="Function name"/></h4> <p>  
                     <h4><input type="text" name="_placeholder" id="_placeholder" value="{{@POST._placeholder}}" placeholder="Placeholder"/></h4> <p>   
+                    <h4>Join table:  
+                        <select name="_joins" id="_joins">
+                            <option value="{{@POST._joins}}">
+                            <repeat group="{{@joins}}" value="{{@vals}}">
+                                <option value="{{@vals._section.'.'.@vals._name}}" <check if="{{ @POST._joins === (@vals._section.'.'.@vals._name) }}">selected</check>>{{@vals._section.'.'.@vals._name}}
+                            </repeat>
+                        </select>
+                    </h4>    
                     <h4><input type="text" name="_order" id="_order" value="{{@POST._order}}" placeholder="Field Order" size="20"/></h4> <p> 
             </div>
     

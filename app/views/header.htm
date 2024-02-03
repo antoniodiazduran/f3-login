@@ -23,8 +23,23 @@
 			<li class="nav-item active">
 			<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
 			<true>
-				<check if="{{ @SESSION.user_type>1 }}">
-					<check if="{{ @SESSION.user_type>=10 }}">
+				<check if="{{ @SESSION.user_type>=1 }}">
+					<repeat group="{{@menurows}}" value="{{@rows}}">
+						<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									{{@rows.section}}
+								</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<repeat group="{{@menuitem}}" value="{{@item}}">
+								<check if="{{ @rows.section == @item.section}}">
+									<a class="nav-link" href="{{@item.url}}">{{@item.item}}</a>
+								</check>
+							</repeat>
+							</div>
+						</li>
+					</repeat>
+				</check>
+				<!--<check if="{{ @SESSION.user_type>=10 }}">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Bowline
@@ -35,8 +50,7 @@
 							<a class="nav-link" href="/tenant/expenses">{{ @i18n_expenses }}</a>
 						</div>
 					</li>
-					</check>
-				</check>
+				</check>//-->
 				<check if="{{ @SESSION.user_type==100 }}">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,6 +77,7 @@
 						<input class="form-control mr-sm-2" type="search" id="search" onkeyup="searchTable();" placeholder="Search" aria-label="Search">
 					  </form>
 				</li>
+				
 		  	</true>
 			<false>
 			  <li class="nav-item">

@@ -29,7 +29,7 @@
         <a href="{{@breadcrumbs}}"><i class="bi-arrow-left"></i></a>
         {{@sectionName}} &nbsp; &nbsp;
         <check if="{{ !isset(@POST.new) }}">
-            <a href="/admin/sections/delete/xx"><i class="bi-trash" style="font-size:0.7em;"></i></a>
+            <a href="{{@breadcrumbs}}/delete/{{@POST.id}}"><i class="bi-trash" style="font-size:0.7em;"></i></a>
         </check>
         
     </h2>
@@ -37,33 +37,57 @@
     <div class="row py-5">
     <div class="col-10">		
         <repeat group="{{@groupdata}}" value="{{@stru}}">
-            <h4>
-            <label>{{@stru._label}}</label>  
-            <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
-                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" {{@stru._function}} size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/></h4> <p>
-            </check>
-            <check if="{{@stru._type=='tel'}}">
-                <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
-            </check>
-            <check if="{{@stru._type=='select'}}">
+            <check if="{{@stru._name<>'id'}}">
+            <true>
                 <h4>
-                <select name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
-                    <repeat group="{{ explode(',',@stru._value) }}" value="{{@opti1}}">
-                        <option value="{{@opti1}}" <check if="{{@stru._placeholder==@opti1}}">selected</check>><h4>{{@opti1}}</h4>
-                    </repeat>
-                </select>
-                </h4>
-            </check>
-            <check if="{{@stru._type=='radio' or @stru._type=='checkbox'}}">
-                <h4 style="color:gray;">
-                <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
-                    <input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
-                </repeat>
-                </h4>
+                    <label>{{@stru._label}}</label>  
+                    <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
+                        <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  style="{{@stru._style}}" class="{{@stru._class}}" {{@stru._function}} size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/></h4> <p>
+                    </check>
+                    <check if="{{@stru._type=='date'}}">
+                        <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}"  required/></h4> <p>
+                    </check>
+                    <check if="{{@stru._type=='tel'}}">
+                        <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
+                    </check>
+                    <check if="{{@stru._type=='select'}}">
+                        <h4>
+                        <select name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
+                            <repeat group="{{ explode(',',@stru._value) }}" value="{{@opti1}}">
+                                <option value="{{@opti1}}" <check if="{{@stru._placeholder==@opti1}}">selected</check>><h4>{{@opti1}}</h4>
+                            </repeat>
+                        </select>
+                        </h4>
+                    </check>
+                    <check if="{{@stru._type=='radio' or @stru._type=='checkbox'}}">
+                        <h4 style="color:gray;">
+                        <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
+                            <input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
+                        </repeat>
+                        </h4>
+                        <p>
+                    </check>
+                    <check if="{{@stru._type=='textarea' }}">
+                        <h4 style="color:gray;">
+                        <textarea cols="40" rows="5" name="{{@stru._name}}" id="{{@stru._idx}}">{{@stru._value}}</textarea>
+                        </h4>
+                        <p>
+                    </check>
+                    <check if="{{@stru._type=='join' }}">
+                        <h4 style="color:gray;">
+                        <select name="{{@stru._name}}" id="{{@stru._idx}}" style="width:300px">
+                            <option>
+                            <repeat group="{{ @joinFields}}" value="{{@joinF}}">
+                                <option value="{{@joinF.id}}">{{@joinF.linked}}
+                            </repeat>
+                        </select>
+                        </h4>
+                        <p>
+                    </check>
+                </h4> 
                 <p>
+            </true>
             </check>
-            </h4> 
-            <p>
         </repeat>
     </div>
     <!--<div class="col-4">

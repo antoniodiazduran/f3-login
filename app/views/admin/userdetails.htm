@@ -34,7 +34,7 @@
 		  <h4>Company:<br>
 			<select name="company" style="width:250px;">
 			<repeat group="{{ @company }}" value="{{ @names }}">
-				<option value="{{ @names.fullname }}" <check if="{{ @POST.company===@names.fullname }}"> selected</check>>{{@names.fullname}}</option>
+				<option value="{{ @names.Name }}" <check if="{{ @POST.company===@names.Name }}"> selected</check>>{{@names.Name}}</option>
 			</repeat>
 		  </select></h4>
 		</div>

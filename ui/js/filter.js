@@ -3,22 +3,24 @@
 function searchTable() {
 	var input, filter, table, tr, td, i, txtValue;
 	// Columns to inspect
-	var columns = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+	var columns = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 	filter = document.getElementById("search").value.toUpperCase();
 	table = document.getElementById("list");
 	tr = table.getElementsByTagName("tr");
 	td = [];
 	for (i = 1; i < tr.length; i++) {
 		for (var j of columns) {
-		td[j] = tr[i].getElementsByTagName("td")[j];
-		if (td[j].innerText != '') {
-			if (td[j].innerText.toUpperCase().indexOf(filter) > -1) {
-				tr[i].style.display = "";
-				break;
-			} else {
-				tr[i].style.display = "none";
-			}
-		}
+			if (typeof tr[i].getElementsByTagName("td")[j] !== 'undefined') {
+				td[j] = tr[i].getElementsByTagName("td")[j];
+				if (td[j].innerText != '') {
+					if (td[j].innerText.toUpperCase().indexOf(filter) > -1) {
+						tr[i].style.display = "";
+						break;
+					} else {
+						tr[i].style.display = "none";
+					}
+				}
+			}	
 		}
 	}
 }

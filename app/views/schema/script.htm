@@ -1,0 +1,14 @@
+<div class="table-responsive" style="margin-left:10px;">
+	<h3><a href="/admin/apps"><i class="bi-arrow-left"></i></a> {{ @i18n_script }} </h3>	
+	<check if="{{@isMobile==0}}">
+	<true>
+		<textarea cols="50" rows="20">{{@sqlstring}}</textarea>	
+	</true>
+	<false>
+		<textarea cols="50" rows="20">
+            {{@sqlstring}}
+        </textarea>	
+	</false>
+	</check>
+</div>
+

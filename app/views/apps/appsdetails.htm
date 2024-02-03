@@ -48,7 +48,7 @@
                     Company: <br><select name="_company" id="_company" style="width:250px;">
                         <option>
                         <repeat group="{{ @company }}" key="{{ @keys }}" value="{{ @vals }}">
-                            <option value="{{ @vals.id }}" <check if="{{ @POST._company==@vals.id}}"> selected</check>>{{@vals.fullname}}
+                            <option value="{{ @vals.id }}" <check if="{{ @POST._company==@vals.id}}"> selected</check>>{{@vals.Name}}
                         </repeat>
                     </select>
                     </h4>

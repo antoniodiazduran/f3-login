@@ -35,7 +35,7 @@ class CompanyController extends Controller {
 		} else {
 			$this->f3->set('POST.new',"new");
 			$this->f3->set('POST.id',"_");
-			$this->f3->set('POST.fullname',"");
+			$this->f3->set('POST.Name',"");
 			$this->f3->set('POST.shortname',"");
 			$this->f3->set('POST.slogan',"");
 		}

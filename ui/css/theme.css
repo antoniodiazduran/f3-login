@@ -55,6 +55,10 @@ input[type="checkbox"]{
   font-weight:normal;
 }
 
+i {
+  font-size:1.2em;
+}
+
 /* Blink for  list line or show stoppers*/
 .blink {
   animation: blinker 3s linear infinite;

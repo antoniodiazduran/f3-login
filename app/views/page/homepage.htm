@@ -4,7 +4,7 @@
 			<h1>diaz.works</h1>
 			<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
 				<true>
-					<p>Welcome {{ @SESSION.username }}!<br>
+					<p>Welcome {{ @SESSION.username }}! <br> {{@SESSION.company}}<br>
 					<check if="{{ @SESSION.user_type==1 }}">Viewer</check>
 					<check if="{{ @SESSION.user_type==10 }}">Superuser</check>
 					<check if="{{ @SESSION.user_type==100 }}">Administrator</check>

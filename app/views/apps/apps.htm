@@ -1,17 +1,19 @@
-<div class="table-responsive">
+<div class="table-responsive" style="margin-left:5px;">
 	<h3>{{ @i18n_apps }}  <a href="{{ @breadcrumbs }}/new"><i class="bi-plus"></i></a></h3>	
 	<check if="{{@isMobile==0}}">
 	<true>
-		<table class="table-responsive table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
+		<table class="table-responsive table-hover table-striped table-bordered" id="list" style="width:95%;">
 			<thead>
 				<tr class="bg-secondary">
-					<th scope="col">ID</th>
-					<th scope="col">Name</th>
-					<th scope="col">Company ID</th>
-                    <th scope="col">Company</th>
-					<th scope="col">Created at</th>
-					<th scope="col">Updated at</th>
-                    <th scope="col"></th>
+					<th scope="col" onclick="sortTable(0);">ID<i class="bi-filter"></i></th>
+					<th scope="col" onclick="sortTable(1);">Name<i class="bi-filter"></i></th>
+					<th scope="col" onclick="sortTable(2);">Company ID<i class="bi-filter"></i></th>
+                    <th scope="col" onclick="sortTable(3);">Company<i class="bi-filter"></i></th>
+					<th scope="col" onclick="sortTable(4);">Created at<i class="bi-filter"></i></th>
+					<th scope="col" onclick="sortTable(5);">Updated at<i class="bi-filter"></i></th>
+                    <th scope="col">Script</th>
+					<th scope="col">Schema</th>
+					<th scope="col">Sections</th>
 				</tr>
 			</thead>
 		<tbody>
@@ -24,7 +26,9 @@
 				<td>{{ @fields._created_at }}</td>
 				<td>{{ @fields._updated_at }}</td>
 				<!--<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}" style="cursor: pointer;"><i class="bi-trash"></i></a></td>-->
-                <td><a href="/sections/{{@fields.Name}}"><i class="bi-chevron-right"></i></a></td>
+                <td align="center"><a href="/admin/script/{{@fields.Name}}"><i class="bi-file-text"></i></a></td>
+				<td align="center"><a href="/admin/schema"><i class="bi-list-columns-reverse"></i></a></td>
+				<td align="center"><a href="/sections/{{@fields.Name}}"><i class="bi-database"></i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>

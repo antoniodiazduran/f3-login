@@ -43,7 +43,13 @@ class Controller {
 			}
 			
 		}
-
+		// Menu creation based on database
+		//echo $this->f3->get('SESSION.user_type');
+		$this->f3->set('menurows',$this->menu_sections());
+		$this->f3->set('menuitem',$this->menu_items());
+		
+		
+		// Access to files by permission
 		$access=Access::instance();
 		$access->policy('allow'); // allow access to all routes by default
 		$access->deny('/admin*');
@@ -63,7 +69,15 @@ class Controller {
 
     }
 
-	function afterroute() {
+	public function menu_sections() {
+		$menu = new Menus($this->schema);
+		return $menu->allSections();
+	}
+	public function menu_items() {
+		$menu = new Menus($this->schema);
+		return $menu->allItems();
+	}
+	public function afterroute() {
 		$this->f3->set('isMobile',$this->isMobile());
 		echo Template::instance()->render('layout.htm');
 	}

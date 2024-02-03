@@ -19,6 +19,8 @@ class Schema extends DB\SQL\Mapper {
 		"_order",
 		"_placeholder",
 		"_event",
+		"_joins",
+		"_sql_type",
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 
@@ -36,9 +38,16 @@ class Schema extends DB\SQL\Mapper {
 		parent::__construct($db,'schema');
 	}
 
-	public function all() 
-	{ //get all records
-		$this->load(null,array('order'=>'_section asc, _order asc'));
+	public function all($user_type) 
+	{   
+		//get all records except for 'menus'
+		if($user_type<100) {
+			$this->load(array('_section!=?','menus'),array('order'=>'_section asc, _order asc'));
+		} 
+		else 
+		{
+			$this->load();
+		}
 		return $this->query;
 	}
 
@@ -63,6 +72,19 @@ class Schema extends DB\SQL\Mapper {
 		return $this->query;
 
 	}
+
+	public function table_schema($app) 
+	{
+		$this->load(array('_section=?',$app),array('order'=>'_order asc'));
+		return $this->query;
+	}
+
+	public function joins()
+	{
+		$this->load(array('_section != ?','menus'),array('order'=>'_section asc, _order asc'));
+		return $this->query;
+	}
+
 	public function getBySection($name)
 	{
 		$this->load(array('_section=?', $name),array('order'=>'_order asc'));

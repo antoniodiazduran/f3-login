@@ -13,7 +13,7 @@
 </true>
 </check>		 
 <h2>
-	<a href="/admin/company"><i class="bi-arrow-left"></i></a> {{ @POST.fullname }} 
+	<a href="/admin/company"><i class="bi-arrow-left"></i></a> {{ @POST.Name }} 
 	<check if="{{ !isset(@POST.new) }}">
 		<a href="/admin/company/delete/{{ @POST.id }}"><i class="bi-trash"></i></a>
 	</check>
@@ -23,8 +23,8 @@
 	<div class="row py-5">
 		<div class="col-8">
 		<check if="{{ isset(@POST.new) }}">
-			<h4>Full Name: {{ @POST.fullname }}</h4>
-			<h4><input type="text" name="fullname" id="fullname" value="{{ @POST.fullname }}" style="background:silver;"></h4>	
+			<h4>Full Name: {{ @POST.Name }}</h4>
+			<h4><input type="text" name="Name" id="Name" value="{{ @POST.Name }}" style="background:silver;"></h4>	
 		</check>	
 		  <h4>Short Name: {{ @POST.shortname }}</h4>
 		  <h4><input type="text" name="shortname" id="shortname" value="{{ @POST.shortname }}" style="background:silver;"></h4>
@@ -48,7 +48,7 @@
 					<true><input type="hidden" name="new" value="new" /></true>
 					<false>
 						<input type="hidden" name="edit" value="edit" />
-						<input type="hidden" name="fullname" value="{{ @POST.fullname }}" />
+						<input type="hidden" name="Name" value="{{ @POST.Name }}" />
 					</false>
 				</check>
 				

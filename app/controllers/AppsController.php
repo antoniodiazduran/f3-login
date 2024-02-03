@@ -19,7 +19,7 @@ class AppsController extends Controller {
         $this->f3->set('breadcrumbs','/admin/apps');
 		if($this->f3->exists('POST.new')) {
             $companyAll = $company->getCompany($this->f3->get('POST._company'));
-            $this->f3->set('POST.Company',$companyAll[0]['fullname']);
+            $this->f3->set('POST.Company',$companyAll[0]['Name']);
             
 			// adding form to database			
             $apps_added=$apps->add($this->f3->get('POST'));
@@ -28,7 +28,7 @@ class AppsController extends Controller {
 			$this->f3->set('view','apps/apps.htm');
 		} else {
 			$this->f3->set('apps_dd',$apps->getByGroup('Name'));
-            $this->f3->set('company',$company->getByGroup('fullname'));
+            $this->f3->set('company',$company->getByGroup('Name'));
             $this->f3->set('apps','Apps');
     
 			$this->f3->set('POST.new',"new");
@@ -62,7 +62,7 @@ class AppsController extends Controller {
 		if($this->f3->exists('POST.edit'))
         {	
             $companyAll = $company->getCompany($this->f3->get('POST._company'));
-            $this->f3->set('POST.Company',$companyAll[0]['fullname']);
+            $this->f3->set('POST.Company',$companyAll[0]['Name']);
 
 			$apps->edit($id, $this->f3->get('POST'));
 			$this->f3->set('pass_msg','Updated');
@@ -78,7 +78,7 @@ class AppsController extends Controller {
         $this->f3->set('apps','Apps');
 		$this->f3->set('breadcrumbs','/admin/apps');
         $this->f3->set('apps_dd',$apps->getByGroup('Name'));
-        $this->f3->set('company',$company->getByGroup('fullname'));
+        $this->f3->set('company',$company->getByGroup('Name'));
 		$this->f3->set('view','apps/appsdetails.htm');
 	}
 }
