@@ -1,62 +1,64 @@
-<div class="table-responsive" style="margin-left:5px;">
-	<h3><a href="/admin/apps"><i class="bi-arrow-left"></i></a> {{ @i18n_schema }}  <a href="{{ @breadcrumbs }}/new"><i class="bi-plus"></i></a></h3>	
+<div class="w3-container">
+<h3><a href="/admin/apps"><i class="material-icons">arrow_back</i></a> {{ @i18n_schema }}  <a href="{{ @breadcrumbs }}/new"><i class="material-icons">add_circle</i></a></h3>	
 	<check if="{{@isMobile==0}}">
 	<true>
-		<table class="table-responsive table-hover table-striped table-bordered" id="list" style="width:95%; ">
+		<table class="w3-table w3-hoverable" id="list">
 			<thead>
-				<tr class="bg-secondary">
-					<th scope="col" onclick="sortTable(0);">section<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(1);">type<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(2);">SQL type<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(3);">label<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(4);">name<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(5);">id<i class="bi-filter"></i></th>
-                    <th scope="col" onclick="sortTable(6);">length<i class="bi-filter"></i></th>
-                    <th scope="col" onclick="sortTable(7);">required<i class="bi-filter"></i></th>
-                    <th scope="col" onclick="sortTable(8);">value<i class="bi-filter"></i></th>
-                    <th scope="col" onclick="sortTable(9);">class<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(10);">style<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(11);">event<i class="bi-filter"></i></th>
-                    <th scope="col" onclick="sortTable(12);">function<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(13);">placeholder<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(14);">joins<i class="bi-filter"></i></th>
-					<th scope="col" onclick="sortTable(15);">order<i class="bi-filter"></i></th>
-					<th scope="col"></th>
+				<tr class="w3-deep-orange"">
+					<th></th>
+					<th>section</th>
+					<th>type</th>
+					<th>SQL type</th>
+					<th>label</th>
+					<th>name</th>
+					<th>id</th>
+					<th>length</th>
+					<th>required</th>
+					<th>value</th>
+					<th>class</th>
+					<th>style</th>
+					<th>event</th>
+					<th>function</th>
+					<th>placeholder</th>
+					<th>joins</th>
+					<th>order</th>
+					<th></th>
 				</tr>
 			</thead>
 		<tbody>
 		<repeat group="{{ @schema }}" value="{{ @fields }}">
 			<tr >
-				<td onclick="window.document.location='{{ @breadcrumbs }}/{{ @fields.id }}';" style="cursor: pointer;">{{ @fields._section }}</td>
+				<td><a href="{{ @breadcrumbs }}/{{ @fields.id }}"><i class="material-icons">edit</i></td>
+				<td>{{ @fields._section }}</td>
 				<td>{{ @fields._type }}</td>
 				<td>{{ @fields._sql_type }}</td>
 				<td>{{ @fields._label }}</td>
 				<td>{{ @fields._name }}</td>
 				<td>{{ @fields._idx }}</td>
-                <td>{{ @fields._length }}</td>
-                <td>{{ @fields._required }}</td>
-                <td>{{ @fields._value }}</td>
-                <td>{{ @fields._class }}</td>
+				<td>{{ @fields._length }}</td>
+				<td>{{ @fields._required }}</td>
+				<td>{{ @fields._value }}</td>
+				<td>{{ @fields._class }}</td>
 				<td>{{ @fields._style }}</td>
 				<td>{{ @fields._event }}</td>
-                <td>{{ @fields._function }}</td>
+				<td>{{ @fields._function }}</td>
 				<td>{{ @fields._placeholder }}</td>
 				<td>{{ @fields._joins }}</td>
 				<td>{{ @fields._order }}</td>
-				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="bi-trash"></i></a></td>
+				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="material-icons">delete</i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>
 	</table>		
 	</true>
 	<false>
-		<table class="table-responsive table-hover table-striped table-bordered" id="list" style="width:95%; margin-left:10px;">
+		<table class="w3-table w3-hoverable" id="list">
 			<thead>
-				<tr class="bg-secondary">
-					<th scope="col" onclick="sortTable(0);">section</th>
-					<th scope="col" onclick="sortTable(1);">order</th>
-					<th scope="col" onclick="sortTable(2);">label/id/type</th>
-					<th scope="col" onclick="sortTable(3);"></th>
+				<tr class="w3-deep-orange">
+					<th>section</th>
+					<th>order</th>
+					<th>label/id/type</th>
+					<th></th>
 				</tr>
 			</thead>
 		<tbody>

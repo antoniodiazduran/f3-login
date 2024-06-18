@@ -29,10 +29,9 @@ class SectionsController extends Controller {
 	}
 
 	public function add_sections()
-	{	
+	{
 		$structure = new Schema($this->schema);
         $link = new Schema($this->schema);
-		
 		if($this->f3->exists('POST.new')) {
 			$sections = new Sections($this->schema,$this->f3->get('POST.schema'));
 			$sections_added=$sections->add($this->f3->get('POST'));
@@ -45,7 +44,6 @@ class SectionsController extends Controller {
 		} else {
 			$schema = $this->f3->get('PARAMS.schema');
 			$grp= $structure->getBySection($schema);
-					
 			$this->f3->set('joinFields',$this->join_fields($grp));
 			$this->f3->set('sectionName',$schema);
 			$this->f3->set('groupdata',$grp);
@@ -80,12 +78,10 @@ class SectionsController extends Controller {
 			$sections->edit($id, $this->f3->get('POST'));
 			$this->f3->set('pass_msg','Updated');
 		} 
-		
 		//$structure = new Schema($this->schema);
 		//$grp= $structure->getBySection($schema);
 		$schemaObj = new Schema($this->schema);
 		$grp = $schemaObj->getBySection($schema);
-		
 		$this->f3->set('groupdata',$grp);
 		$this->f3->set('joinFields',$this->join_fields($grp));
 		$this->f3->set('sections',$sections->getById($id));

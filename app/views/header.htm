@@ -1,44 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	<title>diazconsulting.llc</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<base href="{{@SCHEME.'://'.@HOST.@BASE.':'.@PORT.'/'}}">
-	<title>diaz.works</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/ui/css/theme.css" type="text/css" />
+	<link rel="stylesheet" href="/ui/css/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body>
-	 <!-- navigation -->
-	  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#">d</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
-	    <!-- dropdown -->
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		  <ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-			<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
-			<true>
-				<check if="{{ @SESSION.user_type>=1 }}">
-					<repeat group="{{@menurows}}" value="{{@rows}}">
-						<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									{{@rows.section}}
-								</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<repeat group="{{@menuitem}}" value="{{@item}}">
-								<check if="{{ @rows.section == @item.section}}">
-									<a class="nav-link" href="{{@item.url}}">{{@item.item}}</a>
-								</check>
-							</repeat>
-							</div>
-						</li>
-					</repeat>
-				</check>
+	<div class="w3-bar w3-black w3-mobile">
+		<a href="/" class="w3-bar-item w3-button">Home</a>
+		<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
+		<true>
+			<check if="{{ @SESSION.user_type>=1 }}">
+				<repeat group="{{@menurows}}" value="{{@rows}}">
+					<div class="w3-dropdown-hover">
+					<button class="w3-button">{{ @rows.section }}</button>
+					<div class="w3-dropdown-content w3-bar-block w3-card-4">
+						<repeat group="{{@menuitem}}" value="{{@item}}">
+						<check if="{{ @rows.section == @item.section}}">
+							<a class="w3-bar-item w3-button" href="{{@item.url}}">{{@item.item}}</a>
+						</check>
+						</repeat>
+					</div>
+					</div>
+				</repeat>
+			</check>
 				<!--<check if="{{ @SESSION.user_type>=10 }}">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,45 +40,25 @@
 						</div>
 					</li>
 				</check>//-->
-				<check if="{{ @SESSION.user_type==100 }}">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Admin
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="/admin/users">{{ @i18n_users }}</a>
-							<a class="dropdown-item" href="/admin/company">{{ @i18n_company }}</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="/admin/apps">{{ @i18n_apps }}</a>
-							<a class="dropdown-item" href="/admin/schema">{{ @i18n_schema }}</a>
-						</div>
-					</li>
-				</check>
-				<li class="nav-item">
-					<a class="nav-link" href="/user/update">{{ @i18n_reset_pw_submit }}</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/logout">{{ @i18n_logout }}</a>
-				</li>
-				<li class="nav-item">
-					<form class="form-inline my-2 my-lg-0">
-						&nbsp; &nbsp; 
-						<input class="form-control mr-sm-2" type="search" id="search" onkeyup="searchTable();" placeholder="Search" aria-label="Search">
-					  </form>
-				</li>
-				
-		  	</true>
-			<false>
-			  <li class="nav-item">
-				  <a href="/login" class="nav-link">{{ @i18n_login }}</a>
-			  </li>
-			</false>
+			<check if="{{ @SESSION.user_type==100 }}">
+				<div class="w3-dropdown-hover">
+					<button class="w3-button">Admin</button>
+					<div class="w3-dropdown-content w3-bar-block w3-card-4">
+						<a class="w3-bar-item w3-button" href="/admin/users">{{ @i18n_users }}</a>
+						<a class="w3-bar-item w3-button" href="/admin/company">{{ @i18n_company }}</a>
+						<a class="w3-bar-item w3-button" href="/admin/apps">{{ @i18n_apps }}</a>
+						<a class="w3-bar-item w3-button" href="/admin/schema">{{ @i18n_schema }}</a>
+					</div>
+				</div>
 			</check>
-			</li>
-		  </ul>
-		</div>
-	  </nav>
-	  
+			<a class="w3-bar-item w3-button" href="/user/update">{{ @i18n_reset_pw_submit }}</a>
+			<a class="w3-bar-item w3-button w3-gray" href="/logout">{{ @i18n_logout }}</a>
+			<input class="w3-bar-item w3-input w3-light-gray" type="text" id="search" onkeyup="searchTable();" placeholder="Search">
+ 		</true>
+		<false>
+			  <a href="/login" class="w3-bar-item w3-button w3-green">{{ @i18n_login }}</a>
+		</false>
+		</check>
+	</div>
 	
-
 	<!-- Page Content -->
