@@ -1,13 +1,13 @@
 <include href="site_specific/adminmenu.htm" />
 <h1>No access</h1>
 <p>Please log in</p>
-<form action="{{ @BASE }}" method="post" class="form-signin">
+<form class="w3-container" action="{{ @BASE }}" method="post">
 
-	<input type="text" class="form-control" placeholder="Email" name="username" id="username" required autofocus>
-	<input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
+	<input type="text" class="w3-input" placeholder="Email" name="username" id="username" required autofocus>
+	<input type="password" class="w3-input" placeholder="Password" name="password" id="password" required>
 	<input type="hidden" name="login" value="login" />
 	<input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
-	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+	<button class="w3-button w3-green" type="submit">Login</button>
 
 </form>
 

@@ -1,119 +1,93 @@
-<div class="container py-5">
+<div class="w3-container">
     <check if="{{ isset(@error_msg) }}">
     <true>
-        <div class="row">
-            <div class="col-12">
-                <div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span class="sr-only">Error:</span>
-                    {{ @error_msg | raw }}
-                </div>
-            </div>
-        </div>
+	<div class="w3-container w3-red">
+        {{ @error_msg | raw }}
+	</div>
     </true>
     </check>
     <check if="{{ isset(@pass_msg) }}">
-        <true>
-            <div class="row">
-                <div class="col-12">
-                    <div class="alert alert-success" role="alert">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Success:</span>
-                        {{ @pass_msg | raw }}
-                    </div>
-                </div>
-            </div>
-        </true>
-        </check>		 
+    <true>
+	<div class="w3-container w3-red">
+	{{ @pass_msg | raw }}
+	</div>
+    </true>
+    </check>		 
     <h2>
-        <a href="{{@breadcrumbs}}"><i class="bi-arrow-left"></i></a>
+        <a href="{{@breadcrumbs}}"><i class="material-icons">arrow_back</i></a>
         {{@sectionName}} &nbsp; &nbsp;
         <check if="{{ !isset(@POST.new) }}">
-            <a href="{{@breadcrumbs}}/delete/{{@POST.id}}"><i class="bi-trash" style="font-size:0.7em;"></i></a>
+            <a href="{{@breadcrumbs}}/delete/{{@POST.id}}"><i class="material-icons" title="Delete">delete</i></a>
         </check>
         
     </h2>
-<form action="" method="post" class="form-horizontal">
-    <div class="row py-5">
-    <div class="col-10">		
+<form action="" method="post" class="w3-container">
         <repeat group="{{@groupdata}}" value="{{@stru}}">
             <check if="{{@stru._name<>'id'}}">
             <true>
-                <h4>
                     <label>{{@stru._label}}</label>  
                     <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
-                        <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  style="{{@stru._style}}" class="{{@stru._class}}" {{@stru._function}} size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/></h4> <p>
+                        <input class="w3-input" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function }}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/> <p>
                     </check>
                     <check if="{{@stru._type=='date'}}">
-                        <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}"  required/></h4> <p>
+                        <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function}}" size="{{@stru._length}}"  required/></h4> <p>
                     </check>
                     <check if="{{@stru._type=='tel'}}">
-                        <h4><input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}"  class="{{@stru._class}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
+                        <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
                     </check>
                     <check if="{{@stru._type=='select'}}">
-                        <h4>
-                        <select name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
+                        <select class="w3-select" name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
                             <repeat group="{{ explode(',',@stru._value) }}" value="{{@opti1}}">
                                 <option value="{{@opti1}}" <check if="{{@stru._placeholder==@opti1}}">selected</check>><h4>{{@opti1}}</h4>
                             </repeat>
                         </select>
-                        </h4>
+                        <p>
                     </check>
-                    <check if="{{@stru._type=='radio' or @stru._type=='checkbox'}}">
-                        <h4 style="color:gray;">
+                    <check if="{{@stru._type=='radio'}}">
                         <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
-                            <input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
+                            <input class="w3-radio"type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
+                        </repeat>
+                        </h4>
+                        <p>
+                    </check>
+                    <check if="{{ @stru._type=='checkbox'}}">
+                        <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
+                            <input class="w3-checkbox"type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
                         </repeat>
                         </h4>
                         <p>
                     </check>
                     <check if="{{@stru._type=='textarea' }}">
-                        <h4 style="color:gray;">
-                        <textarea cols="40" rows="5" name="{{@stru._name}}" id="{{@stru._idx}}">{{@stru._value}}</textarea>
+                        <textarea class="w3-input" cols="40" rows="5" name="{{@stru._name}}" id="{{@stru._idx}}">{{@stru._value}}</textarea>
                         </h4>
                         <p>
                     </check>
                     <check if="{{@stru._type=='join' }}">
-                        <h4 style="color:gray;">
-                        <select name="{{@stru._name}}" id="{{@stru._idx}}" style="width:300px">
+                        <select class="w3-select" name="{{@stru._name}}" id="{{@stru._idx}}" style="width:300px">
                             <option>
                             <repeat group="{{ @joinFields}}" value="{{@joinF}}">
                                 <option value="{{@joinF.id}}">{{@joinF.linked}}
                             </repeat>
                         </select>
-                        </h4>
                         <p>
                     </check>
-                </h4> 
                 <p>
             </true>
             </check>
         </repeat>
-    </div>
-    <!--<div class="col-4">
-            <h2>TextArea</h2>
-            <p>Leave blank to keep the application open</p>
-        </div>
-    -->
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="col-lg-xs text-center py-5">
-                <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
-                <check if="{{ isset(@POST.new) }}">
-                    <true>
-                        <input type="hidden" name="new" value="new" />
-                    </true>
-                    <false>
-                        <input type="hidden" name="edit" value="edit" />
-                        <input type="hidden" name="id" value="{{@POST.id}}" />
-                    </false>
-                </check>        
-                <input type="hidden" name="schema" value="{{@sectionName}}" />
-                <button type="submit" class="btn btn-primary"> {{ @i18n_submit }}</button>
-            </div>
-        </div>
-    </div>
+        <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
+        <check if="{{ isset(@POST.new) }}">
+        <true>
+		<input type="hidden" name="new" value="new" />
+        </true>
+        <false>
+		<innput type="hidden" name="edit" value="edit" />
+		<input type="hidden" name="id" value="{{@POST.id}}" />
+	</false>
+        </check>        
+        <input type="hidden" name="schema" value="{{@sectionName}}" />
+	<br><br>
+        <input class="w3-button w3-green" type="submit" value="{{ @i18n_submit }}">
 </form>
 </div>
 

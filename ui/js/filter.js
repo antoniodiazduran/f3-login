@@ -3,10 +3,14 @@
 function searchTable() {
 	var input, filter, table, tr, td, i, txtValue;
 	// Columns to inspect
-	var columns = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 	filter = document.getElementById("search").value.toUpperCase();
 	table = document.getElementById("list");
 	tr = table.getElementsByTagName("tr");
+	th = table.getElementsByTagName("th");
+	var columns = [];
+	for (k = 0; k < th.length; k++) {
+ 	  columns.push(k);
+	}
 	td = [];
 	for (i = 1; i < tr.length; i++) {
 		for (var j of columns) {
@@ -56,7 +60,6 @@ function sortTable(n) {
 				// Check if 2 rows need to be switched
 				if (x.innerHTML.toLowerCase() >
 				y.innerHTML.toLowerCase()) {
-						
 					// If yes, mark Switch as needed
 					// and break loop
 					Switch = true;

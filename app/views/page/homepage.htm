@@ -1,21 +1,17 @@
-<div class="container py-5">
-	<div class="row">
-		<div class="col-12">
-			<h1>diaz.works</h1>
-			<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
-				<true>
-					<p>Welcome {{ @SESSION.username }}! <br> {{@SESSION.company}}<br>
-					<check if="{{ @SESSION.user_type==1 }}">Viewer</check>
-					<check if="{{ @SESSION.user_type==10 }}">Superuser</check>
-					<check if="{{ @SESSION.user_type==100 }}">Administrator</check>
-					<p>
-				  <a class="btn btn-lg btn-warning" href="/logout">Logout</a></p>
-				</true>
-				<false>
-					<p>You are not logged in right now. </p>
-					<p><a href="/login">You can login here</a>.</p>
-				</false>
-			</check>
-		</div>
-	</div>
+<div class="w3-container">
+<h2>diazconsulting.llc</h2>
+	<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
+	<true>
+		<p>Welcome {{ @SESSION.username }}! <br> {{@SESSION.company}}<br>
+		<check if="{{ @SESSION.user_type==1 }}">Viewer</check>
+		<check if="{{ @SESSION.user_type==10 }}">Superuser</check>
+		<check if="{{ @SESSION.user_type==100 }}">Administrator</check>
+		<p>
+		<a class="w3-button w3-orange" href="/logout">Logout</a></p>
+	</true>
+	<false>
+		<p>You are not logged in right now. </p>
+		<p><a href="/login">You can login here</a>.</p>
+	</false>
+	</check>
 </div>

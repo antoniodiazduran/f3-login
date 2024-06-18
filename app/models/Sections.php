@@ -2,9 +2,9 @@
 
 class Sections extends DB\SQL\Mapper {
 
-/* only these db fields are allowed to be changed */
+	/* only these db fields are allowed to be changed */
 	protected $allowed_fields = array(
-		
+
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 

@@ -1,21 +1,21 @@
-<div class="table-responsive" style="margin-left:5px;">
-	<h3><a href="/admin/apps"><i class="bi-arrow-left"></i></a> Section {{ ucfirst(@sectionName) }}  <a href="{{@breadcrumbs}}/new"><i class="bi-plus"></i></a></h3>	
-	<table class="table table-hover table-striped table-bordered" id="list" style="width:95%;">
-			<thead>
-				<tr class="bg-secondary">
-                  <repeat group="{{@headers}}" key="{{@key}}" value="{{@cols}}">
-					<th scope="col" onclick="sortTable({{@key}});">{{@cols}} <i class="bi-filter"></i></th>
-				  </repeat>
-				  
-				</tr>
-			</thead>
-		<tbody>
+<div class="w3-container">
+	<h3><a href="/admin/apps"><i class="material-icons">arrow_back</i></a> Section {{ ucfirst(@sectionName) }}<a href="{{@breadcrumbs}}/new"><i class="material-icons">add_circle</i></a></h3>	
+	<table class="w3-table w3-hoverable" id="list">
+	<thead>
+		<tr class="w3-deep-orange">
+		<th></th>
+                <repeat group="{{@headers}}" key="{{@key}}" value="{{@cols}}">
+			<th>{{@cols}}</th>
+		</repeat>
+		</tr>
+	</thead>
+	<tbody>
 		<repeat group="{{ @groupdata }}" value="{{ @data }}">
-			<tr onclick="window.document.location='{{@breadcrumbs}}/edit/{{@data.id}}';" style="cursor: pointer;">
+			<tr>
+			<td><a href="{{@breadcrumbs}}/edit/{{@data.id}}"><i class="material-icons">edit</i></a></td>
 				<repeat group="{{@data}}" value="{{@cols}}">
 					<td>{{@cols}}</td>
-				</repeat>
-				
+				</repeat>		
 			</tr>	
 		</repeat>
 		</tbody>
