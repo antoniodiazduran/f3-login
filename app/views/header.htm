@@ -11,7 +11,7 @@
 
   <body>
 	<div class="w3-bar w3-black w3-mobile">
-		<a href="/" class="w3-bar-item w3-button">Home</a>
+		<a href="/" class="w3-bar-item w3-button"><i class="material-icons">home</i></a>
 		<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
 		<true>
 			<check if="{{ @SESSION.user_type>=1 }}">
@@ -42,7 +42,7 @@
 				</check>//-->
 			<check if="{{ @SESSION.user_type==100 }}">
 				<div class="w3-dropdown-hover">
-					<button class="w3-button">Admin</button>
+					<button class="w3-button"><i class="material-icons" title="Administrator">manage_accounts</i></button>
 					<div class="w3-dropdown-content w3-bar-block w3-card-4">
 						<a class="w3-bar-item w3-button" href="/admin/users">{{ @i18n_users }}</a>
 						<a class="w3-bar-item w3-button" href="/admin/company">{{ @i18n_company }}</a>
@@ -51,12 +51,12 @@
 					</div>
 				</div>
 			</check>
-			<a class="w3-bar-item w3-button" href="/user/update">{{ @i18n_reset_pw_submit }}</a>
-			<a class="w3-bar-item w3-button w3-gray" href="/logout">{{ @i18n_logout }}</a>
+			<a class="w3-bar-item w3-button" href="/user/update"><i class="material-icons" title="Reset Password">lock_reset</i></a>
+			<a class="w3-bar-item w3-button w3-gray w3-right" href="/logout"><i class="material-icons" title="Logout">logout</i></a>
 			<input class="w3-bar-item w3-input w3-light-gray" type="text" id="search" onkeyup="searchTable();" placeholder="Search">
  		</true>
 		<false>
-			  <a href="/login" class="w3-bar-item w3-button w3-green">{{ @i18n_login }}</a>
+			  <a href="/login" class="w3-bar-item w3-button w3-green w3-right"><i class="material-icons" title="Login">login</i></a>
 		</false>
 		</check>
 	</div>
