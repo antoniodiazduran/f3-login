@@ -15,19 +15,18 @@ class Menus extends DB\SQL\Mapper {
 		$this->load(null, array('group'=>'item','order'=>'section, _order asc'));
 		return $this->query;
 	}
-	
-	public function usertype($user_type) 
-	{   
+
+	public function usertype($user_type)
+	{
 		//get all records except for 'menus'
 		if($user_type<100) {
 			$this->load(array('_section!=?','menus'),array('order'=>'_section asc, _order asc'));
-		} 
-		else 
+		}
+		else
 		{
 			$this->load();
 		}
 		return $this->query;
 	}
 
-	
 }

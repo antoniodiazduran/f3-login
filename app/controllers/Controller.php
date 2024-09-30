@@ -41,14 +41,13 @@ class Controller {
 			{	// DANGER: CSRF attack!
 				$this->f3->error(403); 
 			}
-			
+
 		}
 		// Menu creation based on database
 		//echo $this->f3->get('SESSION.user_type');
 		$this->f3->set('menurows',$this->menu_sections());
 		$this->f3->set('menuitem',$this->menu_items());
-		
-		
+
 		// Access to files by permission
 		$access=Access::instance();
 		$access->policy('allow'); // allow access to all routes by default
@@ -84,7 +83,19 @@ class Controller {
 
 	public function isMobile()  {
 		return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-    }
+	}
+
+	public function sendMail($to,$msg) {
+                // Always set content-type when sending HTML email
+                $headers[] = "MIME-Version: 1.0";
+                $headers[] = "Content-type:text/html;charset=iso-8859-1";
+                $headers[] = "Reply-To:joeycamanei@gmail.com";
+                $headers[] = "From: joeycamanei@gmail.com";
+                $to = 'antonio@diazconsulting.llc,'.$to;
+                // $msg = wordwrap($msg, 300, "<br/>\n");       
+                // Send - to, subject, message
+                $bool = mail($to,'Diaz Consulting llc', $msg, implode("\r\n",$headers));
+        }
 
 	function __construct() {
 		// creating instance
