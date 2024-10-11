@@ -73,8 +73,9 @@ class SectionsController extends Controller {
 		$id = $this->f3->get('PARAMS.id'); 
 		$sections = new Sections($this->schema,$schema);
 		//echo $schema;
+echo $this->f3->get('POST.edit');
 		if($this->f3->exists('POST.edit'))
-        {
+        	{
 			$sections->edit($id, $this->f3->get('POST'));
 			$this->f3->set('pass_msg','Updated');
 		} 
@@ -93,6 +94,7 @@ class SectionsController extends Controller {
 		$this->f3->set('sectionName',$schema);
 		$this->f3->set('POST.id',$id);
 		$this->f3->set('POST.edit','edit');
+echo "2".$this->f3->get('POST.edit');
 		$this->f3->set('view','sections/sectionsdetails.htm');
 	}
 }
