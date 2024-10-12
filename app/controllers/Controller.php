@@ -71,11 +71,11 @@ class Controller {
 
 	public function menu_sections() {
 		$menu = new Menus($this->schema);
-		return $menu->allSections();
+		return $menu->allSections($this->f3->get('SESSION.company'));
 	}
 	public function menu_items() {
 		$menu = new Menus($this->schema);
-		return $menu->allItems();
+		return $menu->allItems($this->f3->get('SESSION.company'));
 	}
 	public function afterroute() {
 		$this->f3->set('isMobile',$this->isMobile());

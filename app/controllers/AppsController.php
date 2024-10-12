@@ -8,7 +8,7 @@ class AppsController extends Controller {
 	{
 		$apps = new Apps($this->schema);
 		$this->f3->set('breadcrumbs','/admin/apps');
-		$this->f3->set('apps',$apps->all('Company'));
+		$this->f3->set('apps',$apps->all());
 		$this->f3->set('view','apps/apps.htm');
 	}
     
@@ -24,7 +24,7 @@ class AppsController extends Controller {
 			// adding form to database			
             		$apps_added=$apps->add($this->f3->get('POST'));
 			$this->f3->set('pass_msg','Added');
-			$this->f3->set('apps',$apps->all('_order'));
+			$this->f3->set('apps',$apps->all());
 			$this->f3->set('view','apps/apps.htm');
 		} else {
 			$this->f3->set('apps_dd',$apps->getByGroup('Name'));

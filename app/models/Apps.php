@@ -25,11 +25,11 @@ class Apps extends DB\SQL\Mapper {
 		return date("Y-m-d H:i:s");
 	}
 
-	public function all($sort) 
+	public function all() 
 	{ 
 		//get all records
 	        //$this->company_name('select fullname from company where company.id = users.company');
-		$this->load(array(),array('order'=>$sort ));
+		$this->load();
 		return $this->query;
 	}
 

@@ -7,13 +7,24 @@ class Menus extends DB\SQL\Mapper {
 		parent::__construct($db,'menus');
 	}
 
-    public function allSections() {
-		$this->load(null, array('group'=>'section'));
-        return $this->query;
+    	public function allSections($company) {
+		$sql = 'SELECT section FROM menus ';
+		$sql.= 'INNER JOIN apps ON lower(menus.Item) = lower(apps.Name) ';
+		$sql.= 'WHERE apps.Company = ? ';
+		$sql.= 'GROUP by section';
+		return $this->db->exec($sql,$company);
+		// $this->load(null, array('group'=>'section'));
+	        // return $this->query;
 	}
-	public function allItems() {
-		$this->load(null, array('group'=>'item','order'=>'section, _order asc'));
-		return $this->query;
+	public function allItems($company) {
+		$sql = 'SELECT Section,Item,url FROM menus ';
+		$sql.= 'INNER JOIN apps ON lower(menus.Item) = lower(apps.Name) ';
+		$sql.= 'WHERE apps.Company = ? ';
+		$sql.= 'ORDER by section';
+		return $this->db->exec($sql,$company) ;
+
+//		$this->load(null, array('group'=>'item','order'=>'section, _order asc'));
+//		return $this->query;
 	}
 	
 	public function usertype($user_type) 
