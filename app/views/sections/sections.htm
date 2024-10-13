@@ -1,5 +1,5 @@
 <div class="w3-container">
-	<h3><a href="/admin/apps"><i class="material-icons">arrow_back</i></a> Section {{ ucfirst(@sectionName) }}<a href="{{@breadcrumbs}}/new"><i class="material-icons">add_circle</i></a></h3>	
+	<h3><a href="/admin/apps"><i class="material-symbols-outlined">arrow_back</i></a> Section {{ ucfirst(@sectionName) }}<a href="{{@breadcrumbs}}/new"><i class="material-symbols-outlined">add_circle</i></a></h3>	
 	<table class="w3-table w3-hoverable" id="list">
 	<thead>
 		<tr class="w3-deep-orange">
@@ -12,7 +12,7 @@
 	<tbody>
 		<repeat group="{{ @groupdata }}" value="{{ @data }}">
 			<tr>
-			<td><a href="{{@breadcrumbs}}/edit/{{@data.id}}"><i class="material-icons">edit</i></a></td>
+			<td><a href="{{@breadcrumbs}}/edit/{{@data.id}}"><i class="material-symbols-outlined">edit</i></a></td>
 				<repeat group="{{@data}}" value="{{@cols}}">
 					<td>{{@cols}}</td>
 				</repeat>		

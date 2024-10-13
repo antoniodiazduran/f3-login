@@ -62,4 +62,5 @@ return array(
 	'i18n_schema'=>'Schema',
 	'i18n_apps'=>'Apps',
 	'i18n_script'=>'Script',
+	'i18n_menus'=>'Menus',
 );

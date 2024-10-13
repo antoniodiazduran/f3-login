@@ -1,5 +1,5 @@
 <div class="w3-container">
-	<h3>{{ @i18n_company }} <a href="/admin/company/new"><i class="material-icons">add</i></a></h3>	
+	<h3>{{ @i18n_company }} <a href="/admin/company/new"><i class="material-symbols-outlined">add</i></a></h3>	
 	<check if="{{@isMobile==0}}">
 		<true>
 			<table class="w3-table w3-hoverable" id="list">
@@ -16,7 +16,7 @@
 			<tbody>
 			<repeat group="{{ @company }}" value="{{ @comp }}">
 				<tr>
-					<td><a href="admin/company/{{ @comp.id }}"><i class="material-icons">edit</i></a>
+					<td><a href="admin/company/{{ @comp.id }}"><i class="material-symbols-outlined">edit</i></a>
 					<td>{{ @comp.Name }}</td>
 					<td>{{ @comp.shortname }}</td>
 					<td>{{ @comp.slogan }}</td>

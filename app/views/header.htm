@@ -6,12 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<base href="{{@SCHEME.'://'.@HOST.@BASE.':'.@PORT.'/'}}">
 	<link rel="stylesheet" href="/ui/css/w3.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">//-->
+	<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+	
   </head>
 
   <body>
 	<div class="w3-bar w3-black w3-mobile">
-		<a href="/" class="w3-bar-item w3-button"><i class="material-icons">home</i></a>
+		<a href="/" class="w3-bar-item w3-button"><i class="material-symbols-outlined">home</i></a>
 		<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
 		<true>
 			<check if="{{ @SESSION.user_type>=1 }}">
@@ -42,21 +44,30 @@
 				</check>//-->
 			<check if="{{ @SESSION.user_type==100 }}">
 				<div class="w3-dropdown-hover">
-					<button class="w3-button"><i class="material-icons" title="Administrator">settings</i></button>
+					<button class="w3-button"><i class="material-symbols-outlined" title="Administrator">settings</i></button>
 					<div class="w3-dropdown-content w3-bar-block w3-card-4">
 						<a class="w3-bar-item w3-button" href="/admin/users">{{ @i18n_users }}</a>
 						<a class="w3-bar-item w3-button" href="/admin/company">{{ @i18n_company }}</a>
 						<a class="w3-bar-item w3-button" href="/admin/apps">{{ @i18n_apps }}</a>
 						<a class="w3-bar-item w3-button" href="/admin/schema">{{ @i18n_schema }}</a>
+						<a class="w3-bar-item w3-button" href="/sections/menus">{{ @i18n_menus }}</a>
+					</div>
+				</div>
+				<div class="w3-dropdown-hover">
+					<button class="w3-button"><i class="material-symbols-outlined" title="Apps">database</i></button>
+					<div class="w3-dropdown-content w3-bar-block w3-card-4">
+						<repeat group="{{@datarows}}" value="{{@rows}}">
+							<a class="w3-bar-item w3-button" href="/sections/{{ strtolower(@rows.item) }}">{{@@rows.item}}</a>
+						</repeat>
 					</div>
 				</div>
 			</check>
-			<a class="w3-bar-item w3-button" href="/user/update"><i class="material-icons" title="Reset Password">lock_reset</i></a>
-			<a class="w3-bar-item w3-button w3-gray w3-right" href="/logout"><i class="material-icons" title="Logout">logout</i></a>
+			<a class="w3-bar-item w3-button" href="/user/update"><i class="material-symbols-outlined" title="Reset Password">lock_reset</i></a>
+			<a class="w3-bar-item w3-button w3-gray w3-right" href="/logout"><i class="material-symbols-outlined" title="Logout">logout</i></a>
 			<input class="w3-bar-item w3-input w3-light-gray" type="text" id="search" onkeyup="searchTable();" placeholder="Search">
  		</true>
 		<false>
-			  <a href="/login" class="w3-bar-item w3-button w3-green w3-right"><i class="material-icons" title="Login">login</i></a>
+			  <a href="/login" class="w3-bar-item w3-button w3-green w3-right"><i class="material-symbols-outlined" title="Login">login</i></a>
 		</false>
 		</check>
 	</div>

@@ -1,7 +1,7 @@
 <div class="w3-container">
-<h3><a href="/admin/apps"><i class="material-icons">arrow_back</i></a> 
+<h3><a href="/admin/apps"><i class="material-symbols-outlined">arrow_back</i></a> 
 {{ @i18n_schema }}  &nbsp; 
-<a href="{{ @breadcrumbs }}/new"><i class="material-icons">add</i></a></h3>	
+<a href="{{ @breadcrumbs }}/new"><i class="material-symbols-outlined">add</i></a></h3>	
 	<check if="{{@isMobile==0}}">
 	<true>
 		<table class="w3-table w3-hoverable" id="list">
@@ -31,7 +31,8 @@
 		<tbody>
 		<repeat group="{{ @schema }}" value="{{ @fields }}">
 			<tr >
-				<td><a href="{{ @breadcrumbs }}/{{ @fields.id }}"><i class="material-icons">edit</i></td>
+				<check if="{{ @fields._section != 'menus'}}">
+				<td><a href="{{ @breadcrumbs }}/{{ @fields.id }}"><i class="material-symbols-outlined">edit</i></td>
 				<td>{{ @fields._section }}</td>
 				<td>{{ @fields._type }}</td>
 				<td>{{ @fields._sql_type }}</td>
@@ -49,7 +50,8 @@
 				<td>{{ @fields._joins }}</td>
 				<td>{{ @fields._order }}</td>
 				<td>{{ @fields._visible }}</td>
-				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="material-icons">delete</i></a></td>
+				<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}"><i class="material-symbols-outlined">delete</i></a></td>
+				</check>
 			</tr>	
 		</repeat>
 		</tbody>

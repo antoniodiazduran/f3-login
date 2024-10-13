@@ -7,7 +7,7 @@ class Menus extends DB\SQL\Mapper {
 		parent::__construct($db,'menus');
 	}
 
-    	public function allSections($company) {
+    public function allSections($company) {
 		$sql = 'SELECT section FROM menus ';
 		$sql.= 'INNER JOIN apps ON lower(menus.Item) = lower(apps.Name) ';
 		$sql.= 'WHERE apps.Company = ? ';
@@ -15,6 +15,10 @@ class Menus extends DB\SQL\Mapper {
 		return $this->db->exec($sql,$company);
 		// $this->load(null, array('group'=>'section'));
 	        // return $this->query;
+	}
+	public function alldatabase() {
+		$this->load(null, null);
+		return $this->query;
 	}
 	public function allItems($company) {
 		$sql = 'SELECT Section,Item,url FROM menus ';

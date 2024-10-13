@@ -16,7 +16,7 @@
 		<tbody>
 		<repeat group="{{ @users }}" value="{{ @user }}">
 			<tr>
-				<td><a href="admin/users/{{ @user.id }}"><i class="material-icons">edit</i></a></td>
+				<td><a href="admin/users/{{ @user.id }}"><i class="material-symbols-outlined">edit</i></a></td>
 				<td>{{ @user.username }}</td>
 				<td>{{ @user.company }}</td>
 				<td><check if="@user.user_type===100"><true><em>Administrator</em></true>

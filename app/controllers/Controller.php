@@ -47,6 +47,7 @@ class Controller {
 		//echo $this->f3->get('SESSION.user_type');
 		$this->f3->set('menurows',$this->menu_sections());
 		$this->f3->set('menuitem',$this->menu_items());
+		$this->f3->set('datarows',$this->data_sections());
 		
 		
 		// Access to files by permission
@@ -72,6 +73,10 @@ class Controller {
 	public function menu_sections() {
 		$menu = new Menus($this->schema);
 		return $menu->allSections($this->f3->get('SESSION.company'));
+	}
+	public function data_sections() {
+		$menu = new Menus($this->schema);
+		return $menu->alldatabase();
 	}
 	public function menu_items() {
 		$menu = new Menus($this->schema);
