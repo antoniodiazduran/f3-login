@@ -29,7 +29,7 @@ class Apps extends DB\SQL\Mapper {
 	{ 
 		//get all records
 	        //$this->company_name('select fullname from company where company.id = users.company');
-		$this->load();
+		$this->load(null,array('order'=>'company'));
 		return $this->query;
 	}
 
