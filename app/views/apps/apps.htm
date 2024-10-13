@@ -5,21 +5,23 @@
 		<table class="w3-table w3-hoverable" id="list">
 			<thead>
 				<tr class="w3-deep-orange">
-					<th>ID<i class="bi-filter"></i></th>
-					<th>Name<i class="bi-filter"></i></th>
-					<th>Company ID<i class="bi-filter"></i></th>
-                    			<th>Company<i class="bi-filter"></i></th>
-					<th>Created at<i class="bi-filter"></i></th>
-					<th>Updated at<i class="bi-filter"></i></th>
-			                <th>Script</th>
-					<th>Schema</th>
-					<th>Sections</th>
-				</tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Company ID</th>
+                    <th>Company</th>
+					<th>Created at</th>
+					<th>Updated at</th>
+			        <th>Script</th>
+					</tr>
 			</thead>
 		<tbody>
 		<repeat group="{{ @apps }}" value="{{ @fields }}">
 			<tr {{ @fields.Name == 'menus'?'bgcolor=silver':'' }}>
-				<td><a href="{{ @breadcrumbs }}/{{ @fields.id }}"><i class="material-symbols-outlined">edit</i></td>
+				<td>
+					<check if="{{ @fields.Name != 'menus'}}">
+						<a href="{{ @breadcrumbs }}/{{ @fields.id }}"><i class="material-symbols-outlined">edit</i></a>
+					</check>
+				</td>
 				<td>{{ @fields.Name }}</td>
 				<td>{{ @fields._company }}</td>
 				<td>{{ @fields.Company }}</td>
@@ -27,8 +29,6 @@
 				<td>{{ @fields._updated_at }}</td>
 				<!--<td><a href="{{ @breadcrumbs }}/delete/{{ @fields.id }}" style="cursor: pointer;"><i class="bi-trash"></i></a></td>-->
 				<td align="center"><a href="/admin/script/{{@fields.Name}}"><i class="material-symbols-outlined">text_snippet</i></a></td>
-				<td align="center"><a href="/admin/schema"><i class="material-symbols-outlined">schema</i></a></td>
-				<td align="center"><a href="/sections/{{@fields.Name}}"><i class="material-symbols-outlined">list</i></a></td>
 			</tr>	
 		</repeat>
 		</tbody>
