@@ -71,6 +71,7 @@ class SchemaController extends Controller {
 			$this->f3->set('POST._placeholder',"");
 			$this->f3->set('POST._event',"");
 			$this->f3->set('POST._joins',"");
+			$this->f3->set('POST._visible',"");
             $this->f3->set('schema','');
 			$this->f3->set('joins',$schema->joins());
 			$this->f3->set('breadcrumbs','/admin/schema');

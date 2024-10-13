@@ -25,15 +25,17 @@
         <repeat group="{{@groupdata}}" value="{{@stru}}">
             <check if="{{@stru._name<>'id'}}">
             <true>
-                    <label>{{@stru._label}}</label>  
+                    <check if="{{@stru._visible == 'YES'}}">
+                        <label>{{@stru._label}}</label>  
+                    </check>
                     <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
-                        <input class="w3-input" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function }}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{@stru._required}}/> <p>
+                        <input class="w3-input" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function }}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" style="{{ @stru._style }}" {{@stru._required}}/> <p>
                     </check>
                     <check if="{{@stru._type=='date'}}">
                         <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function}}" size="{{@stru._length}}"  required/></h4> <p>
                     </check>
                     <check if="{{@stru._type=='tel'}}">
-                        <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
+                    <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
                     </check>
                     <check if="{{@stru._type=='select'}}">
                         <select class="w3-select" name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
@@ -70,6 +72,11 @@
                             </repeat>
                         </select>
                         <p>
+                    </check>
+                    <check if="{{@stru._type=='params' }}">
+                        <check if="{{isset(@params[@stru._name])}}">
+                            <input type="hidden" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{ @params[@stru._name]}}">
+                        </check>
                     </check>
                 <p>
             </true>

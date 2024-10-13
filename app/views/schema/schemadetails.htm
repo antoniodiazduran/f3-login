@@ -42,6 +42,7 @@
                             <option value="date" <check if="{{ @POST._type=='date' }}"> selected</check>>date
                             <option value="tel" <check if="{{ @POST._type=='tel' }}"> selected</check>>tel
                             <option value="join" <check if="{{ @POST._type=='join' }}"> selected</check>>join
+                            <option value="params" <check if="{{ @POST._type=='params' }}"> selected</check>>params
                         </select>
                     <p>
                     <label>SQL Type:</label>
@@ -103,6 +104,14 @@
                     <p>
                     <label>Field Order:</label>
                     <input class="w3-input" type="text" name="_order" id="_order" value="{{@POST._order}}" placeholder="Field Order" size="20"/> <p> 
+                    <label>Visible: </label>
+                        <select class="w3-select" name="_visible" id="_visible">
+                            <option>
+                            <option value="YES" <check if="{{ @POST._visible=='YES' }}"> selected</check>>YES
+                            <option value="NO"  <check if="{{ @POST._visible=='NO' }}">  selected</check>>NO
+                        </select>
+                    <p>
+                    
                     <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
                     <check if="{{ isset(@POST.new) }}">
                         <true><input type="hidden" name="new" value="new" /></true>

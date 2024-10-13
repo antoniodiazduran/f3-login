@@ -36,6 +36,7 @@ class SectionsController extends Controller {
 			$sections = new Sections($this->schema,$this->f3->get('POST.schema'));
 			$sections_added=$sections->add($this->f3->get('POST'));
 			$schema = $this->f3->get('POST.schema');
+			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$schema);
 			$this->f3->set('breadcrumbs','/sections/'.$schema);
 			$this->f3->set('groupdata',$sections->all());;
@@ -43,7 +44,8 @@ class SectionsController extends Controller {
 			$this->f3->set('view','sections/sections.htm');
 		} else {
 			$schema = $this->f3->get('PARAMS.schema');
-			$grp= $structure->getBySection($schema);
+			$grp = $structure->getBySection($schema);
+			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('joinFields',$this->join_fields($grp));
 			$this->f3->set('sectionName',$schema);
 			$this->f3->set('groupdata',$grp);
@@ -73,9 +75,9 @@ class SectionsController extends Controller {
 		$id = $this->f3->get('PARAMS.id'); 
 		$sections = new Sections($this->schema,$schema);
 		//echo $schema;
-echo $this->f3->get('POST.edit');
+       echo $this->f3->get('POST.edit');
 		if($this->f3->exists('POST.edit'))
-        	{
+        {
 			$sections->edit($id, $this->f3->get('POST'));
 			$this->f3->set('pass_msg','Updated');
 		} 
