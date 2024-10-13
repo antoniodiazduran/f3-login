@@ -3,7 +3,6 @@
 class Controller {
 
 	protected $f3;
-	protected $bpllc;
 	protected $usr;
 	protected $schema;
 
@@ -96,12 +95,10 @@ class Controller {
 		$f3=Base::instance();
 		// setting global variables based on DNS
 		$usr=new DB\SQL($f3->get('usr_dns'));
-		$bpllc=new DB\SQL($f3->get('bpllc_dns'));
 		$schema=new DB\SQL($f3->get('schema_dns'));
 		// assigning global variables
 		$this->f3=$f3;
 		$this->usr=$usr;
-		$this->bpllc=$bpllc;
 		$this->schema=$schema;
 	}
 
