@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1092692cc1f4bf9200c87153142ad0a",
+    "content-hash": "48b86462c6655c8b93f3ffbdc5885ddc",
     "packages": [
         {
             "name": "bcosca/fatfree-core",
@@ -40,6 +40,47 @@
                 "source": "https://github.com/f3-factory/fatfree-core/tree/3.8.2"
             },
             "time": "2023-07-23T22:11:30+00:00"
+        },
+        {
+            "name": "xfra35/f3-access",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xfra35/f3-access.git",
+                "reference": "de8e697e3f61b7d4e0d71c448346f38162677796"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xfra35/f3-access/zipball/de8e697e3f61b7d4e0d71c448346f38162677796",
+                "reference": "de8e697e3f61b7d4e0d71c448346f38162677796",
+                "shasum": ""
+            },
+            "require": {
+                "bcosca/fatfree-core": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "Route access control for the PHP Fat-Free Framework",
+            "homepage": "https://github.com/xfra35/f3-access",
+            "keywords": [
+                "F3",
+                "access control",
+                "fatfree",
+                "permissions"
+            ],
+            "support": {
+                "issues": "https://github.com/xfra35/f3-access/issues",
+                "source": "https://github.com/xfra35/f3-access/tree/v1.2.2"
+            },
+            "time": "2021-04-29T16:52:25+00:00"
         }
     ],
     "packages-dev": [],

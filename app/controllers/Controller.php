@@ -40,15 +40,13 @@ class Controller {
 			{	// DANGER: CSRF attack!
 				$this->f3->error(403); 
 			}
-			
 		}
 		// Menu creation based on database
 		//echo $this->f3->get('SESSION.user_type');
 		$this->f3->set('menurows',$this->menu_sections());
 		$this->f3->set('menuitem',$this->menu_items());
 		$this->f3->set('datarows',$this->data_sections());
-		
-		
+
 		// Access to files by permission
 		$access=Access::instance();
 		$access->policy('allow'); // allow access to all routes by default
@@ -88,7 +86,7 @@ class Controller {
 
 	public function isMobile()  {
 		return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-    }
+        }
 
 	function __construct() {
 		// creating instance
