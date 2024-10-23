@@ -31,26 +31,35 @@ class SectionsController extends Controller {
 	public function add_sections()
 	{
 		$structure = new Schema($this->schema);
+		$upld = new Upload($this->schema);
         $link = new Schema($this->schema);
+		$section = $this->f3->get('POST.schema')==''?$this->f3->get('PARAMS.schema'):$this->f3->get('POST.schema');
+
+
 		if($this->f3->exists('POST.new')) {
-			$sections = new Sections($this->schema,$this->f3->get('POST.schema'));
-			$sections_added=$sections->add($this->f3->get('POST'));
-			$schema = $this->f3->get('POST.schema');
+			$sections = new Sections($this->schema,$section);
+			$last_id=$sections->add($this->f3->get('POST'));
+			
+			// Uploading the file
+            $upload = $upld->fileUpload($last_id,$section);
+			if($upload==1) {
+				$upld->add($fileData);
+			}
+
 			$this->f3->set('params',$this->f3->get('PARAMS'));
-			$this->f3->set('sectionName',$schema);
-			$this->f3->set('breadcrumbs','/sections/'.$schema);
+			$this->f3->set('sectionName',$section);
+			$this->f3->set('breadcrumbs','/sections/'.$section);
 			$this->f3->set('groupdata',$sections->all());;
 			$this->f3->set('headers',array_keys($sections->schema()));
 			$this->f3->set('view','sections/sections.htm');
 		} else {
-			$schema = $this->f3->get('PARAMS.schema');
-			$grp = $structure->getBySection($schema);
+			$grp = $structure->getBySection($section);
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('joinFields',$this->join_fields($grp));
-			$this->f3->set('sectionName',$schema);
+			$this->f3->set('sectionName',$section);
 			$this->f3->set('groupdata',$grp);
-			$this->f3->set('sectionName',$schema);
-			$this->f3->set('breadcrumbs','/sections/'.$schema);
+			$this->f3->set('sectionName',$section);
+			$this->f3->set('breadcrumbs','/sections/'.$section);
 			$this->f3->set('POST.new','new');
 			$this->f3->set('view','sections/sectionsdetails.htm');	
 		} 
@@ -58,11 +67,11 @@ class SectionsController extends Controller {
 
 	public function delete_sections() {
 		$id = $this->f3->get('PARAMS.id');
-		$schema = $this->f3->get('PARAMS.schema');
-		$sections = new Sections($this->schema,$schema);
+		$section = $this->f3->get('PARAMS.schema');
+		$sections = new Sections($this->schema,$section);
 		$sections->delete($id);
-		$this->f3->set('sectionName',$schema);
-		$this->f3->set('breadcrumbs','/sections/'.$schema);
+		$this->f3->set('sectionName',$section);
+		$this->f3->set('breadcrumbs','/sections/'.$section);
 		$this->f3->set('groupdata',$sections->all());;
 		$this->f3->set('headers',array_keys($sections->schema()));
 		$this->f3->set('view','sections/sections.htm');
@@ -71,10 +80,10 @@ class SectionsController extends Controller {
 	public function edit_sections() 
 	{
 		// Gathering parameters from uri
-		$schema = $this->f3->get('PARAMS.schema');
+		$section = $this->f3->get('PARAMS.schema');
 		$id = $this->f3->get('PARAMS.id'); 
-		$sections = new Sections($this->schema,$schema);
-		//echo $schema;
+		$sections = new Sections($this->schema,$section);
+		//echo $section;
        		//echo $this->f3->get('POST.edit');
 		if($this->f3->exists('POST.edit'))
         {
@@ -84,7 +93,7 @@ class SectionsController extends Controller {
 		//$structure = new Schema($this->schema);
 		//$grp= $structure->getBySection($schema);
 		$schemaObj = new Schema($this->schema);
-		$grp = $schemaObj->getBySection($schema);
+		$grp = $schemaObj->getBySection($section);
 		$this->f3->set('groupdata',$grp);
 		$this->f3->set('joinFields',$this->join_fields($grp));
 		$this->f3->set('sections',$sections->getById($id));
@@ -92,8 +101,8 @@ class SectionsController extends Controller {
 		if($sections->dry()) { //throw a 404, order does not exist
 			$this->f3->error(404);
 		}
-		$this->f3->set('breadcrumbs','/sections/'.$schema);
-		$this->f3->set('sectionName',$schema);
+		$this->f3->set('breadcrumbs','/sections/'.$section);
+		$this->f3->set('sectionName',$section);
 		$this->f3->set('POST.id',$id);
 		$this->f3->set('POST.edit','edit');
 		//echo "2".$this->f3->get('POST.edit');

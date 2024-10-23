@@ -42,7 +42,7 @@ class Sections extends DB\SQL\Mapper {
 		$data['_updated_at']=$this->getCurrentdate();
 		$this->copyFrom($data);
 		$this->save();
-		return 1;
+		return $this->id;
 	}
 
 	public function x_getByName($name)

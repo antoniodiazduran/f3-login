@@ -21,7 +21,7 @@
         </check>
         
     </h2>
-<form action="" method="post" class="w3-container">
+<form action="" method="post" class="w3-container" enctype="multipart/form-data">
         <repeat group="{{@groupdata}}" value="{{@stru}}">
             <check if="{{@stru._name<>'id'}}">
             <true>
@@ -77,6 +77,10 @@
                         <check if="{{isset(@params[@stru._name])}}">
                             <input type="hidden" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{ @params[@stru._name]}}">
                         </check>
+                    </check>
+                    <check if="{{@stru._type=='file' }}">
+                        <p>
+                        <input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}">
                     </check>
                 <p>
             </true>
