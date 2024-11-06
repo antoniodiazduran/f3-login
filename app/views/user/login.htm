@@ -21,9 +21,9 @@
 	</check>
 	<form action="" method="post">
 		<label>{{ @i18n_username }}</label>
-		<input class="w3-input" type="text" placeholder="{{ @i18n_username }}" name="username" id="username" required autofocus />
+		<input class="w3-input" type="text" placeholder="{{ @i18n_username }}" name="username" id="username" style="width:30%;" equired autofocus />
 		<label>{{ @i18n_password }}</label>
-		<input class="w3-input" type="password" placeholder="{{ @i18n_password }}" name="password" id="password" required />
+		<input class="w3-input" type="password" placeholder="{{ @i18n_password }}" name="password" id="password" style="width:30%;" required />
 		<input type="hidden" name="login" value="login" />
 		<input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
 		<p></p>
