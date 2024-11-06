@@ -39,7 +39,7 @@ class SectionsController extends Controller {
 		if($this->f3->exists('POST.new')) {
 			$sections = new Sections($this->schema,$section);
 			$last_id=$sections->add($this->f3->get('POST'));
-			
+
 			// Uploading the file
             		$upload = $upld->fileUpload($last_id,$section);
 			if($upload==1) {
