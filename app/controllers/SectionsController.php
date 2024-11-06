@@ -32,7 +32,7 @@ class SectionsController extends Controller {
 	{
 		$structure = new Schema($this->schema);
 		$upld = new Upload($this->schema);
-        $link = new Schema($this->schema);
+	        $link = new Schema($this->schema);
 		$section = $this->f3->get('POST.schema')==''?$this->f3->get('PARAMS.schema'):$this->f3->get('POST.schema');
 
 
@@ -41,7 +41,7 @@ class SectionsController extends Controller {
 			$last_id=$sections->add($this->f3->get('POST'));
 			
 			// Uploading the file
-            $upload = $upld->fileUpload($last_id,$section);
+            		$upload = $upld->fileUpload($last_id,$section);
 			if($upload==1) {
 				$upld->add($fileData);
 			}
@@ -86,7 +86,7 @@ class SectionsController extends Controller {
 		//echo $section;
        		//echo $this->f3->get('POST.edit');
 		if($this->f3->exists('POST.edit'))
-        {
+        	{
 			$sections->edit($id, $this->f3->get('POST'));
 			$this->f3->set('pass_msg','Updated');
 		} 
