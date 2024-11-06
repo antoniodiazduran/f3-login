@@ -40,7 +40,6 @@ class barcode {
 		if (!preg_match('/^[A-Z0-9-. $+\/%]+$/i', $text)) {
 			throw new Exception('Invalid text input.');
 		}
-		
 		$text = '*' . strtoupper($text) . '*'; // *UPPERCASE TEXT*
 		$length = strlen($text);
 
@@ -71,8 +70,9 @@ class barcode {
 		//$text = ""; // reset text under barcode
 		imageString($barcode, 2, $textcenter, $height-13, $text, $black);
 
-		header('Content-type: image/png');
-		imagePNG($barcode);
+		//header('Content-type: image/png');
+		$savefile = "ui/images/barcode.png";
+		imagePNG($barcode,$savefile);
 		imageDestroy($barcode);
 		//exit;
 	} // function code39
