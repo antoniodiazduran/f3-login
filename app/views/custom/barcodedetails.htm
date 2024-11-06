@@ -1,0 +1,56 @@
+<div class="w3-container">
+    <check if="{{ isset(@error_msg) }}">
+    <true>
+	<div class="w3-container w3-red">
+        {{ @error_msg | raw }}
+	</div>
+    </true>
+    </check>
+    <check if="{{ isset(@pass_msg) }}">
+    <true>
+	<div class="w3-container w3-green w3-padding-16">
+	{{ @pass_msg | raw }}
+	</div>
+    </true>
+    </check>		 
+    <h2>
+        <a href="{{@breadcrumbs}}"><i class="material-symbols-outlined">arrow_back</i></a>
+        {{@sectionName}} &nbsp; &nbsp;
+        <check if="{{ !isset(@POST.new) }}">
+<!--            <a href="{{@breadcrumbs}}/delete/{{@POST.id}}"><i class="material-symbols-outlined" title="Delete">delete</i></a>//-->
+        </check>
+        
+    </h2>
+<div class="w3-row w3-center">
+	<h1 class="w3-xxlarge">WO Number {{ @wonumber }}</h1>
+</div>
+<div class="w3-row w3-center">
+	<h1>SAP Number {{ @sapnumber }}</h1>
+</div>
+<div class="w3-row w3-center">
+	<img src="ui/images/barcode.png">
+</div>
+
+<div class="w3-row w3-center">
+  <div class="w3-half w3-center">
+	<h3>Prep</h3>
+	<img src="ui/images/qrcode_prep.png" width="220">
+  </div>
+  <div class="w3-half w3-center">
+	<h3>Sand</h3>
+	<img src="ui/images/qrcode_sand.png" width="220">
+  </div>
+</div>
+
+<div class="w3-row w3-center">
+  <div class="w3-half w3-center">
+	<h3>Paint</h3>
+	<img src="ui/images/qrcode_paint.png" width="220">
+  </div>
+  <div class="w3-half w3-center">
+	<h3>Buff</h3>
+	<img src="ui/images/qrcode_buff.png" width="220">
+  </div>
+</div>
+
+</div> 
