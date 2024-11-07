@@ -26,11 +26,10 @@ class CustomController extends Controller {
 	{
 		$area = $this->f3->get('PARAMS.area');
 		$uid  = $this->f3->get('PARAMS.uid');
-		$sections = new Sections($this->schema,'units');
+		$sections = new Sections($this->schema,'moves');
 	
 		$last_id = $sections->add(array('area'=>$area,'unit_id'=>$uid));
-		$this->f3->set('last_id',$last_id);
-		$this->f3->set('pass_msg','Succesfully loaded...');
+		$this->f3->set('pass_msg','Succesfully loaded...'.$last_id);
 		$this->f3->set('view','custom/apidetails.htm');
 	}
 	public function show_barcodes() 
