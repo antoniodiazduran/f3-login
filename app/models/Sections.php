@@ -21,11 +21,16 @@ class Sections extends DB\SQL\Mapper {
 	{
 		parent::__construct($db,$table);
 	}
+	function strHeader($tbl) 
+	{
+		return "SELECT _name FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _name <> 'id' ORDER BY _order";
+	}
     public function arrayHeaders($tbl) 
 	{
-		$flds = "SELECT _name FROM schema WHERE _section = '$tbl' AND _visible = 'YES' ORDER BY _order";
-		$res = $this->db->exec($flds);
+		
+		$res = $this->db->exec($this->strHeader($tbl));
 		$res_array = [];
+		$res_array[] = 'id';
 		// loading into simple array
 		foreach($res as &$value) {
 			$res_array[] = $value["_name"];
@@ -34,9 +39,8 @@ class Sections extends DB\SQL\Mapper {
 	}
 	public function stringHeaders($tbl) 
 	{
-		$flds = "SELECT _name FROM schema WHERE _section = '$tbl' AND _visible = 'YES' ORDER BY _order";
-		$res = $this->db->exec($flds);
-		$fields = "";
+		$res = $this->db->exec($this->strHeader($tbl));
+		$fields = "id,";
 		// creating string with fields
 		foreach($res as &$value) {
 			$fields .= $value["_name"].",";

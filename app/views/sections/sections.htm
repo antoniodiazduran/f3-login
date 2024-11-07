@@ -6,7 +6,7 @@
 		<th></th>
             <repeat group="{{@headers}}" key="{{@key}}" value="{{@cols}}">
 				<check if="{{ @cols != 'id' }}">
-					<th>{{ @cols }}</th>
+					<th>{{ ucwords(@cols) }}</th>
 				</check>
 			</repeat>
 		<th></th>
