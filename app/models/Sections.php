@@ -14,6 +14,7 @@ class Sections extends DB\SQL\Mapper {
 
 	private function getCurrentdate()
 	{
+		date_default_timezone_set('America/New_York');
 		return date("Y-m-d H:i:s");
 	}
 
