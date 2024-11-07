@@ -41,10 +41,10 @@ class CustomController extends Controller {
 
 		$revo = $sections->getById($id);
 		$this->createCode39(str_replace("*","",$_POST['revo']));
-		$this->createQR('https://rev.diaz.works/api/units/prep/'.$_POST['id'],'qrcode_prep.png');
-		$this->createQR('https://rev.diaz.works/api/units/sand/'.$_POST['id'],'qrcode_sand.png');
-		$this->createQR('https://rev.diaz.works/api/units/paint/'.$_POST['id'],'qrcode_paint.png');
-		$this->createQR('https://rev.diaz.works/api/units/buff/'.$_POST['id'],'qrcode_buff.png');
+		$this->createQR('https://rev.diaz.works/api/units/prep/'.$_POST['units'],'qrcode_prep.png');
+		$this->createQR('https://rev.diaz.works/api/units/sand/'.$_POST['units'],'qrcode_sand.png');
+		$this->createQR('https://rev.diaz.works/api/units/paint/'.$_POST['units'],'qrcode_paint.png');
+		$this->createQR('https://rev.diaz.works/api/units/buff/'.$_POST['units'],'qrcode_buff.png');
 
 		$this->f3->set('breadcrumbs','/sections/'.$section);
 		$this->f3->set('wonumber',$_POST['units']);
