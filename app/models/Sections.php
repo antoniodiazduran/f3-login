@@ -21,7 +21,34 @@ class Sections extends DB\SQL\Mapper {
 	{
 		parent::__construct($db,$table);
 	}
-
+    public function arrayHeaders($tbl) 
+	{
+		$flds = "SELECT _name FROM schema WHERE _section = '$tbl' AND _visible = 'YES' ORDER BY _order";
+		$res = $this->db->exec($flds);
+		$res_array = [];
+		// loading into simple array
+		foreach($res as &$value) {
+			$res_array[] = $value["_name"];
+		}
+		return $res_array;
+	}
+	public function stringHeaders($tbl) 
+	{
+		$flds = "SELECT _name FROM schema WHERE _section = '$tbl' AND _visible = 'YES' ORDER BY _order";
+		$res = $this->db->exec($flds);
+		$fields = "";
+		// creating string with fields
+		foreach($res as &$value) {
+			$fields .= $value["_name"].",";
+		}
+		$fields = rtrim($fields,",");
+		return $fields;
+	}
+	public function x_all($tbl) 
+	{ //get some fields
+		$fields = $this->stringHeaders($tbl);
+		return $this->db->exec('SELECT '.$fields.' FROM '.$tbl.' ORDER BY id');
+	}
 	public function all() 
 	{ //get all records
 		$this->load();

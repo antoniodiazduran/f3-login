@@ -19,7 +19,7 @@ class CustomController extends Controller {
 	}
 
 	public function createCode39($text) {
-		barcode::code39($text,80,1.5);
+		barcode::code39($text,80,2);
 	}
 
 	public function show_barcodes() 
