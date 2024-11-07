@@ -7,3 +7,5 @@ data/users.sqlite
 data/bllc.sqlite
 data/users.csv
 data/schema.sqlite
+ui/images/*
+ui/images
