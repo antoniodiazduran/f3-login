@@ -20,8 +20,10 @@
 				<check if="{{ @keys != 'id' and strpos(@keys,'_id')==0}}">
 					<td>{{@cols}}</td>
 				</CHECK>
-				</repeat>		
-			<td><a href="{{@breadcrumbs}}/show/{{@data.id}}"><i class="material-symbols-outlined">barcode</i></a></td>
+				</repeat>	
+			<check if="{{ strpos(@breadcrumbs,'units') !=0 }}">
+				<td><a href="{{@breadcrumbs}}/show/{{@data.id}}"><i class="material-symbols-outlined">barcode</i></a></td>
+			</check>
 			</tr>	
 		</repeat>
 		</tbody>
