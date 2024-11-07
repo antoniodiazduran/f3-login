@@ -9,12 +9,9 @@ class SectionsController extends Controller {
 		//$this->f3->set('i',1);
 		$this->f3->set('breadcrumbs','/sections/'.$this->f3->get('PARAMS.schema'));
 		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema') ));
-		
 		//$this->f3->set('groupdata',$sections->all());
-		$fields = $sections->arrayHeaders($this->f3->get('PARAMS.schema'));
 		//$this->f3->set('headers',array_keys($sections->schema()));
-	
-		$this->f3->set('headers',$fields);
+		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
 		$this->f3->set('view','sections/sections.htm');
 	}
 
@@ -37,7 +34,7 @@ class SectionsController extends Controller {
 	{
 		$structure = new Schema($this->schema);
 		$upld = new Upload($this->schema);
-	        $link = new Schema($this->schema);
+	    $link = new Schema($this->schema);
 		$section = $this->f3->get('POST.schema')==''?$this->f3->get('PARAMS.schema'):$this->f3->get('POST.schema');
 
 
@@ -46,7 +43,7 @@ class SectionsController extends Controller {
 			$last_id=$sections->add($this->f3->get('POST'));
 
 			// Uploading the file
-            		$upload = $upld->fileUpload($last_id,$section);
+            $upload = $upld->fileUpload($last_id,$section);
 			if($upload==1) {
 				$upld->add($fileData);
 			}
@@ -54,8 +51,8 @@ class SectionsController extends Controller {
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$section);
 			$this->f3->set('breadcrumbs','/sections/'.$section);
-			$this->f3->set('groupdata',$sections->all());;
-			$this->f3->set('headers',array_keys($sections->schema()));
+			$this->f3->set('groupdata',$sections->x_all());;
+			$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
 			$this->f3->set('view','sections/sections.htm');
 		} else {
 			$grp = $structure->getBySection($section);

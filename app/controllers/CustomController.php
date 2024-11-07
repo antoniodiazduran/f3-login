@@ -22,6 +22,17 @@ class CustomController extends Controller {
 		barcode::code39($text,80,2);
 	}
 
+	public function add_api() 
+	{
+		$area = $this->f3->get('PARAMS.area');
+		$uid  = $this->f3->get('PARAMS.uid');
+		$sections = new Sections($this->schema,'units');
+	
+		$last_id = $sections->add(array('area'=>$area,'unit_id'=>$uid));
+		$this->f3->set('last_id',$last_id);
+		$this->f3->set('pass_msg','Succesfully loaded...');
+		$this->f3->set('view','custom/apidetails.htm');
+	}
 	public function show_barcodes() 
 	{
 		// Gathering parameters from uri
@@ -31,10 +42,10 @@ class CustomController extends Controller {
 
 		$revo = $sections->getById($id);
 		$this->createCode39(str_replace("*","",$_POST['revo']));
-		$this->createQR('https://enc.diaz.works/sections/units/prep/'.$_POST['sap'],'qrcode_prep.png');
-		$this->createQR('https://enc.diaz.works/sections/units/sand/'.$_POST['sap'],'qrcode_sand.png');
-		$this->createQR('https://enc.diaz.works/sections/units/paint/'.$_POST['sap'],'qrcode_paint.png');
-		$this->createQR('https://enc.diaz.works/sections/units/buff/'.$_POST['sap'],'qrcode_buff.png');
+		$this->createQR('https://rev.diaz.works/api/units/prep/'.$_POST['id'],'qrcode_prep.png');
+		$this->createQR('https://rev.diaz.works/api/units/sand/'.$_POST['id'],'qrcode_sand.png');
+		$this->createQR('https://rev.diaz.works/api/units/paint/'.$_POST['id'],'qrcode_paint.png');
+		$this->createQR('https://rev.diaz.works/api/units/buff/'.$_POST['id'],'qrcode_buff.png');
 
 		$this->f3->set('breadcrumbs','/sections/'.$section);
 		$this->f3->set('wonumber',$_POST['units']);

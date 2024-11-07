@@ -51,16 +51,17 @@ class Controller {
 		$access=Access::instance();
 		$access->policy('allow'); // allow access to all routes by default
 		$access->deny('/admin*');
-		$access->deny('/enc*');
+		$access->deny('/api*');
 
 		// admin routes
 		$access->allow('/admin*','100'); //100 = admin ; 10 = superuser ; 1 = user
 		$access->allow('/admin/company/*');
 		$access->deny('/user*');
 		// superuser routes
-		$access->allow('/enc*',['100','10']);
+		
 		// user login routes
 		$access->allow('/user*',['100','10','1']);
+		$access->allow('/api*');
 
 		// Granting access to routes
 		$access->authorize($this->f3->exists('SESSION.user_type') ? $this->f3->get('SESSION.user_type') : 0 );
