@@ -23,17 +23,17 @@ class Sections extends DB\SQL\Mapper {
 	}
 	function strHeader($tbl) 
 	{
-		return "SELECT _name FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _name <> 'id' ORDER BY _order";
+		return "SELECT _name, _label FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _name <> 'id' ORDER BY _order";
 	}
     public function arrayHeaders($tbl) 
 	{
-		
+		// getting the array headers
 		$res = $this->db->exec($this->strHeader($tbl));
 		$res_array = [];
 		$res_array[] = 'id';
 		// loading into simple array
 		foreach($res as &$value) {
-			$res_array[] = $value["_name"];
+			$res_array[] = $value["_label"];
 		}
 		return $res_array;
 	}
