@@ -43,7 +43,7 @@
                     <check if="{{@stru._type=='select'}}">
                         <select class="w3-select" name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
                             <repeat group="{{ explode(',',@stru._value) }}" value="{{@opti1}}">
-                                <option value="{{@opti1}}" <check if="{{@stru._placeholder==@opti1}}">selected</check>>{{@opti1}}
+                                <option value="{{@opti1}}"> {{@opti1}}
                             </repeat>
                         </select>
                         <p>
