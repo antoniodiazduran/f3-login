@@ -34,16 +34,18 @@ class SectionsController extends Controller {
 	{
 		$structure = new Schema($this->schema);
 		$upld = new Upload($this->schema);
-	    $link = new Schema($this->schema);
+	    	$link = new Schema($this->schema);
 		$section = $this->f3->get('POST.schema')==''?$this->f3->get('PARAMS.schema'):$this->f3->get('POST.schema');
 
+		// Set today's date for date input type
+		$this->f3->set('today_mdY',date('Y-m-d'));
 
 		if($this->f3->exists('POST.new')) {
 			$sections = new Sections($this->schema,$section);
 			$last_id=$sections->add($this->f3->get('POST'));
 
 			// Uploading the file
-            $upload = $upld->fileUpload($last_id,$section);
+            		$upload = $upld->fileUpload($last_id,$section);
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$section);
 			$this->f3->set('breadcrumbs','/sections/'.$section);
