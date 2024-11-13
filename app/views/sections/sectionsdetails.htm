@@ -43,7 +43,7 @@
                     <check if="{{@stru._type=='select'}}">
                         <select class="w3-select" name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
                             <repeat group="{{ explode(',',@stru._value) }}" value="{{@opti1}}">
-                                <option value="{{@opti1}}" <check if="{{@stru._placeholder==@opti1}}">selected</check>><h4>{{@opti1}}</h4>
+                                <option value="{{@opti1}}" <check if="{{@stru._placeholder==@opti1}}">selected</check>>{{@opti1}}
                             </repeat>
                         </select>
                         <p>
@@ -51,14 +51,14 @@
                     <check if="{{@stru._type=='radio'}}">
                         <br>
                         <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
-                            <input class="w3-radio"type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
+                            <input class="w3-radio" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
                         </repeat>
                         </h4>
                         <p>
                     </check>
                     <check if="{{ @stru._type=='checkbox'}}">
                         <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
-                            <input class="w3-checkbox"type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
+                            <input class="w3-checkbox" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
                         </repeat>
                         </h4>
                         <p>
@@ -123,9 +123,21 @@ Object.keys(postObj).forEach(function (item) {
     var d = item;
     var field = document.getElementById(d);
     if (field != null) {
-        field.value = postObj[item];
-    }
-    
+	// checking for radio/checkbox values
+        if(field.type == 'radio' || field.type == 'checkbox') {
+		// Gathering radio/checkbx element from DOM
+		multiple = document.querySelectorAll('input[name='+item+']');
+		multiple.forEach((element)=>{
+			// Selecting stored value 
+			if(element.value == postObj[item]) { element.checked = true; }
+		});
+	}
+	else 
+	{
+		field.value = postObj[item];
+	}
+	
+    }	
 	console.log(item+':'+postObj[item]); // value
 });
 </script>
