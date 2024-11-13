@@ -49,6 +49,7 @@
                         <p>
                     </check>
                     <check if="{{@stru._type=='radio'}}">
+                        <br>
                         <repeat group="{{explode(',',@stru._value)}}" value="{{@opti2}}">
                             <input class="w3-radio"type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" value="{{@opti2}}"> &nbsp; {{@opti2}} &nbsp; 
                         </repeat>
