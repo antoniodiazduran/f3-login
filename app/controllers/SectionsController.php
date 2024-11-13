@@ -44,7 +44,6 @@ class SectionsController extends Controller {
 
 			// Uploading the file
             $upload = $upld->fileUpload($last_id,$section);
-			
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$section);
 			$this->f3->set('breadcrumbs','/sections/'.$section);
@@ -100,7 +99,7 @@ class SectionsController extends Controller {
 
 		$this->f3->set('groupdata',$grp);
 		$this->f3->set('joinFields',$this->join_fields($grp));
-		//$this->f3->set('uploadFiles',$uplds->getByUId($id));
+		$this->f3->set('uploadFiles',$uplds->getByUId($id));
 		$this->f3->set('sections',$sections->getById($id));
 		$this->f3->set('json',json_encode($this->f3->get('POST')));
 		if($sections->dry()) { //throw a 404, order does not exist
