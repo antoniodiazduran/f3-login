@@ -31,6 +31,7 @@
                     <label>Type:</label>
 			 <select class="w3-select" name="_type" id="_type">
                             <option value="text" <check if="{{ @POST._type=='text' }}"> selected</check>>text
+                            <option value="number" <check if="{{ @POST._type=='number' }}"> selected</check>>number
                             <option value="radio" <check if="{{ @POST._type=='radio' }}"> selected</check>>radio
                             <option value="checkbox" <check if="{{ @POST._type=='checkbox' }}"> selected</check>>checkbox
                             <option value="reset" <check if="{{ @POST._type=='reset' }}"> selected</check>>reset

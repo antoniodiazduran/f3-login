@@ -29,13 +29,16 @@
                         <label>{{@stru._label}}</label>  
                     </check>
                     <check if="{{@stru._type =='text' or @stru._type=='password'  or @stru._type=='email' or @stru._type=='button'}}">
-                        <input class="w3-input" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function }}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" style="{{ @stru._style }}" {{@stru._required}}/> <p>
+                        <input class="w3-input" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" {{ @stru._event }}="{{ @stru._function }}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" style="{{ @stru._style }}" {{@stru._required}}/> <p>
+                    </check>
+                    <check if="{{@stru._type =='number'}}">
+                        <input class="w3-input" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" {{ @stru._event }}="{{ @stru._function }}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" pattern="[0-9]*" style="{{ @stru._style }}" {{@stru._required}}/> <p>
                     </check>
                     <check if="{{@stru._type=='date'}}">
-                        <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" {{ @stru._event }}="{{ @stru._function}}" size="{{@stru._length}}" style="{{@stru._style}}" value="{{ @today_mdY }}" required/></h4> <p>
+                        <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" {{ @stru._event }}="{{ @stru._function}}" size="{{@stru._length}}" style="{{@stru._style}}" value="{{ @today_mdY }}" {{ @stru._required }}/></h4> <p>
                     </check>
                     <check if="{{@stru._type=='tel'}}">
-                    <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" onChange="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" required/></h4> <p>
+                    <input class="w3-input {{ @stru._class }}" type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}" {{ @stru._event}}="{{ @stru._function}}" size="{{@stru._length}}" placeholder="{{@stru._placeholder}}" {{ @stru._required}}/></h4> <p>
                     </check>
                     <check if="{{@stru._type=='select'}}">
                         <select class="w3-select" name="{{@stru._name}}" id="{{@stru._idx}}" style="width:150px;" >
