@@ -89,7 +89,6 @@ class Sections extends DB\SQL\Mapper {
 	}
 	public function getByUid($id) 
 	{
-echo "getbyuid:".$id;
 		$this->load(array('uid=?',$id));
 		return $this->query;
 	}
