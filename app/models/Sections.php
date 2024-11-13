@@ -26,7 +26,7 @@ class Sections extends DB\SQL\Mapper {
 	{
 		return "SELECT _name, _label FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _name <> 'id' ORDER BY _order";
 	}
-    public function arrayHeaders($tbl) 
+    	public function arrayHeaders($tbl) 
 	{
 		// getting the array headers
 		$res = $this->db->exec($this->strHeader($tbl));
@@ -86,6 +86,12 @@ class Sections extends DB\SQL\Mapper {
 	{
 		$this->load(array('id=?',$id));
 		$this->copyTo('POST');
+	}
+	public function getByUid($id) 
+	{
+echo "getbyuid:".$id;
+		$this->load(array('uid=?',$id));
+		return $this->query;
 	}
 
 	public function edit($id, $unsanitizeddata)

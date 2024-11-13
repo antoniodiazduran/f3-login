@@ -27,7 +27,7 @@ class CustomController extends Controller {
 		$area = $this->f3->get('PARAMS.area');
 		$uid  = $this->f3->get('PARAMS.uid');
 		$sections = new Sections($this->schema,'moves');
-	
+
 		$last_id = $sections->add(array('area'=>$area,'unit_id'=>$uid));
 		$this->f3->set('pass_msg','Succesfully loaded...'.$last_id);
 		$this->f3->set('view','custom/apidetails.htm');
@@ -38,6 +38,7 @@ class CustomController extends Controller {
 		$section = $this->f3->get('PARAMS.schema');
 		$id = $this->f3->get('PARAMS.id'); 
 		$sections = new Sections($this->schema,$section);
+		$colors = new Sections($this->schema,'colors');
 
 		$revo = $sections->getById($id);
 		$this->createCode39(str_replace("*","",$_POST['revo']));
@@ -50,6 +51,7 @@ class CustomController extends Controller {
 		$this->f3->set('wonumber',$_POST['units']);
 		$this->f3->set('sapnumber',$_POST['sap']);
 		$this->f3->set('sectionName',$section);
+		$this->f3->set('colors',$colors->getByUid($_POST['units']));
 		$this->f3->set('view','custom/barcodedetails.htm');
 	}
 }
