@@ -9,3 +9,5 @@ data/users.csv
 data/schema.sqlite
 ui/images/*
 ui/images
+uploads/*
+uploads

@@ -4,8 +4,8 @@ class Upload extends DB\SQL\Mapper {
 
         /* only these db fields are allowed to be changed */
         protected $allowed_fields = array(
-            "expenseId",
-            "sectionId",
+            "uid",
+            "section",
             "originalFile",
             "uploadFile",
             "fileType",
@@ -42,8 +42,8 @@ class Upload extends DB\SQL\Mapper {
             {
                 return 10;
             }*/
-            $data['created_at']=$this->getCurrentdate();
-            $data['updated_at']=$this->getCurrentdate();
+            $data['_created_at']=$this->getCurrentdate();
+            $data['_updated_at']=$this->getCurrentdate();
             $this->copyFrom($data);
             $this->save();
             return $this->id;
@@ -60,7 +60,11 @@ class Upload extends DB\SQL\Mapper {
             $this->load(array('id=?',$id));
             $this->copyTo('POST');
         }
-    
+        public function getByUId($id) 
+        {
+            $this->load(array('uid=?',$id));
+            return $this->query;
+        }
         public function edit($id, $unsanitizeddata)
         {
             $data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
@@ -99,10 +103,13 @@ class Upload extends DB\SQL\Mapper {
             //echo $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
             $target_file = $target_dir . $this->uniqfilename($sectionId,$fieldName);
+
+            // Checking file uploading
+            if (strlen($fieldName)>0){
             
-            // Check if image file is a actual image or fake image
-            if(isset($_POST["submit"])) {
-                    $check = getimagesize($_FILES[$fieldName]["tmp_name"]);
+                // Check if image file is a actual image or fake image
+                if(isset($_POST["submit"])) {
+                    $check = getimagesize($_FILES[$arraykey[0]]["tmp_name"]);
                     if($check !== false) {
                             echo "File is an image - " . $check["mime"] . ".";
                             $uploadOk = 1;
@@ -110,43 +117,56 @@ class Upload extends DB\SQL\Mapper {
                             echo "File is not an image.";
                             $uploadOk = 0;
                     }
-            }
+                }
 
-            // Check if file already exists
-            if (file_exists($target_file)) {
+                // Check if file already exists
+                if (file_exists($target_file)) {
                     echo "Sorry, file already exists.";
                     $uploadOk = 0;
-            }
+                }
 
-            // Check file size
-            if ($_FILES[$fieldName]["size"] > 5000000) {
+                // Check file size
+                if ($_FILES[$arraykey[0]]["size"] > 5000000) {
                     echo "Sorry, your file is too large.";
                     $uploadOk = 0;
-            }
-
-            // Allow certain file formats
-            if ($this->imageFileType($fieldName) != "jpg" && 
-                $this->imageFileType($fieldName) != "png" && 
-                $this->imageFileType($fieldName) != "jpeg" && 
-                $this->imageFileType($fieldName) != "gif" && 
-                $this->imageFileType($fieldName) != "pdf" ) 
-            {
+                }
+            
+                // Allow certain file formats
+                if ($this->imageFileType($fieldName) != "jpg" && 
+                    $this->imageFileType($fieldName) != "png" && 
+                    $this->imageFileType($fieldName) != "jpeg" && 
+                    $this->imageFileType($fieldName) != "gif" && 
+                    $this->imageFileType($fieldName) != "pdf" ) 
+                {
                     echo "Sorry, only PDF, JPG, JPEG, PNG & GIF files are allowed.";
                     $uploadOk = 0;
-            }
+                }    
 
-            // Check if $uploadOk is set to 0 by an error
-            if ($uploadOk == 0) {
-                    echo "Sorry, your file was not uploaded.";
-                    // if everything is ok, try to upload file
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                        echo "Sorry, your file was not uploaded.";
+                        // if everything is ok, try to upload file
+                } else {
+                        if (move_uploaded_file($_FILES[$arraykey[0]]["tmp_name"], $target_file)) {
+                            //echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded";
+                            $fileData = array(
+                                'uid'=>$lastId,
+                                'section'=>$sectionId,
+                                'originalFile'=>$fieldName,
+                                'uploadFile'=>$target_file,
+                                'fileType'=>$this->imageFileType($fieldName)
+                            );
+                            // Addind record to the Uploads SQL table
+                            $this->add($fileData);
+                            return 1;
+                        } else {
+                            //echo "Sorry, there was an error uploading your file.";
+                            return 0;
+                        }
+                    
+                }
             } else {
-                    if (move_uploaded_file($_FILES[$fieldName]["tmp_name"], $target_file)) {
-                //echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded";
-                return 1;
-                    } else {
-                //echo "Sorry, there was an error uploading your file.";
                 return 0;
-                    }
             }
 
         }

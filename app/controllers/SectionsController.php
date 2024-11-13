@@ -44,14 +44,11 @@ class SectionsController extends Controller {
 
 			// Uploading the file
             $upload = $upld->fileUpload($last_id,$section);
-			if($upload==1) {
-				$upld->add($fileData);
-			}
-
+			
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$section);
 			$this->f3->set('breadcrumbs','/sections/'.$section);
-			$this->f3->set('groupdata',$sections->x_all());;
+			$this->f3->set('groupdata',$sections->x_all($this->f3->get('PARAMS.schema')));;
 			$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
 			$this->f3->set('view','sections/sections.htm');
 		} else {
@@ -85,19 +82,25 @@ class SectionsController extends Controller {
 		$section = $this->f3->get('PARAMS.schema');
 		$id = $this->f3->get('PARAMS.id'); 
 		$sections = new Sections($this->schema,$section);
+		$uplds = new Upload($this->schema);
+
 		//echo $section;
        		//echo $this->f3->get('POST.edit');
 		if($this->f3->exists('POST.edit'))
         	{
 			$sections->edit($id, $this->f3->get('POST'));
+			// Uploading the file
+            $upload = $uplds->fileUpload($id,$section);
 			$this->f3->set('pass_msg','Updated');
 		} 
 		//$structure = new Schema($this->schema);
 		//$grp= $structure->getBySection($schema);
 		$schemaObj = new Schema($this->schema);
 		$grp = $schemaObj->getBySection($section);
+
 		$this->f3->set('groupdata',$grp);
 		$this->f3->set('joinFields',$this->join_fields($grp));
+		$this->f3->set('uploadFiles',$uplds->getByUId($id));
 		$this->f3->set('sections',$sections->getById($id));
 		$this->f3->set('json',json_encode($this->f3->get('POST')));
 		if($sections->dry()) { //throw a 404, order does not exist

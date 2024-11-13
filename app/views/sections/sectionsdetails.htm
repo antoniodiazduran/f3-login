@@ -79,6 +79,15 @@
                         </check>
                     </check>
                     <check if="{{@stru._type=='file' }}">
+                        <check if="{{ !is_null(@uploadFiles) }}">
+                            <br>
+                            <repeat group="{{ @uploadFiles }}" value="{{ @ufile }}" key="{{ @ukey }}">
+                                    <li>
+                                        <a href="{{ @ufile.uploadFile }}"> {{ @ufile.originalFile }}</a> 
+                                    </li>
+                            </repeat>
+                            <br>
+                        </check>
                         <p>
                         <input type="{{@stru._type}}" name="{{@stru._name}}" id="{{@stru._idx}}">
                     </check>
