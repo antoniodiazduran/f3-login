@@ -50,6 +50,7 @@ class CustomController extends Controller {
 		$this->createQR('https://rev.diaz.works/api/units/QC/'.$_POST['units'],'qrcode_qc.png');
 		$this->createQR('https://rev.diaz.works/api/units/Rubber/'.$_POST['units'],'qrcode_rubber.png');
 		$this->createQR('https://rev.diaz.works/api/units/Wrap/'.$_POST['units'],'qrcode_wrap.png');
+		$this->createQR('https://rev.diaz.works/api/units/Mask/'.$_POST['units'],'qrcode_mask.png');
 
 		$this->f3->set('breadcrumbs','/sections/'.$section);
 		$this->f3->set('wonumber',$_POST['units']);

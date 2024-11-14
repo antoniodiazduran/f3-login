@@ -269,4 +269,20 @@ INSERT INTO colors (uid,primaryColor,secondColor,thirdColor,roofColor,linexColor
 (679297,'OLD Chevy','N/A','N/A','n','Lt Gray'),
 (730507,'Ford White','N/A','N/A','n','N/A'),
 (653566,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
-(680405,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray');
+(680405,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
+(629051,'New Chevy','N/A','N/A','n','Lt Gray'),
+(613544,'OVA FLNA 3042','N/A','N/A','n','Lt Gray'),
+(623462,'OVA KEN 9793','Upper Belt FLNA 4123','N/A','Roof Skin Only Ford White','Lt Gray'),
+(680407,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
+(679458,'Ford White','N/A','N/A','n','N/A'),
+(681055,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
+(636251,'Ford White','N/A','N/A','n','Lt Gray'),
+(625020,'Ford White','N/A','N/A','n','Lt Gray'),
+(584559,'Ford White','N/A','N/A','n','Lt Gray'),
+(730506,'Ford White','N/A','N/A','n','N/A'),
+(730509,'Ford White','N/A','N/A','n','N/A'),
+(730510,'Ford White','N/A','N/A','n','N/A'),
+(630203,'OVA FLNA 3035','Radius FLNA 91733','N/A','Roof Skin Only Ford White','Lt Gray'),
+(714078,'OVA FLNA 3042','N/A','N/A','Roof Skin Only Ford White','Lt Gray')
+;
+
