@@ -1,0 +1,22 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["timeline"]});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+
+    var container = document.getElementById('example3.1');
+    var chart = new google.visualization.Timeline(container);
+    var dataTable = new google.visualization.DataTable();
+    dataTable.addColumn({ type: 'string', id: 'Unit ID' });
+    dataTable.addColumn({ type: 'string', id: 'Area' });
+    dataTable.addColumn({ type: 'date', id: 'Start' });
+    dataTable.addColumn({ type: 'date', id: 'End' });
+    dataTable.addRows([
+	{{ @dataJSON }}
+    ]);
+    chart.draw(dataTable);
+  }
+</script>
+
+<div class="w3-container w3-padding-8" id="example3.1" style="height:900px"></div>

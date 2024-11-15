@@ -8,6 +8,29 @@ use BaconQrCode\Writer;
 
 class CustomController extends Controller {  
 
+	public function moveTimeline() {
+		$tl = new Sections($this->schema,'moves_timeline');
+		$timeline = $tl->all();
+		$strJSON = "";
+		foreach($timeline as $rows){
+			$strJSON .= "['".
+				$rows['unit_id']."','".
+				$rows['area']."',".
+				$this->datetoJson($rows['_created_at']).",";
+			if(is_null($rows['nextDate'])) {
+				$strJSON .=$this->datetoJson($rows['_created_at'])."],";
+			} else {
+				$strJSON .=$this->datetoJson($rows['nextDate'])   ."],";
+			}
+		}
+		$this->f3->set('dataJSON',$strJSON);
+		$this->f3->set('view','custom/timelinedetails.htm');
+	}
+
+	public function datetoJson($dbdate) {
+		$dateStr = "new Date(" . date('Y',strtotime($dbdate)) .",". date('m',strtotime($dbdate)) .",". date('d',strtotime($dbdate)) .",". date('H',strtotime($dbdate)) .",". date('i', strtotime($dbdate)) .",". date('s',strtotime($dbdate)) . ")" ;
+		return $dateStr;
+	}
 	public function createQR($content, $filename) {
 		$renderer = new ImageRenderer(
 		            new RendererStyle(400),
