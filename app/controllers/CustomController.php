@@ -28,7 +28,7 @@ class CustomController extends Controller {
 	}
 
 	public function datetoJson($dbdate) {
-		$dateStr = "new Date(" . date('Y',strtotime($dbdate)) .",". date('m',strtotime($dbdate)) .",". date('d',strtotime($dbdate)) .",". date('H',strtotime($dbdate)) .",". date('i', strtotime($dbdate)) .",". date('s',strtotime($dbdate)) . ")" ;
+		$dateStr = "new Date(" . date('Y',strtotime($dbdate)) .",". ((date('m',strtotime($dbdate))*1)-1) .",". date('d',strtotime($dbdate)) .",". date('H',strtotime($dbdate)) .",". date('i', strtotime($dbdate)) .",". date('s',strtotime($dbdate)) . ")" ;
 		return $dateStr;
 	}
 	public function createQR($content, $filename) {
