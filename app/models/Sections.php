@@ -52,7 +52,7 @@ class Sections extends DB\SQL\Mapper {
 	public function x_all($tbl) 
 	{ //get some fields
 		$fields = $this->stringHeaders($tbl);
-		return $this->db->exec('SELECT '.$fields.' FROM '.$tbl.' ORDER BY id');
+		return $this->db->exec('SELECT '.$fields.' FROM '.$tbl.' ORDER BY id DESC');
 	}
 	public function all() 
 	{ //get all records
