@@ -1,6 +1,7 @@
 DELETE FROM colors;
 
 INSERT INTO colors (uid,primaryColor,secondColor,thirdColor,roofColor,linexColor) values 
+
 (709114,'OLD Chevy','N/A','N/A','n','Lt Gray'),
 (634962,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
 (646808,'Ford White','N/A','N/A','n','Lt Gray'),
@@ -261,14 +262,14 @@ INSERT INTO colors (uid,primaryColor,secondColor,thirdColor,roofColor,linexColor
 (654422,'Ford White','N/A','N/A','n','Lt Gray'),
 (679221,'OLD Chevy','N/A','N/A','n','Lt Gray'),
 (730502,'Ford White','N/A','N/A','n','N/A'),
-(638954,'??','??','N/A','n','black'),
+(638954,'OVA FLNA 32825','N/A','N/A','n','black'),
 (704684,'Ford White','N/A','N/A','n','Lt Gray'),
 (584558,'Ford White','N/A','N/A','n','Lt Gray'),
 (632509,'Ford White','N/A','N/A','n','N/A'),
 (730505,'Ford White','N/A','N/A','n','N/A'),
 (679297,'OLD Chevy','N/A','N/A','n','Lt Gray'),
 (730507,'Ford White','N/A','N/A','n','N/A'),
-(653566,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
+(653566,'OVA FLNA 3042','N/A','N/A','FLNA 4040 DRU','Lt Gray'),
 (680405,'OVA FLNA 3042','N/A','N/A','drip Rails Up Ford White','Lt Gray'),
 (629051,'New Chevy','N/A','N/A','n','Lt Gray'),
 (613544,'OVA FLNA 3042','N/A','N/A','n','Lt Gray'),

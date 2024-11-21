@@ -72,8 +72,9 @@ class SectionsController extends Controller {
 		$sections->delete($id);
 		$this->f3->set('sectionName',$section);
 		$this->f3->set('breadcrumbs','/sections/'.$section);
-		$this->f3->set('groupdata',$sections->all());;
-		$this->f3->set('headers',array_keys($sections->schema()));
+		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema') ));
+		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
+		//$this->f3->set('headers',array_keys($sections->schema()));
 		$this->f3->set('view','sections/sections.htm');
 	}
 
