@@ -45,7 +45,7 @@ class CustomController extends Controller {
 		barcode::code39($text,80,2);
 	}
 
-	public function add_api() 
+	public function add_units() 
 	{
 		$area = $this->f3->get('PARAMS.area');
 		$uid  = $this->f3->get('PARAMS.uid');
@@ -54,6 +54,34 @@ class CustomController extends Controller {
 		$last_id = $sections->add(array('tdate'=>date("Y-m-d H:i:s"),'area'=>$area,'unit_id'=>$uid));
 		$this->f3->set('pass_msg','Succesfully loaded...'.$last_id);
 		$this->f3->set('view','custom/apidetails.htm');
+	}
+	public function add_areas() 
+	{
+		$sections = new Sections($this->schema,'moves');
+		$uid = $_POST['uid'];
+		$area = $_POST['area'];
+		$last_id = $sections->add(array('tdate'=>date("Y-m-d H:i:s"),'area'=>$area,'unit_id'=>$uid)); 
+		$this->f3->set('pass_msg','Succesfully loaded...'.$last_id); 
+		$this->f3->set('view','custom/apidetails.htm');
+	}
+	public function show_areas() 
+	{
+		if(isset($_POST['adding'])) {
+		  $sections = new Sections($this->schema,'moves');
+		  $uid = $_POST['uid'];
+		  $area = $_POST['area'];
+		  $last_id = $sections->add(array('tdate'=>date("Y-m-d H:i:s"),'area'=>$area,'unit_id'=>$uid)); 
+		  $this->f3->set('pass_msg','Succesfully loaded...'.$last_id); 
+		  $this->f3->set('view','custom/apidetails.htm');
+		} else {
+		  $uid  = $this->f3->get('PARAMS.uid');
+		  $sections = new Sections($this->schema,'moves');
+		  date_default_timezone_set('America/New_York');
+		  //$last_id = $sections->add(array('tdate'=>date("Y-m-d H:i:s"),'area'=>$area,'unit_id'=>$uid));
+		  //$this->f3->set('pass_msg','Succesfully loaded...'.$last_id);
+		  $this->f3->set('uid',$uid);
+		  $this->f3->set('view','custom/apiareadetails.htm');
+		}
 	}
 	public function show_barcodes() 
 	{
@@ -74,6 +102,8 @@ class CustomController extends Controller {
 		$this->createQR('https://rev.diaz.works/api/units/Rubber/'.$_POST['units'],'qrcode_rubber.png');
 		$this->createQR('https://rev.diaz.works/api/units/Wrap/'.$_POST['units'],'qrcode_wrap.png');
 		$this->createQR('https://rev.diaz.works/api/units/Mask/'.$_POST['units'],'qrcode_mask.png');
+
+		$this->createQR('https://rev.diaz.works/api/areas/'.$_POST['units'],'qrcode_areas.png');
 
 		$this->f3->set('breadcrumbs','/sections/'.$section);
 		$this->f3->set('wonumber',$_POST['units']);

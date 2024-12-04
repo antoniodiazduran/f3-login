@@ -1,0 +1,42 @@
+<div class="w3-container">
+    <check if="{{ isset(@error_msg) }}">
+    <true>
+	<div class="w3-container w3-red">
+        {{ @error_msg | raw }}
+	</div>
+    </true>
+    </check>
+	<br><br>
+	<form class=="w3-container" id="apiform" method="POST">
+	<input type="hidden" class="w3-input" name="uid" id="uid" value="{{ @uid }}">
+	<input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
+	<input type="hidden" name="adding" value="true" />
+	<select class="w3-input" name="area" id="area" style="height:80px; font-size:40px;">
+	<option>
+	<option value="Prep">Prep
+	<option value="Sand">Sand
+	<option value="Mark">Mask
+	<option value="Rubber">Rubber
+	<option value="Buff">Buff
+	<option value="Paint">Paint
+	<option value="Rework">Rework
+	<option value="QC">QC
+	<option value="Wrap">Wrap
+	</select>
+	<br><br>
+	<input type="button" id="mode" name="mode" value="Save" onClick="changeLabel();" style="font-size:40px; background-color:green; color:white;">
+	</form>
+</div> 
+
+<script>
+function changeLabel() {
+	const button = document.getElementById("mode");
+	const option = document.getElementById("area");
+	console.log(option.value);
+	if (option.value != '') {
+		button.value = "Submitting...";
+		button.disable = true;
+		document.getElementById("apiform").submit();
+	}
+}
+</script>
