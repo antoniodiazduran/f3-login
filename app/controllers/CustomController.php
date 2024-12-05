@@ -71,8 +71,10 @@ class CustomController extends Controller {
 		  $uid = $_POST['uid'];
 		  $area = $_POST['area'];
 		  $last_id = $sections->add(array('tdate'=>date("Y-m-d H:i:s"),'area'=>$area,'unit_id'=>$uid)); 
-		  $this->f3->set('pass_msg','Succesfully loaded...'.$last_id); 
-		  $this->f3->set('view','custom/apidetails.htm');
+		echo $last_id;
+exit;
+		  //$this->f3->set('pass_msg','Succesfully loaded...'.$last_id); 
+		  //$this->f3->set('view','custom/apidetails.htm');
 		} else {
 		  $uid  = $this->f3->get('PARAMS.uid');
 		  $sections = new Sections($this->schema,'moves');
