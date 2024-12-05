@@ -85,6 +85,12 @@ exit;
 		  $this->f3->set('view','custom/apiareadetails.htm');
 		}
 	}
+	public function reload_areas() 
+	{
+		  $uid  = $this->f3->get('PARAMS.uid');
+		  $this->f3->set('uid',$uid);
+		  $this->f3->set('view','custom/apireloaddetails.htm');
+	}
 	public function show_barcodes() 
 	{
 		// Gathering parameters from uri
@@ -105,7 +111,7 @@ exit;
 		$this->createQR('https://rev.diaz.works/api/units/Wrap/'.$_POST['units'],'qrcode_wrap.png');
 		$this->createQR('https://rev.diaz.works/api/units/Mask/'.$_POST['units'],'qrcode_mask.png');
 
-		$this->createQR('https://rev.diaz.works/api/areas/'.$_POST['units'],'qrcode_areas.png');
+		$this->createQR('https://rev.diaz.works/api/reload/'.$_POST['units'],'qrcode_areas.png');
 
 		$this->f3->set('breadcrumbs','/sections/'.$section);
 		$this->f3->set('wonumber',$_POST['units']);

@@ -51,7 +51,19 @@ var form = document.getElementById("apiform"),
         actionPath = form.getAttribute("action");
         xhr.open("POST", actionPath);
         xhr.send(formData);
+
+xhr.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    // Request successful
+	console.log(this.responseText); 
 	button.value="Data Sent!";
+	setTimeout( () => { window.close() }, 3000);
+  } else if (this.readyState === 4) {
+    // Request failed
+    	console.error('Error: ' + this.status);
+  }
+};
+
     }, false);
 
 }  
