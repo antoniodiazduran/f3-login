@@ -10,6 +10,7 @@
 				</check>
 			</repeat>
 		<th></th>
+		<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -22,7 +23,8 @@
 					</check>
 				</repeat>
 				<check if="{{ strpos(@breadcrumbs,'units') !=0 }}">
-					<td><a href="{{@breadcrumbs}}/show/{{@rows.id}}"><i class="material-symbols-outlined">barcode</i></a></td>
+					<td><a href="{{@breadcrumbs}}/show/{{@rows.id}}"><i class="material-symbols-outlined">barcode</i></a> </td>
+					<td><a href="/timeline/{{@rows.units}}"><i class="material-symbols-outlined">event</i></a></td>
 				</check>
 			</tr>	
 		</repeat>

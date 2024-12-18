@@ -8,8 +8,28 @@ use BaconQrCode\Writer;
 
 class CustomController extends Controller {  
 
+	public function TruckHoursTimeline() {
+		$tl = new Sections($this->schema,'truckhours_timeline_view');
+		$truckid = $this->f3->get('PARAMS.truckid');
+		$timeline = $tl->truckhours($truckid);
+		$strJSON = "";
+		foreach($timeline as $rows){
+			$strJSON .= "['".
+				$rows['OperationID']."','".
+				$rows['WorkCenter']."',".
+				$this->datetoJson($rows['StartDate']).",";
+			if(is_null($rows['EndDate'])) {
+				$strJSON .=$this->datetoJson($rows['StartDate'])."],";
+			} else {
+				$strJSON .=$this->datetoJson($rows['EndDate'])."],";
+			}
+		}
+		$this->f3->set('dataJSON',$strJSON);
+		$this->f3->set('view','custom/timelinedetails.htm');
+	}
+
 	public function moveTimeline() {
-		$tl = new Sections($this->schema,'moves_timeline');
+		$tl = new Sections($this->schema,'moves_timeline_view');
 		$timeline = $tl->all();
 		$strJSON = "";
 		foreach($timeline as $rows){

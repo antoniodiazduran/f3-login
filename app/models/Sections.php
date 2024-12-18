@@ -59,6 +59,11 @@ class Sections extends DB\SQL\Mapper {
 		$this->load();
 		return $this->query;
 	}
+	public function truckHours($id) 
+	{ //get all records
+		$this->load(array('truckid=?',$id));
+		return $this->query;
+	}
 
 	public function add( $unsanitizeddata )
 	{

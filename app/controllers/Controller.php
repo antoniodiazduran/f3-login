@@ -49,17 +49,20 @@ class Controller {
 
 		// Access to files by permission
 		$access=Access::instance();
-		$access->policy('allow'); // allow access to all routes by default
+		//$access->policy('allow'); // allow access to all routes by default
 		$access->deny('/admin*');
-		$access->deny('/api*');
+		$access->deny('/sections*');
+		$access->deny('/timeline*');
 
 		// admin routes
 		$access->allow('/admin*','100'); //100 = admin ; 10 = superuser ; 1 = user
 		$access->allow('/admin/company/*');
 		$access->deny('/user*');
 		// superuser routes
-		
+
 		// user login routes
+		$access->allow('/sections*',['100','10','1']);
+		$access->allow('/timeline*',['100','10','1']);
 		$access->allow('/user*',['100','10','1']);
 		$access->allow('/api*');
 
