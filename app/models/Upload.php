@@ -10,29 +10,29 @@ class Upload extends DB\SQL\Mapper {
             "uploadFile",
             "fileType",
         );
-    
+
         private function sanitizeInput(array $data, array $fieldNames) 
         { //sanitize input - with thanks to richgoldmd
            return array_intersect_key($data, array_flip($fieldNames));
         }
-    
+
         private function getCurrentdate()
         {
             return date("Y-m-d H:i:s");
         }
-    
+
         public function __construct(DB\SQL $db) 
         {
             parent::__construct($db,'uploads');
         }
-    
+
         public function all() 
         { //get all records
             //$this->aptName="SELECT originalFile, uploadFile FROM uploads WHERE uploads.id = expenses.Apartment";
             //$this->load(array(),array('order'=>'TransactionDate ASC'));
             //return $this->query;
         }
-    
+
         public function add( $unsanitizeddata )
         {
             $data=$this->sanitizeInput($unsanitizeddata, $this->allowed_fields);
@@ -48,13 +48,13 @@ class Upload extends DB\SQL\Mapper {
             $this->save();
             return $this->id;
         }
-    
+
         public function getByUploads($id)
         {
             $this->load(array('expenseId=?', $id),array('order'=>'created_at ASC'));
                 return $this->query;
         }
-    
+
         public function getById($id) 
         {
             $this->load(array('id=?',$id));
@@ -96,8 +96,11 @@ class Upload extends DB\SQL\Mapper {
 
         public function fileUpload($lastId,$sectionId) {
             // Adding the upload file record
-			$arraykey = array_keys($_FILES);	
-			$fieldName = $_FILES[$arraykey[0]]["name"];
+			$arraykey = array_keys($_FILES);
+			$fieldName = '';
+			if(count($arraykey)>0) {
+				$fieldName = $_FILES[$arraykey[0]]["name"];
+			}
 
             $target_dir = "uploads/";
             //echo $target_dir . basename($_FILES["fileToUpload"]["name"]);
