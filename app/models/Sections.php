@@ -23,7 +23,8 @@ class Sections extends DB\SQL\Mapper {
 		parent::__construct($db,$table);
 	}
 	function strHeader($tbl,$ism) 
-	{echo $ism;
+	{
+		// Sending headers bases on client  Desktop or Mobile
 		if ($ism == 0) {
 		return "SELECT _name, _label FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _name <> 'id' ORDER BY _order";
 		} else {
@@ -32,7 +33,6 @@ class Sections extends DB\SQL\Mapper {
 	}
     	public function arrayHeaders($tbl,$ism) 
 	{
-echo $ism;
 		// getting the array headers
 		$res = $this->db->exec($this->strHeader($tbl,$ism));
 		$res_array = [];
@@ -55,17 +55,20 @@ echo $ism;
 		return $fields;
 	}
 	public function x_all($tbl,$ism) 
-	{ //get some fields
+	{ 
+		//get some fields
 		$fields = $this->stringHeaders($tbl,$ism);
 		return $this->db->exec('SELECT '.$fields.' FROM '.$tbl.' ORDER BY id DESC');
 	}
 	public function all() 
-	{ //get all records
+	{ 
+		//get all records
 		$this->load();
 		return $this->query;
 	}
 	public function truckHours($id) 
-	{ //get all records
+	{ 
+		//get all records
 		$this->load(array('truckid=?',$id));
 		return $this->query;
 	}

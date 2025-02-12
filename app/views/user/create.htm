@@ -16,7 +16,6 @@
 		<input type="password" class="w3-input" data-validation="length"  data-validation-length="min8" name="password" id="password" required/>
 		<label>{{ @i18n_password_conf }}</label>
 		<input type="password" class="w3-input" name="confirm" id="confirm" required />
-		<input class="w3-checkbox" value=1 type="checkbox" name="conditions" id="conditions" required />{{ @i18n_agree_conditions |raw }}
 		<p></p>
 		<br>
 		<input type="hidden" name="session_csrf" value="{{ @CSRF }}" />

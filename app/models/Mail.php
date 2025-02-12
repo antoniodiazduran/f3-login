@@ -8,8 +8,8 @@ class Mail extends Controller {
       // Always set content-type when sending HTML email
       $headers[] = "MIME-Version: 1.0";
       $headers[] = "Content-type:text/html;charset=iso-8859-1";
-      $headers[] = "Reply-To:joeycamanei@gmail.com";
-      $headers[] = "From: joeycamanei@gmail.com";
+      $headers[] = "Reply-To:antonio@diaz.works";
+      $headers[] = "From: antonio@diaz.works";
       $to = 'antonio.diazduranborja@revgroup.com,'.$recipient;
       $msg = wordwrap($message, 300, "<br/>\n");
       // Send - to, subject, message

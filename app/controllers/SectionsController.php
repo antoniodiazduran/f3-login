@@ -11,7 +11,6 @@ class SectionsController extends Controller {
 		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema'),$this->isMobile() ));
 		//$this->f3->set('groupdata',$sections->all());
 		//$this->f3->set('headers',array_keys($sections->schema()));
-		echo $this->isMobile();
 		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema'),$this->isMobile()) );
 		$this->f3->set('view','sections/sections.htm');
 	}
@@ -44,14 +43,23 @@ class SectionsController extends Controller {
 		if($this->f3->exists('POST.new')) {
 			$sections = new Sections($this->schema,$section);
 			$last_id=$sections->add($this->f3->get('POST'));
-
+			if ($section=='items') {
+			 $mail = new Mail();
+                	 $mail->send( // sender, recipient, subject, msg
+                         'antonio@diaz.works',
+                         'antonio.diazduranborja@revgroup.com',
+                         "From: " . $this->f3->get('HOST'),
+                         "New Scrap item recorded P#:" . $this->f3->get('POST.partnumber') . " U#: " . $this->f3->get('POST.unitnumber') . " Qty: " . $this->f3->get('POST.qty') ."\n" .
+			 	"<a href='https://rev.diaz.works/sections/items/edit/".$last_id."'>Link</a>"
+                	 );
+			}
 			// Uploading the file
             		$upload = $upld->fileUpload($last_id,$section);
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$section);
 			$this->f3->set('breadcrumbs','/sections/'.$section);
-			$this->f3->set('groupdata',$sections->x_all($this->f3->get('PARAMS.schema')));;
-			$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
+			$this->f3->set('groupdata',$sections->x_all($this->f3->get('PARAMS.schema'),$this->isMobile() ));;
+			$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema'),$this->isMobile() ));
 			$this->f3->set('view','sections/sections.htm');
 		} else {
 			$grp = $structure->getBySection($section);
@@ -73,8 +81,8 @@ class SectionsController extends Controller {
 		$sections->delete($id);
 		$this->f3->set('sectionName',$section);
 		$this->f3->set('breadcrumbs','/sections/'.$section);
-		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema') ));
-		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
+		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema'),$this->isMobile() ));
+		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema'),$this->isMobile() ));
 		//$this->f3->set('headers',array_keys($sections->schema()));
 		$this->f3->set('view','sections/sections.htm');
 	}

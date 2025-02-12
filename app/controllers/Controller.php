@@ -20,7 +20,8 @@ class Controller {
 		}
 		$csrf_page = $this->f3->get('PARAMS.0'); //URL route !with preceding slash!
 		//var_dump($this->f3->get('SESSION'));
-		if( NULL === $this->f3->get('POST.session_csrf') )
+		$this->f3->CSRF = $this->f3->session->csrf();
+/*		if( NULL === $this->f3->get('POST.session_csrf') )
 		{
 			$this->f3->CSRF = $this->f3->session->csrf();
 			//$this->f3->copy('CSRF','SESSION.'.$csrf_page.'.csrf');  // used for same Controller without mixing GET & POST
@@ -41,6 +42,8 @@ class Controller {
 				$this->f3->error(403); 
 			}
 		}
+
+*/
 		// Menu creation based on database
 		//echo $this->f3->get('SESSION.user_type');
 		$this->f3->set('menurows',$this->menu_sections());
@@ -67,7 +70,8 @@ class Controller {
 		$access->allow('/api*');
 
 		// Public access
-                $access->allow('/sections/items*',['']);
+                //$access->allow('/sections/items*',['']);
+                //$access->allow('/sections/items/edit*',['']);
 
 		// Granting access to routes
 		$access->authorize($this->f3->exists('SESSION.user_type') ? $this->f3->get('SESSION.user_type') : 0 );
