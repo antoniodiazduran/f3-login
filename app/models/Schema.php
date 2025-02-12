@@ -22,6 +22,7 @@ class Schema extends DB\SQL\Mapper {
 		"_joins",
 		"_sql_type",
 		"_visible",
+		"_mobile",
 	);
 
 	private function sanitizeInput(array $data, array $fieldNames) 

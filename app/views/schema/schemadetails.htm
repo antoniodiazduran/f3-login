@@ -113,6 +113,13 @@
                             <option value="NO"  <check if="{{ @POST._visible=='NO' }}">  selected</check>>NO
                         </select>
                     <p>
+                    <label>Mobile: </label>
+                        <select class="w3-select" name="_mobile" id="_mobile">
+                            <option>
+                            <option value="YES" <check if="{{ @POST._mobile=='YES' }}"> selected</check>>YES
+                            <option value="NO"  <check if="{{ @POST._mobile=='NO' }}">  selected</check>>NO
+                        </select>
+                    <p>
                     
                     <input type="hidden" name="session_csrf" value="{{ @CSRF }}" />
                     <check if="{{ isset(@POST.new) }}">

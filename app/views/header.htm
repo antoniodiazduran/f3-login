@@ -15,6 +15,18 @@
   <body class="w3-small">
 	<div class="w3-bar w3-black w3-mobile">
 		<a href="/" class="w3-bar-item w3-button"><i class="material-symbols-outlined">home</i></a>
+                               <repeat group="{{@menurows}}" value="{{@rows}}">
+                                        <div class="w3-dropdown-hover">
+                                        <button class="w3-button w3-large">{{ @rows.section }}</button>
+                                        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                                <repeat group="{{@menuitem}}" value="{{@item}}">
+                                                <check if="{{ @rows.section == @item.section}}">
+                                                        <a class="w3-bar-item w3-button" href="{{@item.url}}">{{@item.item}}</a>
+                                                </check>
+                                                </repeat>
+                                        </div>
+                                        </div>
+                                </repeat>
 		<check if="{{ isset(@SESSION.logged_in) && @SESSION.logged_in }}">
 		<true>
 			<check if="{{ @SESSION.user_type>=1 }}">

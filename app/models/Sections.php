@@ -22,14 +22,19 @@ class Sections extends DB\SQL\Mapper {
 	{
 		parent::__construct($db,$table);
 	}
-	function strHeader($tbl) 
-	{
+	function strHeader($tbl,$ism) 
+	{echo $ism;
+		if ($ism == 0) {
 		return "SELECT _name, _label FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _name <> 'id' ORDER BY _order";
+		} else {
+		return "SELECT _name, _label FROM schema WHERE _section = '$tbl' AND _visible = 'YES' AND _mobile = 'YES' AND _name <> 'id' ORDER BY _order";
+		}
 	}
-    	public function arrayHeaders($tbl) 
+    	public function arrayHeaders($tbl,$ism) 
 	{
+echo $ism;
 		// getting the array headers
-		$res = $this->db->exec($this->strHeader($tbl));
+		$res = $this->db->exec($this->strHeader($tbl,$ism));
 		$res_array = [];
 		$res_array[] = 'id';
 		// loading into simple array
@@ -38,9 +43,9 @@ class Sections extends DB\SQL\Mapper {
 		}
 		return $res_array;
 	}
-	public function stringHeaders($tbl) 
+	public function stringHeaders($tbl,$ism) 
 	{
-		$res = $this->db->exec($this->strHeader($tbl));
+		$res = $this->db->exec($this->strHeader($tbl,$ism));
 		$fields = "id,";
 		// creating string with fields
 		foreach($res as &$value) {
@@ -49,9 +54,9 @@ class Sections extends DB\SQL\Mapper {
 		$fields = rtrim($fields,",");
 		return $fields;
 	}
-	public function x_all($tbl) 
+	public function x_all($tbl,$ism) 
 	{ //get some fields
-		$fields = $this->stringHeaders($tbl);
+		$fields = $this->stringHeaders($tbl,$ism);
 		return $this->db->exec('SELECT '.$fields.' FROM '.$tbl.' ORDER BY id DESC');
 	}
 	public function all() 

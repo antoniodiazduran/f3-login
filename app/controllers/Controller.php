@@ -66,6 +66,9 @@ class Controller {
 		$access->allow('/user*',['100','10','1']);
 		$access->allow('/api*');
 
+		// Public access
+                $access->allow('/sections/items*',['']);
+
 		// Granting access to routes
 		$access->authorize($this->f3->exists('SESSION.user_type') ? $this->f3->get('SESSION.user_type') : 0 );
 
@@ -73,7 +76,10 @@ class Controller {
 
 	public function menu_sections() {
 		$menu = new Menus($this->schema);
-		return $menu->allSections($this->f3->get('SESSION.company'));
+		//return $menu->allSections($this->f3->get('SESSION.company'));
+		$cmy = $this->f3->get('SESSION.company');
+                if(is_null($cmy)==1) { $cmy = 'Public'; }
+                return $menu->allSections($cmy);
 	}
 	public function data_sections() {
 		$menu = new Menus($this->schema);
@@ -81,7 +87,10 @@ class Controller {
 	}
 	public function menu_items() {
 		$menu = new Menus($this->schema);
-		return $menu->allItems($this->f3->get('SESSION.company'));
+		//return $menu->allItems($this->f3->get('SESSION.company'));
+		$cmy = $this->f3->get('SESSION.company');
+                if(is_null($cmy)==1) { $cmy = 'Public'; }
+                return $menu->allItems($cmy);
 	}
 	public function afterroute() {
 		$this->f3->set('isMobile',$this->isMobile());

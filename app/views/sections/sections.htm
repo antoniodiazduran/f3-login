@@ -1,10 +1,10 @@
 <div class="w3-container">
-	<h3> Section {{ ucfirst(@sectionName) }}<a href="{{@breadcrumbs}}/new"><i class="material-symbols-outlined">add_circle</i></a></h3>	
+	<h3> Section {{ ucfirst(@sectionName) }} &nbsp; <a href="{{@breadcrumbs}}/new"><i class="material-symbols-outlined">add</i></a></h3>	
 	<table class="w3-table w3-hoverable" id="list">
 	<thead>
 		<tr class="w3-deep-orange">
 		<th></th>
-            <repeat group="{{@headers}}" key="{{@key}}" value="{{@cols}}">
+            		<repeat group="{{@headers}}" key="{{@key}}" value="{{@cols}}">
 				<check if="{{ @cols != 'id' }}">
 					<th>{{ ucwords(@cols) }} <b onmouseover="this.style.cursor='pointer'" onclick="sortTable({{@key}})" style="font-size:18px;">&#8597</b></th>
 				</check>

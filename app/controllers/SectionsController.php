@@ -8,10 +8,11 @@ class SectionsController extends Controller {
 		$this->f3->set('sectionName',$this->f3->get('PARAMS.schema'));
 		//$this->f3->set('i',1);
 		$this->f3->set('breadcrumbs','/sections/'.$this->f3->get('PARAMS.schema'));
-		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema') ));
+		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema'),$this->isMobile() ));
 		//$this->f3->set('groupdata',$sections->all());
 		//$this->f3->set('headers',array_keys($sections->schema()));
-		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema')) );
+		echo $this->isMobile();
+		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema'),$this->isMobile()) );
 		$this->f3->set('view','sections/sections.htm');
 	}
 
