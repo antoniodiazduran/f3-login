@@ -72,7 +72,9 @@
 			</check>
 			<a class="w3-bar-item w3-button" href="/user/update"><i class="material-symbols-outlined" title="Reset Password">lock_reset</i></a>
 			<a class="w3-bar-item w3-button w3-gray w3-right" href="/logout"><i class="material-symbols-outlined" title="Logout">logout</i></a>
+			<check if="{{ isset(@searchbar)==null }}">
 			<input class="w3-bar-item w3-input w3-light-gray" type="text" id="search" style="margin-top:3px;" onkeyup="searchTable();" placeholder="Search">
+			</check>
  		</true>
 		<false>
 			  <a href="/login" class="w3-bar-item w3-button w3-green w3-right"><i class="material-symbols-outlined" title="Login">login</i></a>

@@ -11,6 +11,7 @@ class SectionsController extends Controller {
 		$this->f3->set('groupdata',$sections->x_all( $this->f3->get('PARAMS.schema'),$this->isMobile() ));
 		//$this->f3->set('groupdata',$sections->all());
 		//$this->f3->set('headers',array_keys($sections->schema()));
+		$this->f3->set('searchbar',null);
 		$this->f3->set('headers',$sections->arrayHeaders($this->f3->get('PARAMS.schema'),$this->isMobile()) );
 		$this->f3->set('view','sections/sections.htm');
 	}
@@ -55,6 +56,7 @@ class SectionsController extends Controller {
 			}
 			// Uploading the file
             		$upload = $upld->fileUpload($last_id,$section);
+			$this->f3->set('searchbar',null);
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('sectionName',$section);
 			$this->f3->set('breadcrumbs','/sections/'.$section);
@@ -63,6 +65,7 @@ class SectionsController extends Controller {
 			$this->f3->set('view','sections/sections.htm');
 		} else {
 			$grp = $structure->getBySection($section);
+			$this->f3->set('searchbar',1);
 			$this->f3->set('params',$this->f3->get('PARAMS'));
 			$this->f3->set('joinFields',$this->join_fields($grp));
 			$this->f3->set('sectionName',$section);
@@ -109,6 +112,7 @@ class SectionsController extends Controller {
 		$schemaObj = new Schema($this->schema);
 		$grp = $schemaObj->getBySection($section);
 
+		$this->f3->set('searchbar',1);
 		$this->f3->set('groupdata',$grp);
 		$this->f3->set('joinFields',$this->join_fields($grp));
 		$this->f3->set('uploadFiles',$uplds->getByUId($id));
