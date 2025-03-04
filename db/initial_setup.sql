@@ -11,4 +11,4 @@ CREATE TABLE  users  (
 )
 
 INSERT INTO users (id, username, email, password, activated, user_type,created_at,updated_at) 
-VALUES (2,'adiaz','antonio@diaz.works','$2y$10$One/z.61I/ZaCejNpreP/e4K372D3QvzsLc0RPADUYmYJogD8g.su',1,1,NULL,NULL)
+VALUES (2,'<username>','<email>','<password hash>',1,1,NULL,NULL)
